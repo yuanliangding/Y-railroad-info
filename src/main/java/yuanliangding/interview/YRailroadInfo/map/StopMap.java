@@ -12,7 +12,15 @@ import java.util.Map;
  */
 public class StopMap {
 	
+	private static StopMap instance = new StopMap();
+	
 	private final Map<String, Stop> stops = new HashMap<>();
+	
+	public static StopMap getInstance() {
+		return instance;
+	}
+	
+	private StopMap() {}
 	
 	/**
 	 * 增加地图信息,既增加路线信息.为某两个站点增加路径信息,如,距离,行程时间等.

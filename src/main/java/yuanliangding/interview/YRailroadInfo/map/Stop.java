@@ -67,7 +67,7 @@ public class Stop {
 	 * @param weight	权重
 	 * 
 	 * */
-	public void addRoute(Stop stop, String dim, double weight) {
+	protected void addRoute(Stop stop, String dim, double weight) {
 		Map<Stop,Double> routesByDim = routes.get(dim);
 		
 		if (routesByDim == null) {
