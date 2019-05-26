@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class Stop {
 	
-	private final Map<String, Map<Stop,Double>> routes = new HashMap<>();
+	private final Map<String, Map<Stop,Integer>> routes = new HashMap<>();
 	
 	private final String name;
 
@@ -53,7 +53,7 @@ public class Stop {
 	 * 
 	 * @param dim
 	 * */
-	public Map<Stop,Double> getNexts(String dim) {
+	public Map<Stop,Integer> getNexts(String dim) {
 		return routes.getOrDefault(dim, new HashMap<>());
 	}
 	
@@ -67,8 +67,8 @@ public class Stop {
 	 * @param weight	权重
 	 * 
 	 * */
-	protected void addRoute(Stop stop, String dim, double weight) {
-		Map<Stop,Double> routesByDim = routes.get(dim);
+	protected void addRoute(Stop stop, String dim, int weight) {
+		Map<Stop,Integer> routesByDim = routes.get(dim);
 		
 		if (routesByDim == null) {
 			routesByDim = new HashMap<>();

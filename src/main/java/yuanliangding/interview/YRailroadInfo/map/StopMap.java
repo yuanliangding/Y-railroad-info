@@ -12,9 +12,9 @@ import java.util.Map;
  */
 public class StopMap {
 	
-	private static StopMap instance = new StopMap();
-	
 	private final Map<String, Stop> stops = new HashMap<>();
+	
+	private static StopMap instance = new StopMap();
 	
 	public static StopMap getInstance() {
 		return instance;
@@ -30,7 +30,7 @@ public class StopMap {
 	 * @param dim		维度(根据实际,可以有路程"dist",行程耗时"time",跨越站数"stop")
 	 * @param weight	权重,如上可以是路程距离,行程耗时或者跨越站数值.
 	 * */
-	public void addRoute(Stop start, Stop end, String dim, double weight) {
+	public void addRoute(Stop start, Stop end, String dim, int weight) {
 		if (start == null || end == null) {
 			throw new RuntimeException("两个合法的站点之间才可以增加路线信息");
 		}

@@ -56,8 +56,8 @@ public class StopMapTest {
     	Stop c = stopMap.getStop("C");
     	
     	String dimName = "dist";
-    	double dimValAB = 8;
-    	double dimValAC = 9;
+    	int dimValAB = 8;
+    	int dimValAC = 9;
     	
     	stopMap.addRoute(a, b, dimName, dimValAB);
     	stopMap.addRoute(a, c, dimName, dimValAC);
@@ -65,7 +65,7 @@ public class StopMapTest {
     	Stop a_ = stopMap.getStop("A");
     	Stop b_ = stopMap.getStop("B");
     	Stop c_ = stopMap.getStop("C");
-    	Map<Stop, Double> nexts = a_.getNexts(dimName);
+    	Map<Stop, Integer> nexts = a_.getNexts(dimName);
     	
     	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));
     	Assert.assertThat("A,C之间维度'"+dimName+"'的边权为:"+dimValAC, nexts.get(c_),CoreMatchers.equalTo(dimValAC));
