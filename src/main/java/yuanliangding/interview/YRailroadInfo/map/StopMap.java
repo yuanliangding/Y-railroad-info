@@ -27,23 +27,22 @@ public class StopMap {
 			throw new RuntimeException("两个合法的站点之间才可以增加路线信息");
 		}
 		
-		if (!stops.containsKey(start.getName())) {
-			stops.put(start.getName(), start);
-		}
-		if (!stops.containsKey(end.getName())) {
-			stops.put(end.getName(), end);
-		}
-		
 		start.addRoute(end, dim, weight);
 	}
 	
 	/**
-	 * 根据站名,或得站点.
+	 * 根据站名获得站点.如果第一次获取则自动创建,同样的站名,只能创建一个站点实例
 	 * 
 	 * @param name	站名
 	 * */
 	public Stop getStop(String name) {
-		return stops.get(name);
+		Stop stop = stops.get(name);
+		if (stop == null) {
+			stop = new Stop(name);
+			stops.put(name, stop);
+		}
+		
+		return stop;
 	}
 
 }

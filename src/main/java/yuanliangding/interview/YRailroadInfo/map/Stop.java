@@ -34,7 +34,7 @@ public class Stop {
 	/**
 	 * @param name 站点名称
 	 * */
-	public Stop(String name) {
+	protected Stop(String name) {
 		if (name == null || "".equals(name)) {
 			throw new RuntimeException("站名不合法,名称长度至少为1");
 		}
