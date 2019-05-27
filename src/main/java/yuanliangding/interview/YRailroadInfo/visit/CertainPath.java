@@ -1,6 +1,7 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,17 @@ public class CertainPath extends Path {
 		
 		for (int index=0;index<others.length-1;++index) {
 			via.add(others[index]);
+		}
+	}
+	
+	public CertainPath(List<Stop> stops) {
+		super(
+				stops!=null && stops.size()>0?stops.get(0):null,
+				stops!=null && stops.size()>0?stops.get(stops.size()-1):null
+				);
+		
+		for (int i=1;i<stops.size()-1;++i) {
+			via.add(stops.get(i));
 		}
 	}
 	
@@ -57,6 +69,14 @@ public class CertainPath extends Path {
 	@Override
 	public String toString() {
 		return begin.getName() + "-" +  via.stream().map(s -> s.getName()+"-").collect(Collectors.joining("")) + end.getName();
+	}
+
+	/**
+	 *  具体路现不需要再具体化了,具体化结果就是它自身.
+	 * */
+	@Override
+	public List<CertainPath> concrete() {
+		return Arrays.asList(this);
 	}
 	
 }
