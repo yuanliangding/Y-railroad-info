@@ -66,18 +66,23 @@ public class LimitedPath extends Path {
 		
 		nextStop(begin, new TempPath(0, begin, null));
 		
+		return getResult();
+		
+	}
+	
+	protected List<CertainPath> getResult() {
 		return
-		tempResult.stream().map(tempPath -> {
-			List<Stop> tempList = new LinkedList<>();
-			
-			do{
-				tempList.add(0, tempPath.getCurr());
-				tempPath = tempPath.getPrevious();
-			}while(tempPath != null);
-			
-			return tempList;
-		}).map(stopList -> new CertainPath(stopList))
-		.collect(Collectors.toList());
+				tempResult.stream().map(tempPath -> {
+					List<Stop> tempList = new LinkedList<>();
+					
+					do{
+						tempList.add(0, tempPath.getCurr());
+						tempPath = tempPath.getPrevious();
+					}while(tempPath != null);
+					
+					return tempList;
+				}).map(stopList -> new CertainPath(stopList))
+				.collect(Collectors.toList());
 	}
 	
 	/**
