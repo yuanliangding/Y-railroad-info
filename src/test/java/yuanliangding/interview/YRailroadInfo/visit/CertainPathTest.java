@@ -1,16 +1,12 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import java.io.IOException;
-
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
-import yuanliangding.interview.YRailroadInfo.map.StopMap;
 import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
 /**
@@ -19,27 +15,10 @@ import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午12:26:56
  */
-public class CertainPathTest {
-
-	private StopMap stopMap = null;
+public class CertainPathTest extends PathTest{
 
 	@Rule
 	public final ExpectedException noSuchRouteException = ExpectedException.none();
-
-	@Before
-	public void before() throws IOException {
-		stopMap = StopMap.getInstance();
-
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.DIST, 4);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PlainTextMapReader.DIST, 6);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.DIST, 2);
-		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.DIST, 3);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), PlainTextMapReader.DIST, 7);
-	}
 
 	@Test
 	public void testGetTotalWeight() {
