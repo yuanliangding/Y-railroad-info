@@ -23,7 +23,7 @@ public class LimitedPath extends Path {
 	private boolean minContainsEq = true;
 	private boolean maxContainsEq = true;
 	
-	protected Collection<TempPath> tempResult = new ArrayList<>();
+	private Collection<TempPath> tempResult = new ArrayList<>();
 	
 	/**
 	 * @param begin	路线起点
@@ -32,7 +32,7 @@ public class LimitedPath extends Path {
 	 * @param min	权重总值最小值(包含该值)
 	 * @param max	权重总值最大值(包含该值)
 	 */
-	protected LimitedPath(Stop begin, Stop end, String dim, int min, int max) {
+	public LimitedPath(Stop begin, Stop end, String dim, int min, int max) {
 		super(begin, end);
 		
 		if (min > max) {
@@ -53,7 +53,7 @@ public class LimitedPath extends Path {
 	 * @param minContainsEq	权重总值最小值是否包含该值
 	 * @param maxContainsEq	权重总值最大值是否包含该值
 	 */
-	protected LimitedPath(Stop begin, Stop end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
+	public LimitedPath(Stop begin, Stop end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
 		this(begin, end, dim, min, max);
 		
 		this.minContainsEq = minContainsEq;
@@ -87,14 +87,27 @@ public class LimitedPath extends Path {
 		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
 			int totalWeight = tempPath.getTotalWeight();
-			if (maxContainsEq?totalWeight <= max:totalWeight < max) {
-				if (tempPath.getCurr().equals(end) 
-						&& (minContainsEq?totalWeight >= min:totalWeight > min)) {
+			if (toBeContinue(totalWeight)) {
+				if (canBeResult(tempPath.getCurr(), totalWeight)) {
 					tempResult.add(tempPath);
 				}
 				nextStop(stop, tempPath);
 			}
 		});
+	}
+	
+	/**
+	 * 是否要继续遍历后续节点.
+	 * */
+	protected boolean toBeContinue(int totalWeight) {
+		return maxContainsEq?totalWeight <= max:totalWeight < max;
+	}
+	
+	/**
+	 * 继续到当前节点的路经,是否可以做为最终结果.
+	 * */
+	private boolean canBeResult(Stop curr, int totalWeight) {
+		return curr.equals(end) && (minContainsEq?totalWeight >= min:totalWeight > min);
 	}
 
 }
