@@ -62,7 +62,7 @@ public class LimitedPath extends Path {
 
 	@Override
 	public List<CertainPath> concrete() {
-		tempResult.clear();
+		clear();
 		
 		nextStop(begin, new TempPath(0, begin, null));
 		
@@ -86,11 +86,8 @@ public class LimitedPath extends Path {
 	private void nextStop(Stop curr, TempPath currTempPath) {
 		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
-			int totalWeight = tempPath.getTotalWeight();
-			if (toBeContinue(totalWeight)) {
-				if (canBeResult(tempPath.getCurr(), totalWeight)) {
-					tempResult.add(tempPath);
-				}
+			if (toBeContinue(tempPath)) {
+				saveAsResult(tempPath);
 				nextStop(stop, tempPath);
 			}
 		});
@@ -99,15 +96,25 @@ public class LimitedPath extends Path {
 	/**
 	 * 是否要继续遍历后续节点.
 	 * */
-	protected boolean toBeContinue(int totalWeight) {
-		return maxContainsEq?totalWeight <= max:totalWeight < max;
+	protected boolean toBeContinue(TempPath tempPath) {
+		return maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
 	}
 	
 	/**
-	 * 继续到当前节点的路经,是否可以做为最终结果.
+	 * 当前节点的路经,是否可以做为最终结果.
 	 * */
-	private boolean canBeResult(Stop curr, int totalWeight) {
-		return curr.equals(end) && (minContainsEq?totalWeight >= min:totalWeight > min);
+	protected void saveAsResult(TempPath tempPath) {
+		if (tempPath.getCurr().equals(end) 
+				&& (minContainsEq?tempPath.getTotalWeight() >= min:tempPath.getTotalWeight() > min)) {
+			tempResult.add(tempPath);
+		}
+	}
+	
+	/**
+	 * 清除上次计算的结果
+	 * */
+	protected void clear() {
+		tempResult.clear();
 	}
 
 }
