@@ -20,7 +20,7 @@ import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 public class LimitedPathTest extends PathTest {
 	
 	@Test
-	public void testGetTotalWeight() {
+	public void testConcrete() {
 		
 		Stop a = stopMap.getStop("A");
 		Stop c = stopMap.getStop("C");
