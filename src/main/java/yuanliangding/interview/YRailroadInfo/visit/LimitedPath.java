@@ -20,6 +20,8 @@ public class LimitedPath extends Path {
 	private String dim;
 	private int min;
 	private int max;
+	private boolean minContainsEq = true;
+	private boolean maxContainsEq = true;
 	
 	protected Collection<TempPath> tempResult = new ArrayList<>();
 	
@@ -41,11 +43,23 @@ public class LimitedPath extends Path {
 		this.min = min;
 		this.max = max;
 	}
-
-	/* 
-	 * (non-Javadoc)
-	 * @see yuanliangding.interview.YRailroadInfo.visit.Path#concrete(java.lang.String)
+	
+	/**
+	 * @param begin				路线起点
+	 * @param end				路线终点
+	 * @param dim				描述针对具体维度的权重
+	 * @param min				权重总值最小值
+	 * @param max				权重总值最大值
+	 * @param minContainsEq	权重总值最小值是否包含该值
+	 * @param maxContainsEq	权重总值最大值是否包含该值
 	 */
+	protected LimitedPath(Stop begin, Stop end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
+		this(begin, end, dim, min, max);
+		
+		this.minContainsEq = minContainsEq;
+		this.maxContainsEq = maxContainsEq;
+	}
+
 	@Override
 	public List<CertainPath> concrete() {
 		tempResult.clear();
@@ -62,7 +76,8 @@ public class LimitedPath extends Path {
 			}while(tempPath != null);
 			
 			return tempList;
-		}).map(stopList -> new CertainPath(stopList)).collect(Collectors.toList());
+		}).map(stopList -> new CertainPath(stopList))
+		.collect(Collectors.toList());
 	}
 	
 	/**
@@ -71,8 +86,10 @@ public class LimitedPath extends Path {
 	private void nextStop(Stop curr, TempPath currTempPath) {
 		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
-			if (tempPath.getTotalWeight() <= max) {
-				if (tempPath.getCurr().equals(end) && tempPath.getTotalWeight() >= min) {
+			int totalWeight = tempPath.getTotalWeight();
+			if (maxContainsEq?totalWeight <= max:totalWeight < max) {
+				if (tempPath.getCurr().equals(end) 
+						&& (minContainsEq?totalWeight >= min:totalWeight > min)) {
 					tempResult.add(tempPath);
 				}
 				nextStop(stop, tempPath);

@@ -32,6 +32,16 @@ public class PathTest {
 		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.DIST, 2);
 		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.DIST, 3);
 		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), PlainTextMapReader.DIST, 7);
+		
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
 	}
 
 }
