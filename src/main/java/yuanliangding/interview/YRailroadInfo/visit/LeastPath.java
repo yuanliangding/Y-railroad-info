@@ -30,7 +30,7 @@ public class LeastPath extends SpecifiedPath {
 	 * @param dim	描述针对具体维度的权重
 	 */
 	protected LeastPath(Stop begin, Stop end, String dim) {
-		super(begin, end, dim);	// TODO 对于规模大的地图,权重总值有可能溢出
+		super(begin, end, dim);
 	}
 	
 	@Override
