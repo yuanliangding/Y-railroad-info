@@ -22,7 +22,7 @@ public abstract class SpecifiedPath extends AbsPath {
 	 * 在某维度计算路线具体权重的总值.最终筛选出满足条件的路线.
 	 * 比如权重总值最小的,可以是路程最短路径,耗时最短路径.或者路程,经停数在某个范围的路线(途中可能会有环路)
 	 * */
-	public abstract List<CertainPath> concrete();
+	public abstract List<IndividualPath> concrete();
 	
 	/** 
 	 * @ClassName: TempPath

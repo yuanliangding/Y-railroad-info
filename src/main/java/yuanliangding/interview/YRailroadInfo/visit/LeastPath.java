@@ -74,7 +74,7 @@ public class LeastPath extends LimitedPath {
 	 * 整理结果
 	 * */
 	@Override
-	protected List<CertainPath> getResult() {
+	protected List<IndividualPath> getResult() {
 		
 		List<List<Stop>> tempResult = new ArrayList<>();
 		
@@ -86,7 +86,7 @@ public class LeastPath extends LimitedPath {
 		});
 		
 		return tempResult.stream()
-				.map(stopList -> new CertainPath(stopList))
+				.map(stopList -> new IndividualPath(stopList))
 				.collect(Collectors.toList());
 	}
 	

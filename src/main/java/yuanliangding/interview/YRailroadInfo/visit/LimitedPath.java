@@ -61,7 +61,7 @@ public class LimitedPath extends AbsPath {
 	}
 
 	@Override
-	public List<CertainPath> concrete() {
+	public List<IndividualPath> concrete() {
 		clear();
 		
 		nextStop(begin, new TempPath(0, begin, null));
@@ -70,7 +70,7 @@ public class LimitedPath extends AbsPath {
 		
 	}
 	
-	protected List<CertainPath> getResult() {
+	protected List<IndividualPath> getResult() {
 		return
 				tempResult.stream().map(tempPath -> {
 					List<Stop> tempList = new LinkedList<>();
@@ -81,7 +81,7 @@ public class LimitedPath extends AbsPath {
 					}while(tempPath != null);
 					
 					return tempList;
-				}).map(stopList -> new CertainPath(stopList))
+				}).map(stopList -> new IndividualPath(stopList))
 				.collect(Collectors.toList());
 	}
 	

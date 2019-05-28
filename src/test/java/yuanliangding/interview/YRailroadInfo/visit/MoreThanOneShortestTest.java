@@ -45,11 +45,11 @@ public class MoreThanOneShortestTest {
 		Stop e = stopMap.getStop("E");
 		
 		LeastPath ae_dist = new LeastPath(a, e, PlainTextMapReader.DIST);
-		List<CertainPath> ae_dist_paths = ae_dist.concrete();
+		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
 		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
 				"从A到E,最短路径路线有2条:A-B-C-E, A-D-E", 
-				ae_dist_paths.stream().map(CertainPath::toString).collect(Collectors.toList()), 
+				ae_dist_paths.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("A-B-C-E", "A-D-E")
 				);
 		Assert.assertThat(

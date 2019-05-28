@@ -26,11 +26,11 @@ public class LeastPathTest extends PathTest {
 		Stop c = stopMap.getStop("C");
 		
 		LeastPath ac_dist = new LeastPath(a, c, PlainTextMapReader.DIST);
-		List<CertainPath> ac_dist_paths = ac_dist.concrete();
+		List<IndividualPath> ac_dist_paths = ac_dist.concrete();
 		Assert.assertThat("从A到C,最短路径路线有1条", ac_dist_paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从A到C,最短路径路线有1条:A-B-C", 
-				ac_dist_paths.stream().map(CertainPath::toString).collect(Collectors.toList()), 
+				ac_dist_paths.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("A-B-C")
 				);
 		Assert.assertThat(
@@ -39,11 +39,11 @@ public class LeastPathTest extends PathTest {
 				CoreMatchers.equalTo(9));
 		
 		LeastPath bb_dist = new LeastPath(b, b, PlainTextMapReader.DIST);
-		List<CertainPath> bb_dist_paths = bb_dist.concrete();
+		List<IndividualPath> bb_dist_paths = bb_dist.concrete();
 		Assert.assertThat("从B到B,最短路径路线有1条", bb_dist_paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从B到B,最短路径路线有1条:B-C-E-B", 
-				bb_dist_paths.stream().map(CertainPath::toString).collect(Collectors.toList()), 
+				bb_dist_paths.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("B-C-E-B")
 				);
 		Assert.assertThat(
