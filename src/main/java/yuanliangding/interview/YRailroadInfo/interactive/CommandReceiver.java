@@ -2,6 +2,8 @@ package yuanliangding.interview.YRailroadInfo.interactive;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
@@ -21,6 +23,9 @@ public abstract class CommandReceiver {
 	
 	/**命令解析器*/
 	private final CommandParser commandParser;
+	
+	/**命令的实际执行体*/
+	private final Map<String, Command> commands = new HashMap<>();
 	
 	/**标准输入*/
 	private final Scanner standardIn;
@@ -61,16 +66,27 @@ public abstract class CommandReceiver {
 			try {
 				CommandData commandData = commandParser.parser(commandStr);
 				
+				Command command = commands.get(commandData.getName());
+				if (command == null) {
+					throw new RuntimeException("不认识的命令");
+				}
 				
+				Object result = command.execute(commandData);
 				
-				
-				
-				System.out.println(commandStr);
-				
+				standardOut.println(result);
 			} catch(Exception e) {
-				standardOut.println(e.getMessage());
+				standardError.println(e.getMessage());
 			}
 		}while(!exitCommand.equals(commandStr));
+	}
+	
+	/**
+	 * 注册一条命令
+	 * @param name		命令名称
+	 * @param command	命令执行体
+	 * */
+	public void registeCommand(String name, Command command) {
+		commands.put(name, command);
 	}
 	
 	/**
