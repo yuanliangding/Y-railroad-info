@@ -15,7 +15,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  */
 public class IndividualPath extends AbsPath {
 	
-	private List<Stop> via = new ArrayList<>();
+	private List<Stop> rest = new ArrayList<>();
 
 	/**
 	 * @param begin 路线起点
@@ -25,7 +25,7 @@ public class IndividualPath extends AbsPath {
 		super(begin);
 		
 		for (int index=0;index<others.length;++index) {
-			via.add(others[index]);
+			rest.add(others[index]);
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class IndividualPath extends AbsPath {
 		super(stops!=null && stops.size()>0?stops.get(0):null);
 		
 		for (int i=1;i<stops.size();++i) {
-			via.add(stops.get(i));
+			rest.add(stops.get(i));
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class IndividualPath extends AbsPath {
 		
 		Stop curr = begin;
 		
-		for (Stop next:via) {
+		for (Stop next:rest) {
 			result += getWeight(curr, next, dim);
 			curr = next;
 		}
@@ -64,7 +64,7 @@ public class IndividualPath extends AbsPath {
 
 	@Override
 	public String toString() {
-		return begin.getName() + via.stream().map(s -> "-" +s.getName()).collect(Collectors.joining(""));
+		return begin.getName() + rest.stream().map(s -> "-" +s.getName()).collect(Collectors.joining(""));
 	}
 	
 }
