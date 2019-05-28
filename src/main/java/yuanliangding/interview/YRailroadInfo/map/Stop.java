@@ -78,9 +78,6 @@ public class Stop {
 		routesByDim.put(stop, weight);
 	}
 
-	/**
-	 * TODO String的hash码会有碰撞的可能.
-	 * */
 	@Override
 	public int hashCode() {
 		return name.hashCode();
