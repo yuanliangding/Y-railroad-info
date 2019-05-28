@@ -2,9 +2,10 @@ package yuanliangding.interview.YRailroadInfo.visit;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 
@@ -83,13 +84,11 @@ public class LimitedPath extends SpecifiedPath {
 	protected List<IndividualPath> getResult() {
 		return
 				tempResult.stream().map(tempPath -> {
-					List<Stop> tempList = new LinkedList<>();
-					
-					do{
-						tempList.add(0, tempPath.getCurr());
-						tempPath = tempPath.getPrevious();
-					}while(tempPath != null);
-					
+					List<Stop> tempList = Stream
+							.iterate(tempPath, t -> t!=null, t -> t.getPrevious())
+							.map(TempPath::getCurr)
+							.collect(Collectors.toList());
+					Collections.reverse(tempList);
 					return tempList;
 				}).map(stopList -> new IndividualPath(stopList))
 				.collect(Collectors.toList());
