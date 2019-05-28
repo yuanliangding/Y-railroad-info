@@ -23,7 +23,7 @@ public class LimitedPath extends SpecifiedPath {
 	private boolean minContainsEq = true;
 	private boolean maxContainsEq = true;
 	
-	private Collection<TempPath> tempResult = new ArrayList<>();
+	private List<TempPath> tempResult = new ArrayList<>();
 	
 	/**
 	 * @param begin	路线起点
