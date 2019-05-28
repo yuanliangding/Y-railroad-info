@@ -8,9 +8,6 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
 /** 
  * @ClassName: LeastPath
  * @Description:  权重总值最小的路径.如果选择的维度是路程dist,则就是最短路径.
- * 						最短路径,其实是一个特殊的LimitedPath,
- * 						只是在具体化路径时,向后续节点遍历,
- * 						如果对于同一个结点,之前遍历过的路径是更优的,就中断当前分支的遍历
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午2:00:18
