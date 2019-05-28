@@ -1,6 +1,11 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 
@@ -19,6 +24,12 @@ public abstract class SpecifiedPath extends AbsPath {
 	protected Stop end;
 	
 	protected String dim;
+	
+	// 遍历过程产生的结果数据
+	protected List<TempPath> results = new ArrayList<>();
+	
+	// 遍历路径到断头路,对于没有指定终点的路线,可以从这里处理结果
+	private List<TempPath> terminates = new ArrayList<>();
 	
 	/**
 	 * @param begin	路线起点
@@ -52,27 +63,60 @@ public abstract class SpecifiedPath extends AbsPath {
 		return getResult();
 	}
 	
+	protected void clear() {
+		results.clear();
+		terminates.clear();
+	}
+	
 	/**
 	 * TODO	1	对权重只是做简单的类加操作,对于路途中有负环路,或0环路.该递归会死循环.
 	 * 			2	由于是采用递归操作,对于规模大的地图有可能会导致内存不足的问题.
 	 * */
 	private void nextStop(TempPath currTempPath) {
-		currTempPath.getCurr().getNexts(dim).forEach((Stop stop,Integer weight) -> {
+		Map<Stop, Integer> edge = currTempPath.getCurr().getNexts(dim);
+		if (edge.isEmpty()) {
+			terminates.add(currTempPath);
+		}
+		
+		edge.forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
+			asResult(tempPath);
 			if (toBeContinue(tempPath)) {
 				nextStop(tempPath);
 			}
 		});
 	}
 	
-	protected abstract void clear();
-	
-	protected abstract List<IndividualPath> getResult();
+	private List<IndividualPath> getResult() {
+		
+		List<TempPath> date = null;
+		if (end == null) {
+			date = terminates;
+		} else {
+			date = results;
+		}
+		
+		return
+				date.stream().map(tempPath -> {
+					List<Stop> tempList = Stream
+							.iterate(tempPath, t -> t!=null, t -> t.getPrevious())
+							.map(TempPath::getCurr)
+							.collect(Collectors.toList());
+					Collections.reverse(tempList);
+					return tempList;
+				}).map(stopList -> new IndividualPath(stopList))
+				.collect(Collectors.toList());
+	}
 	
 	/**
-	 * 遍历过程中,判断是否继续下去.子类中往往是在这个方法中搜集满足条件的结果
+	 * 遍历过程中,判断是否继续下去.
 	 * */
 	protected abstract boolean toBeContinue(TempPath tempPath);
+	
+	/**
+	 * 将当前遍历的路径做为结果存起来.
+	 * */
+	protected abstract void asResult(TempPath tempPath);
 	
 	/** 
 	 * @ClassName: TempPath

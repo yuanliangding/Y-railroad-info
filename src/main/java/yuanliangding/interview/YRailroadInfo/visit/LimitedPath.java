@@ -1,12 +1,5 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 
 /** 
@@ -22,8 +15,6 @@ public class LimitedPath extends SpecifiedPath {
 	private int max;
 	private boolean minContainsEq = true;
 	private boolean maxContainsEq = true;
-	
-	private List<TempPath> tempResult = new ArrayList<>();
 	
 	/**
 	 * @param begin	路线起点
@@ -59,39 +50,22 @@ public class LimitedPath extends SpecifiedPath {
 		this.maxContainsEq = maxContainsEq;
 	}
 	
-	@Override
-	protected void clear() {
-		tempResult.clear();
-	}
-
-	/**
-	 * 是否要继续遍历后续节点.
-	 * */
+	// TODO 对于权重有负值,或者遍历过程中,权重总值不是单调的.让该方法永远返回true既可
 	@Override
 	protected boolean toBeContinue(TempPath tempPath) {
-		boolean result = maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
-		
-		if (result && (minContainsEq? tempPath.getTotalWeight() >= min: tempPath.getTotalWeight() > min)) {
-			if (end == null || tempPath.getCurr().equals(end)) {
-				tempResult.add(tempPath);
-			}
-		}
-		
-		return result;
+		return maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
 	}
 	
 	@Override
-	protected List<IndividualPath> getResult() {
-		return
-				tempResult.stream().map(tempPath -> {
-					List<Stop> tempList = Stream
-							.iterate(tempPath, t -> t!=null, t -> t.getPrevious())
-							.map(TempPath::getCurr)
-							.collect(Collectors.toList());
-					Collections.reverse(tempList);
-					return tempList;
-				}).map(stopList -> new IndividualPath(stopList))
-				.collect(Collectors.toList());
+	protected void asResult(TempPath tempPath) {
+		if (
+				(maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max) 
+				&& 
+				(minContainsEq? tempPath.getTotalWeight() >= min: tempPath.getTotalWeight() > min)) {
+			if (end == null || tempPath.getCurr().equals(end)) {
+				results.add(tempPath);
+			}
+		}
 	}
 
 }

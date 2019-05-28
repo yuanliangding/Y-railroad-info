@@ -1,12 +1,7 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 
@@ -22,7 +17,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  */
 public class LeastPath extends SpecifiedPath {
 	
-	private Map<Stop, List<TempPath>> tempPaths = new HashMap<>();
+	private Map<Stop, Integer> tempPaths = new HashMap<>();
 
 	/**
 	 * @param begin	路线起点
@@ -35,36 +30,26 @@ public class LeastPath extends SpecifiedPath {
 	
 	@Override
 	protected void clear() {
+		super.clear();
 		tempPaths.clear();
 	}
 	
-	/**
-	 * 最具体化遍历地图时.如果目的是寻找最短路径(或者别的维度,找权重总值最小的路径)
-	 * 在每个节点,都只记录到达当前结点的最短路径
-	 * 这里假设路线中不会存在0环路或者负环路.当遍历到终点,就不再继续.
-	 * */
 	@Override
 	protected boolean toBeContinue(TempPath tempPath) {
 		boolean result = true;
 		
 		Stop curr = tempPath.getCurr();
 		if (tempPaths.containsKey(curr)) {
-			List<TempPath> lastTempPaths = tempPaths.get(curr);
+			int lastTotalWeight = tempPaths.get(curr);
 			
-			int lastTotalWeight = lastTempPaths.get(0).getTotalWeight();
 			if (lastTotalWeight < tempPath.getTotalWeight()) {
 				result = false;
-			} else if (lastTotalWeight == tempPath.getTotalWeight()) {
-				lastTempPaths.add(tempPath);
-				result = false;				
 			} else {
-				lastTempPaths.clear();
-				lastTempPaths.add(tempPath);
+				// TODO 这里可以优化:当在遍历到某个节点时,有两条线路到这里的总权重是一样的,假设继续往后遍历就可以得到最优解.则后续的遍历操作,只进行一次就行.不需要两条路径都继续遍历
+				tempPaths.put(curr, tempPath.getTotalWeight());
 			}
 		} else {
-			List<TempPath> lastTempPaths = new ArrayList<>();
-			lastTempPaths.add(tempPath);
-			tempPaths.put(curr, lastTempPaths);
+			tempPaths.put(curr, tempPath.getTotalWeight());
 		}
 		
 		// TODO 对于权重不会为负值,遍历已经到最终结点,就没有必要继续下去了.再绕一圈,总权重不可能变小.
@@ -75,47 +60,19 @@ public class LeastPath extends SpecifiedPath {
 		return result;
 	}
 	
-	/**
-	 * 整理结果
-	 * */
 	@Override
-	protected List<IndividualPath> getResult() {
-		
-		List<List<Stop>> tempResult = new ArrayList<>();
-		
-		tempPaths.remove(end).stream().forEach(tempPath -> {
-			List<Stop> tempList = new LinkedList<>();
-			tempResult.add(tempList);
-			
-			concatResult(tempList, tempPath, tempResult);
-		});
-		
-		return tempResult.stream()
-				.map(stopList -> new IndividualPath(stopList))
-				.collect(Collectors.toList());
-	}
-	
-	/**
-	 * TODO 这里代码流程不够干净简洁
-	 * */
-	private void concatResult(List<Stop> resultList, TempPath tempPath, List<List<Stop>> tempResult) {
-		Stop curr = tempPath.getCurr();
-		List<TempPath> currTempPaths = tempPaths.get(curr);
-		if (currTempPaths == null || currTempPaths.size() == 1) {
-			resultList.add(0, curr);
-			if (tempPath.getPrevious() != null) {
-				concatResult(resultList, tempPath.getPrevious(), tempResult);
+	protected void asResult(TempPath tempPath) {
+		if (tempPath.getCurr().equals(end)) {
+			if (results.isEmpty()) {
+				results.add(tempPath);
+			} else {
+				if (results.get(0).getTotalWeight() > tempPath.getTotalWeight()) {
+					results.clear();
+					results.add(tempPath);
+				} else if (results.get(0).getTotalWeight() == tempPath.getTotalWeight()) {
+					results.add(tempPath);
+				}
 			}
-		} else {
-			tempResult.remove(resultList);
-			currTempPaths.forEach(currTempPath -> {
-				List<Stop> copyResultList = new ArrayList<>();
-				Collections.copy(copyResultList, resultList);
-				
-				tempPaths.remove(curr);
-				
-				concatResult(copyResultList, currTempPath, tempResult);
-			});
 		}
 	}
 
