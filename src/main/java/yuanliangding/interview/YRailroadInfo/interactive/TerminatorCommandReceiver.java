@@ -1,8 +1,5 @@
 package yuanliangding.interview.YRailroadInfo.interactive;
 
-import java.io.InputStream;
-import java.io.PrintStream;
-
 /** 
  * @ClassName: TerminatorCommandReceiver
  * @Description:  命令行等式的命令接收器
@@ -12,22 +9,14 @@ import java.io.PrintStream;
  */
 public class TerminatorCommandReceiver extends CommandReceiver {
 
-	@Override
-	protected InputStream getStandardIn() {
-		return System.in;
+	/**
+	 * @param standardIn
+	 * @param standardOut
+	 * @param standardError
+	 * @param commandParser
+	 */
+	public TerminatorCommandReceiver() {
+		super(System.in, System.out, System.err, new SimpleCommandParser());
 	}
-
-	@Override
-	protected PrintStream getStandardOut() {
-		return System.out;
-	}
-
-	@Override
-	protected PrintStream getStandardError() {
-		return System.err;
-	}
-	
-	@Override
-	protected void destroy() {}
 
 }

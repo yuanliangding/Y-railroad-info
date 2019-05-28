@@ -4,10 +4,13 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
+
 
 /** 
  * @ClassName: CommandReceiver
  * @Description:  命令接收器基类.通过指定具体的标准输入,标准输出,错误输出都.形成实际并且独特的命令接收器子类.
+ * 						该命令接收器不维护输入输出难道,使用后,请自行关闭
  * 						通过通过指定标准输入,标准输出,标准错误分别为System.in,System.out,System.err形成一个命令行工具,
  * 						也可以指定成硬盘文件,成为可以用于批处理的工具.或者指定到网络流量,形成一个分布式计算网络节点.
  *
@@ -16,22 +19,58 @@ import java.util.Scanner;
  */
 public abstract class CommandReceiver {
 	
+	/**命令解析器*/
+	private final CommandParser commandParser;
+	
+	/**标准输入*/
+	private final Scanner standardIn;
+	
+	/**标准输出*/
+	private final PrintStream standardOut;
+	
+	/**错误输出*/
+	private final PrintStream standardError;
+	
 	private String exitCommand = "exit";
 	
+	
+	/**
+	 * @param standardIn		标准输入
+	 * @param standardOut		标准输出
+	 * @param standardError	错误输出
+	 * @param commandParser	命令解析器
+	 * */
+	public CommandReceiver(
+			InputStream standardIn, 
+			PrintStream standardOut,
+			PrintStream standardError,
+			CommandParser commandParser) {
+		super();
+		// TODO 参数正确性判断
+		this.commandParser = commandParser;
+		this.standardIn = new Scanner(standardIn);
+		this.standardOut = standardOut;
+		this.standardError = standardError;
+	}
+
 	/** 进入工作状态 */
 	public void work () {
-		Scanner scanner = new Scanner(getStandardIn());
-		
 		String commandStr = null;
 		do {
-			commandStr = scanner.nextLine();
-			System.out.println(commandStr);
-			
-			
-			
+			commandStr = standardIn.nextLine();
+			try {
+				CommandData commandData = commandParser.parser(commandStr);
+				
+				
+				
+				
+				
+				System.out.println(commandStr);
+				
+			} catch(Exception e) {
+				standardOut.println(e.getMessage());
+			}
 		}while(!exitCommand.equals(commandStr));
-		
-		destroy();
 	}
 	
 	/**
@@ -42,17 +81,5 @@ public abstract class CommandReceiver {
 			this.exitCommand = exit;
 		}
 	}
-	
-	/**获得标准输入*/
-	protected abstract InputStream getStandardIn();
-	
-	/**获得标准输出*/
-	protected abstract PrintStream getStandardOut();
-	
-	/**获得错误输出*/
-	protected abstract PrintStream getStandardError();
-	
-	/**退出程序,清理释放资源*/
-	protected abstract void destroy();
 
 }
