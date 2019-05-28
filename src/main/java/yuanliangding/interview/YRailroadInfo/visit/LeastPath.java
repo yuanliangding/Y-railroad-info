@@ -20,7 +20,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午2:00:18
  */
-public class LeastPath extends LimitedPath {
+public class LeastPath extends SpecifiedPath {
 	
 	private Map<Stop, List<TempPath>> tempPaths = new HashMap<>();
 
@@ -30,7 +30,12 @@ public class LeastPath extends LimitedPath {
 	 * @param dim	描述针对具体维度的权重
 	 */
 	protected LeastPath(Stop begin, Stop end, String dim) {
-		super(begin, end, dim, 0, Integer.MAX_VALUE, true, true);	// TODO 对于规模大的地图,权重总值有可能溢出
+		super(begin, end, dim);	// TODO 对于规模大的地图,权重总值有可能溢出
+	}
+	
+	@Override
+	protected void clear() {
+		tempPaths.clear();
 	}
 	
 	/**
@@ -112,18 +117,6 @@ public class LeastPath extends LimitedPath {
 				concatResult(copyResultList, currTempPath, tempResult);
 			});
 		}
-	}
-	
-	/**
-	 * 
-	 * */
-	@Override
-	protected void saveAsResult(TempPath tempPath) {}
-	
-	@Override
-	protected void clear() {
-		super.clear();
-		tempPaths.clear();
 	}
 
 }

@@ -58,43 +58,24 @@ public class LimitedPath extends SpecifiedPath {
 		this.maxContainsEq = maxContainsEq;
 	}
 	
-	/**
-	 * 清除上次计算的结果
-	 * */
 	@Override
 	protected void clear() {
 		tempResult.clear();
 	}
 
 	/**
-	 * TODO 对于路途中有负环路,或0环路.该递归会死循环.对于规模大的地图,且max也比较大.该递归可能会导致内存不足的问题.
-	 * */
-	@Override
-	protected void nextStop(Stop curr, TempPath currTempPath) {
-		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
-			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
-			if (toBeContinue(tempPath)) {
-				saveAsResult(tempPath);
-				nextStop(stop, tempPath);
-			}
-		});
-	}
-	
-	/**
 	 * 是否要继续遍历后续节点.
 	 * */
+	@Override
 	protected boolean toBeContinue(TempPath tempPath) {
-		return maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
-	}
-	
-	/**
-	 * 当前节点的路经,是否可以做为最终结果.
-	 * */
-	protected void saveAsResult(TempPath tempPath) {
-		if (tempPath.getCurr().equals(end) 
-				&& (minContainsEq?tempPath.getTotalWeight() >= min:tempPath.getTotalWeight() > min)) {
-			tempResult.add(tempPath);
+		boolean result = maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
+		if (result) {
+			if (tempPath.getCurr().equals(end) 
+					&& (minContainsEq?tempPath.getTotalWeight() >= min:tempPath.getTotalWeight() > min)) {
+				tempResult.add(tempPath);
+			}
 		}
+		return result;
 	}
 	
 	@Override

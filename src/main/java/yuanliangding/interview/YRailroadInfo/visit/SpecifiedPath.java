@@ -42,7 +42,7 @@ public abstract class SpecifiedPath extends AbsPath {
 	 * */
 	public List<IndividualPath> concrete() {
 		
-		// 1 计算前的清理工作
+		// 1 清理工作
 		clear();
 		
 		// 2 进行遍历寻找
@@ -52,11 +52,27 @@ public abstract class SpecifiedPath extends AbsPath {
 		return getResult();
 	}
 	
+	/**
+	 * TODO	1	对权重只是做简单的类加操作,对于路途中有负环路,或0环路.该递归会死循环.
+	 * 			2	由于是采用递归操作,对于规模大的地图有可能会导致内存不足的问题.
+	 * */
+	private void nextStop(Stop curr, TempPath currTempPath) {
+		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
+			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
+			if (toBeContinue(tempPath)) {
+				nextStop(stop, tempPath);
+			}
+		});
+	}
+	
 	protected abstract void clear();
 	
-	protected abstract void nextStop(Stop curr, TempPath currTempPath);
-	
 	protected abstract List<IndividualPath> getResult();
+	
+	/**
+	 * 遍历过程中,判断是否继续下去.子类中往往是在这个方法中搜集满足条件的结果
+	 * */
+	protected abstract boolean toBeContinue(TempPath tempPath);
 	
 	/** 
 	 * @ClassName: TempPath
