@@ -23,21 +23,40 @@ public abstract class SpecifiedPath extends AbsPath {
 	/**
 	 * @param begin	路线起点
 	 * @param end	路线终点(传null为不指定)
-	 * @param dim	描述针对具体维度的权重
+	 * @param dim	规约描述针对具体维度的权重
 	 * */
 	protected SpecifiedPath(Stop begin, Stop end, String dim) {
 		super(begin);
 		this.dim = dim;
 		this.end = end;
 	}
-
+	
 	/**
 	 * 具体化操作.
-	 * 根据特点描述,从地图中找到满足条件的具体路线,结果往往不只一条.
-	 * 在某维度计算路线具体权重的总值.最终筛选出满足条件的路线.
-	 * 比如权重总值最小的,可以是路程最短路径,耗时最短路径.或者路程,经停数在某个范围的路线(途中可能会有环路)
+	 * 根据规约描述,从地图中找到满足条件的具体路线,结果往往不只一条.
+	 * 在指定维度计算路线具体权重的累加总值.最终筛选出满足条件的路线.
+	 * 根据具体子类的实现,可以得到最短路径,耗时最少路径.或者经停一定次数的路线(途中可能会有环路)
+	 * 
+	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类具体化遍历操作不是线程安全的.
+	 * 
 	 * */
-	public abstract List<IndividualPath> concrete();
+	public List<IndividualPath> concrete() {
+		
+		// 1 计算前的清理工作
+		clear();
+		
+		// 2 进行遍历寻找
+		nextStop(begin, new TempPath(0, begin, null));
+		
+		// 3 整理结果集
+		return getResult();
+	}
+	
+	protected abstract void clear();
+	
+	protected abstract void nextStop(Stop curr, TempPath currTempPath);
+	
+	protected abstract List<IndividualPath> getResult();
 	
 	/** 
 	 * @ClassName: TempPath

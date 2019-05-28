@@ -15,9 +15,8 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午9:24:12
  */
-public class LimitedPath extends AbsPath {
+public class LimitedPath extends SpecifiedPath {
 	
-	private String dim;
 	private int min;
 	private int max;
 	private boolean minContainsEq = true;
@@ -33,13 +32,12 @@ public class LimitedPath extends AbsPath {
 	 * @param max	权重总值最大值(包含该值)
 	 */
 	public LimitedPath(Stop begin, Stop end, String dim, int min, int max) {
-		super(begin, end);
+		super(begin, end, dim);
 		
 		if (min > max) {
 			throw new RuntimeException("最小值大小不能超过最大值");
 		}
 		
-		this.dim = dim;
 		this.min = min;
 		this.max = max;
 	}
@@ -59,36 +57,20 @@ public class LimitedPath extends AbsPath {
 		this.minContainsEq = minContainsEq;
 		this.maxContainsEq = maxContainsEq;
 	}
-
+	
+	/**
+	 * 清除上次计算的结果
+	 * */
 	@Override
-	public List<IndividualPath> concrete() {
-		clear();
-		
-		nextStop(begin, new TempPath(0, begin, null));
-		
-		return getResult();
-		
+	protected void clear() {
+		tempResult.clear();
 	}
-	
-	protected List<IndividualPath> getResult() {
-		return
-				tempResult.stream().map(tempPath -> {
-					List<Stop> tempList = new LinkedList<>();
-					
-					do{
-						tempList.add(0, tempPath.getCurr());
-						tempPath = tempPath.getPrevious();
-					}while(tempPath != null);
-					
-					return tempList;
-				}).map(stopList -> new IndividualPath(stopList))
-				.collect(Collectors.toList());
-	}
-	
+
 	/**
 	 * TODO 对于路途中有负环路,或0环路.该递归会死循环.对于规模大的地图,且max也比较大.该递归可能会导致内存不足的问题.
 	 * */
-	private void nextStop(Stop curr, TempPath currTempPath) {
+	@Override
+	protected void nextStop(Stop curr, TempPath currTempPath) {
 		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
 			if (toBeContinue(tempPath)) {
@@ -115,11 +97,20 @@ public class LimitedPath extends AbsPath {
 		}
 	}
 	
-	/**
-	 * 清除上次计算的结果
-	 * */
-	protected void clear() {
-		tempResult.clear();
+	@Override
+	protected List<IndividualPath> getResult() {
+		return
+				tempResult.stream().map(tempPath -> {
+					List<Stop> tempList = new LinkedList<>();
+					
+					do{
+						tempList.add(0, tempPath.getCurr());
+						tempPath = tempPath.getPrevious();
+					}while(tempPath != null);
+					
+					return tempList;
+				}).map(stopList -> new IndividualPath(stopList))
+				.collect(Collectors.toList());
 	}
 
 }
