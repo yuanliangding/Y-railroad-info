@@ -64,7 +64,7 @@ public class IndividualPath extends AbsPath {
 
 	@Override
 	public String toString() {
-		return begin.getName() + "-" +  via.stream().map(Stop::getName).collect(Collectors.joining(""));
+		return begin.getName() + via.stream().map(s -> "-" +s.getName()).collect(Collectors.joining(""));
 	}
 	
 }
