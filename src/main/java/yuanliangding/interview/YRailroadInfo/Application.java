@@ -1,8 +1,5 @@
 package yuanliangding.interview.YRailroadInfo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /** 
  * @ClassName: Application
  * @Description:  TODO
@@ -15,10 +12,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		
-		Map<String,String> m = new HashMap<>();
-		m.put("Aa", "x");
-		m.put("BB", "y");
-		System.out.println(m);
 		// TODO Auto-generated method stub
 	}
 
