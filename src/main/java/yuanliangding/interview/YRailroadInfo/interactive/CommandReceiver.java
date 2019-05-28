@@ -21,19 +21,21 @@ import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandDa
 public abstract class CommandReceiver {
 	
 	/**命令解析器*/
-	private final CommandParser commandParser;
+	private CommandParser commandParser;
 	
 	/**命令的实际执行体*/
 	private final Map<String, Command> commands = new HashMap<>();
 	
 	/**标准输入*/
-	private final Scanner standardIn;
+	private final InputStream standardIn;
 	
 	/**标准输出*/
 	private final PrintStream standardOut;
 	
 	/**错误输出*/
 	private final PrintStream standardError;
+	
+	private Scanner scanner = null;
 	
 	private String exitCommand = "exit";
 	
@@ -46,21 +48,22 @@ public abstract class CommandReceiver {
 	public CommandReceiver(
 			InputStream standardIn, 
 			PrintStream standardOut,
-			PrintStream standardError,
-			CommandParser commandParser) {
+			PrintStream standardError) {
 		super();
+		
 		// TODO 参数正确性判断
-		this.commandParser = commandParser;
-		this.standardIn = new Scanner(standardIn);
+		this.standardIn = standardIn;
 		this.standardOut = standardOut;
 		this.standardError = standardError;
 	}
 
 	/** 进入工作状态 */
 	public void work () {
+		scanner = new Scanner(standardIn);
+				
 		String commandStr = null;
 		do {
-			commandStr = standardIn.nextLine();
+			commandStr = scanner.nextLine();
 			try {
 				CommandData commandData = commandParser.parser(commandStr);
 				
@@ -76,6 +79,21 @@ public abstract class CommandReceiver {
 				standardError.println(e.getMessage());
 			}
 		}while(!exitCommand.equals(commandStr));
+		
+		destory();
+	}
+	
+	private void destory() {
+		scanner.close();
+	}
+	
+	/**
+	 * 注册一条命令
+	 * @param name		命令名称
+	 * @param command	命令执行体
+	 * */
+	public void setCommandParser(CommandParser commandParser) {
+		this.commandParser = commandParser;
 	}
 	
 	/**

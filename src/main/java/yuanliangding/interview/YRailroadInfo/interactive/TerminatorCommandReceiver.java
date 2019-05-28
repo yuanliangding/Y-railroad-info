@@ -8,6 +8,8 @@ package yuanliangding.interview.YRailroadInfo.interactive;
  * @date 2019年5月28日-下午3:22:58
  */
 public class TerminatorCommandReceiver extends CommandReceiver {
+	
+	private final static TerminatorCommandReceiver instance = new TerminatorCommandReceiver();
 
 	/**
 	 * @param standardIn
@@ -16,7 +18,11 @@ public class TerminatorCommandReceiver extends CommandReceiver {
 	 * @param commandParser
 	 */
 	public TerminatorCommandReceiver() {
-		super(System.in, System.out, System.err, new SimpleCommandParser());
+		super(System.in, System.out, System.err);
+	}
+	
+	public static TerminatorCommandReceiver getInstance() {
+		return instance;
 	}
 
 }
