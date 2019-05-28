@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 
-
 /** 
  * @ClassName: CommandReceiver
  * @Description:  命令接收器基类.通过指定具体的标准输入,标准输出,错误输出都.形成实际并且独特的命令接收器子类.
@@ -37,7 +36,6 @@ public abstract class CommandReceiver {
 	private final PrintStream standardError;
 	
 	private String exitCommand = "exit";
-	
 	
 	/**
 	 * @param standardIn		标准输入
