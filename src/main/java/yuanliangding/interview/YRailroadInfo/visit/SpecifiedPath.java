@@ -46,7 +46,7 @@ public abstract class SpecifiedPath extends AbsPath {
 		clear();
 		
 		// 2 进行遍历寻找
-		nextStop(begin, new TempPath(0, begin, null));
+		nextStop(new TempPath(0, begin, null));
 		
 		// 3 整理结果集
 		return getResult();
@@ -56,11 +56,11 @@ public abstract class SpecifiedPath extends AbsPath {
 	 * TODO	1	对权重只是做简单的类加操作,对于路途中有负环路,或0环路.该递归会死循环.
 	 * 			2	由于是采用递归操作,对于规模大的地图有可能会导致内存不足的问题.
 	 * */
-	private void nextStop(Stop curr, TempPath currTempPath) {
-		curr.getNexts(dim).forEach((Stop stop,Integer weight) -> {
+	private void nextStop(TempPath currTempPath) {
+		currTempPath.getCurr().getNexts(dim).forEach((Stop stop,Integer weight) -> {
 			TempPath tempPath = new TempPath(currTempPath.getTotalWeight()+weight, stop, currTempPath);
 			if (toBeContinue(tempPath)) {
-				nextStop(stop, tempPath);
+				nextStop(tempPath);
 			}
 		});
 	}
