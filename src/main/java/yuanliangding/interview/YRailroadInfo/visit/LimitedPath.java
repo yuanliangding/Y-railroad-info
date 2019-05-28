@@ -52,18 +52,18 @@ public class LimitedPath extends SpecifiedPath {
 	
 	// TODO 对于权重有负值,或者遍历过程中,权重总值不是单调的.让该方法永远返回true既可
 	@Override
-	protected boolean toBeContinue(TempPath tempPath) {
-		return maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
+	protected boolean toBeContinue(Step step) {
+		return maxContainsEq?step.getTotalWeight() <= max:step.getTotalWeight() < max;
 	}
 	
 	@Override
-	protected void asResult(TempPath tempPath) {
+	protected void asResult(Step step) {
 		if (
-				(maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max) 
+				(maxContainsEq?step.getTotalWeight() <= max:step.getTotalWeight() < max) 
 				&& 
-				(minContainsEq? tempPath.getTotalWeight() >= min: tempPath.getTotalWeight() > min)) {
-			if (end == null || tempPath.getCurr().equals(end)) {
-				results.add(tempPath);
+				(minContainsEq? step.getTotalWeight() >= min: step.getTotalWeight() > min)) {
+			if (end == null || step.getCurr().equals(end)) {
+				results.add(step);
 			}
 		}
 	}

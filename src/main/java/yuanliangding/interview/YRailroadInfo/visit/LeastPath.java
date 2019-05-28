@@ -35,25 +35,25 @@ public class LeastPath extends SpecifiedPath {
 	}
 	
 	@Override
-	protected boolean toBeContinue(TempPath tempPath) {
+	protected boolean toBeContinue(Step step) {
 		boolean result = true;
 		
-		Stop curr = tempPath.getCurr();
+		Stop curr = step.getCurr();
 		if (tempPaths.containsKey(curr)) {
 			int lastTotalWeight = tempPaths.get(curr);
 			
-			if (lastTotalWeight < tempPath.getTotalWeight()) {
+			if (lastTotalWeight < step.getTotalWeight()) {
 				result = false;
 			} else {
 				// TODO 这里可以优化:当在遍历到某个节点时,有两条线路到这里的总权重是一样的,假设继续往后遍历就可以得到最优解.则后续的遍历操作,只进行一次就行.不需要两条路径都继续遍历
-				tempPaths.put(curr, tempPath.getTotalWeight());
+				tempPaths.put(curr, step.getTotalWeight());
 			}
 		} else {
-			tempPaths.put(curr, tempPath.getTotalWeight());
+			tempPaths.put(curr, step.getTotalWeight());
 		}
 		
 		// TODO 对于权重不会为负值,遍历已经到最终结点,就没有必要继续下去了.再绕一圈,总权重不可能变小.
-		if (tempPath.getCurr().equals(end)) {
+		if (step.getCurr().equals(end)) {
 			result = false;
 		}
 		
@@ -61,16 +61,16 @@ public class LeastPath extends SpecifiedPath {
 	}
 	
 	@Override
-	protected void asResult(TempPath tempPath) {
-		if (tempPath.getCurr().equals(end)) {
+	protected void asResult(Step step) {
+		if (step.getCurr().equals(end)) {
 			if (results.isEmpty()) {
-				results.add(tempPath);
+				results.add(step);
 			} else {
-				if (results.get(0).getTotalWeight() > tempPath.getTotalWeight()) {
+				if (results.get(0).getTotalWeight() > step.getTotalWeight()) {
 					results.clear();
-					results.add(tempPath);
-				} else if (results.get(0).getTotalWeight() == tempPath.getTotalWeight()) {
-					results.add(tempPath);
+					results.add(step);
+				} else if (results.get(0).getTotalWeight() == step.getTotalWeight()) {
+					results.add(step);
 				}
 			}
 		}
