@@ -4,15 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 import yuanliangding.interview.YRailroadInfo.map.StopMap;
 
 /** 
  * @ClassName: PlainTextMapReader
- * @Description:  普通文本格式的地图加载器.
+ * @Description:  普通文本格式的地图加载器.采用{@link SimpleMapPolicy}策略进行存储.
  * 
  * 		文本内容的格式规则为:
- * 			每一行为一条路线距离信息.其格式为AB3,代表站点A到站点B距离为3.站点名称为一个字符的字符串
+ * 			每一行为一条路线距离信息.其格式为:AB3,代表站点A到站点B距离为3.站点名称为一个字符的字符串
+ * 			存储到存储中心,采用dist stop两个维度信息记录,以上记录A到B dist=3,stop=1
  *
  *	@see StopMap
  *
@@ -21,11 +24,7 @@ import yuanliangding.interview.YRailroadInfo.map.StopMap;
  */
 public class PlainTextMapReader implements MapReader {
 	
-	/** 距离 */
-	public static final String DIST = "dist";
-	
-	/** 跨越站数 */
-	public static final String STOP = "stop";
+	private MapPolicy<?> mapPolicy = SimpleMapPolicy.getInstance();
 	
 	private static PlainTextMapReader instance = new PlainTextMapReader();
 	
@@ -49,8 +48,7 @@ public class PlainTextMapReader implements MapReader {
 				Stop endStop = map.getStop(end);
 				int distV = Integer.parseInt(dist);
 				
-				map.addRoute(beginStop, endStop, DIST, distV);
-				map.addRoute(beginStop, endStop, STOP, 1);
+				mapPolicy.addRoute(map, beginStop, endStop, null, distV);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

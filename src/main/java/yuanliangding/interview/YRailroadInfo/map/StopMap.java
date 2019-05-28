@@ -5,7 +5,7 @@ import java.util.Map;
 
 /** 
  * @ClassName: StopMap
- * @Description:  由站点(Stop)构成的地图.
+ * @Description:  地图存储引擎.由站点(Stop)构成的地图.
  *
  *	@see Stop
  *
