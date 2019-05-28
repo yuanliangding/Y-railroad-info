@@ -22,11 +22,11 @@ import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
  */
 public class MoreThanOneShortestTest {
 	
-	protected StopMap stopMap = null;
+	protected StopMap stopMap = StopMap.getInstance();
 
 	@Before
 	public void before() throws IOException {
-		stopMap = StopMap.getInstance();
+		stopMap.clear();
 
 		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.DIST, 5);
 		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.DIST, 4);

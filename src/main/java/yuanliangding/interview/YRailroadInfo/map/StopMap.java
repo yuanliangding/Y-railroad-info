@@ -24,6 +24,10 @@ public class StopMap {
 	
 	private StopMap() {}
 	
+	public void clear() {
+		stops.clear();
+	}
+	
 	/**
 	 * 增加地图信息,既增加路线信息.为某两个站点增加路径信息,如,距离,行程时间等.
 	 * 
