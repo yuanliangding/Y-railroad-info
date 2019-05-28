@@ -15,7 +15,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午9:24:12
  */
-public class LimitedPath extends Path {
+public class LimitedPath extends AbsPath {
 	
 	private String dim;
 	private int min;

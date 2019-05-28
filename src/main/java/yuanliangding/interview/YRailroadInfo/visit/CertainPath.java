@@ -14,7 +14,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:22:00
  */
-public class CertainPath extends Path {
+public class CertainPath extends AbsPath {
 	
 	private List<Stop> via = new ArrayList<>();
 

@@ -5,7 +5,7 @@ import java.util.List;
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 
 /** 
- * @ClassName: Path
+ * @ClassName: AbsPath
  * @Description:  路径,地图上某个点到另一个点的路线.
  * 						可以表示具体的路线,也可以只是对路线特点进行描述.
  * 						比如只指定起点和终点,要求其某个维度总权重值,是最小值的,或者居于某些数轴区间,比如在3到7之间.
@@ -16,7 +16,7 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:01:43
  */
-public abstract class Path {
+public abstract class AbsPath {
 	
 	protected final Stop begin;
 	
@@ -26,7 +26,7 @@ public abstract class Path {
 	 * @param begin	路线起点
 	 * @param end	路线终点
 	 * */
-	protected Path(Stop begin, Stop end) {
+	protected AbsPath(Stop begin, Stop end) {
 		if (begin == null) {
 			throw new RuntimeException("起点不能为空");
 		}
