@@ -16,6 +16,21 @@ import yuanliangding.interview.YRailroadInfo.map.Stop;
  */
 public abstract class SpecifiedPath extends AbsPath {
 	
+	protected Stop end;
+	
+	protected String dim;
+	
+	/**
+	 * @param begin	路线起点
+	 * @param end	路线终点(传null为不指定)
+	 * @param dim	描述针对具体维度的权重
+	 * */
+	protected SpecifiedPath(Stop begin, Stop end, String dim) {
+		super(begin);
+		this.dim = dim;
+		this.end = end;
+	}
+
 	/**
 	 * 具体化操作.
 	 * 根据特点描述,从地图中找到满足条件的具体路线,结果往往不只一条.

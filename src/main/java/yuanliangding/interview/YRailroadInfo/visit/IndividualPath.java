@@ -19,24 +19,23 @@ public class IndividualPath extends AbsPath {
 
 	/**
 	 * @param begin 路线起点
-	 * @param end	路线终点
 	 *   		,.. 	路线中间途经的点(按顺序)
 	 */
 	public IndividualPath(Stop begin, Stop ...others) {
-		super(begin, others.length==0?begin:others[others.length-1]);
+		super(begin);
 		
-		for (int index=0;index<others.length-1;++index) {
+		for (int index=0;index<others.length;++index) {
 			via.add(others[index]);
 		}
 	}
 	
+	/**
+	 * @param stops 途经的所有站点(按顺序)
+	 */
 	public IndividualPath(List<Stop> stops) {
-		super(
-				stops!=null && stops.size()>0?stops.get(0):null,
-				stops!=null && stops.size()>0?stops.get(stops.size()-1):null
-				);
+		super(stops!=null && stops.size()>0?stops.get(0):null);
 		
-		for (int i=1;i<stops.size()-1;++i) {
+		for (int i=1;i<stops.size();++i) {
 			via.add(stops.get(i));
 		}
 	}
@@ -52,8 +51,6 @@ public class IndividualPath extends AbsPath {
 			curr = next;
 		}
 		
-		result += getWeight(curr, end, dim);
-	
 		return result;
 	}
 	
@@ -67,7 +64,7 @@ public class IndividualPath extends AbsPath {
 
 	@Override
 	public String toString() {
-		return begin.getName() + "-" +  via.stream().map(s -> s.getName()+"-").collect(Collectors.joining("")) + end.getName();
+		return begin.getName() + "-" +  via.stream().map(Stop::getName).collect(Collectors.joining(""));
 	}
 	
 }
