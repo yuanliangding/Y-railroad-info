@@ -34,7 +34,9 @@ public class LeastPath extends LimitedPath {
 	}
 	
 	/**
-	 * 
+	 * 最具体化遍历地图时.如果目的是寻找最短路径(或者别的维度,找权重总值最小的路径)
+	 * 在每个节点,都只记录到达当前结点的最短路径
+	 * 这里假设路线中不会存在0环路或者负环路.当遍历到终点,就不再继续.
 	 * */
 	@Override
 	protected boolean toBeContinue(TempPath tempPath) {
@@ -69,7 +71,7 @@ public class LeastPath extends LimitedPath {
 	}
 	
 	/**
-	 * 
+	 * 整理结果
 	 * */
 	@Override
 	protected List<CertainPath> getResult() {
