@@ -19,7 +19,7 @@ public class IndividualPath extends AbsPath {
 
 	/**
 	 * @param begin 路线起点
-	 *   		,.. 	路线中间途经的点(按顺序)
+	 *   		,.. 	剩下的点(按顺序)
 	 */
 	public IndividualPath(Stop begin, Stop ...others) {
 		super(begin);
