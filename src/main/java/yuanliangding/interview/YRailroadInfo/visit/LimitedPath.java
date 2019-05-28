@@ -26,7 +26,7 @@ public class LimitedPath extends SpecifiedPath {
 	
 	/**
 	 * @param begin	路线起点
-	 * @param end	路线终点
+	 * @param end	路线终点(传null为不指定终点)
 	 * @param dim	描述针对具体维度的权重
 	 * @param min	权重总值最小值(包含该值)
 	 * @param max	权重总值最大值(包含该值)
@@ -44,7 +44,7 @@ public class LimitedPath extends SpecifiedPath {
 	
 	/**
 	 * @param begin				路线起点
-	 * @param end				路线终点
+	 * @param end				路线终点(传null为不指定终点)
 	 * @param dim				描述针对具体维度的权重
 	 * @param min				权重总值最小值
 	 * @param max				权重总值最大值
@@ -69,12 +69,13 @@ public class LimitedPath extends SpecifiedPath {
 	@Override
 	protected boolean toBeContinue(TempPath tempPath) {
 		boolean result = maxContainsEq?tempPath.getTotalWeight() <= max:tempPath.getTotalWeight() < max;
-		if (result) {
-			if (tempPath.getCurr().equals(end) 
-					&& (minContainsEq?tempPath.getTotalWeight() >= min:tempPath.getTotalWeight() > min)) {
+		
+		if (result && (minContainsEq? tempPath.getTotalWeight() >= min: tempPath.getTotalWeight() > min)) {
+			if (end == null || tempPath.getCurr().equals(end)) {
 				tempResult.add(tempPath);
 			}
 		}
+		
 		return result;
 	}
 	
