@@ -1,4 +1,6 @@
-package yuanliangding.interview.YRailroadInfo.interactive;
+package yuanliangding.interview.YRailroadInfo.map.simple;
+
+import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 
 /** 
  * @ClassName: TerminatorCommandReceiver

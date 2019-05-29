@@ -1,12 +1,9 @@
-package yuanliangding.interview.YRailroadInfo.core;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
+import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
-import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
-import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
-import yuanliangding.interview.YRailroadInfo.interactive.SimpleCommandParser;
-import yuanliangding.interview.YRailroadInfo.interactive.TerminatorCommandReceiver;
-import yuanliangding.interview.YRailroadInfo.reader.PlainTextGraphReader;
+import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /** 
  * @ClassName: SimpleYRailroadContext

@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
+import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /** 
  * @ClassName: SimpleMapPolicy

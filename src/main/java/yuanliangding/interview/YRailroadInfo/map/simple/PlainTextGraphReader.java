@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.reader;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
-import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 
 /** 
  * @ClassName: PlainTextGraphReader

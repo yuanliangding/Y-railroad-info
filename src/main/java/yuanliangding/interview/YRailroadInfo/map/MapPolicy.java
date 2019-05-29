@@ -1,6 +1,8 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.map;
 
 import java.util.Map;
+
+import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 
 /** 
  * @ClassName: MapPolicy

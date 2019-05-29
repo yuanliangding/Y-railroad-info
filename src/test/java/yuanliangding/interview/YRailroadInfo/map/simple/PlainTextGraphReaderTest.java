@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.reader;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader.GraphEdge;
+import yuanliangding.interview.YRailroadInfo.map.simple.PlainTextGraphReader;
 
 /**
  * @ClassName: PlainTextGraphReaderTest

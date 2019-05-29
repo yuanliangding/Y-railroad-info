@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.core;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
 /** 
  * @ClassName: SimpleYRailroadContextTest

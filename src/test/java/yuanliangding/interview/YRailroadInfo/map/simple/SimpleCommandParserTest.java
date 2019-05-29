@@ -1,11 +1,13 @@
-package yuanliangding.interview.YRailroadInfo.interactive;
+package yuanliangding.interview.YRailroadInfo.map.simple;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import yuanliangding.interview.YRailroadInfo.interactive.CommandParser;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
+import yuanliangding.interview.YRailroadInfo.map.simple.SimpleCommandParser;
 
 /**
  * @ClassName: SimpleCommandParserTest

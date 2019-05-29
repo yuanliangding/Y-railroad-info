@@ -1,7 +1,7 @@
 package yuanliangding.interview.YRailroadInfo;
 
-import yuanliangding.interview.YRailroadInfo.core.SimpleYRailroadContext;
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
+import yuanliangding.interview.YRailroadInfo.map.simple.SimpleYRailroadContext;
 
 /** 
  * @ClassName: Application
