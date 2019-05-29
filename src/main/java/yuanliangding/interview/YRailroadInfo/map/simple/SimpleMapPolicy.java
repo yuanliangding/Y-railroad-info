@@ -72,7 +72,7 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 			if (paths == null || paths.size() == 0) {
 				throw new RuntimeException("NO SUCH ROUTE");
 			}
-			return String.valueOf(paths.get(0).getTotalWeight(Weight.DIST.name()));
+			return paths.get(0).getTotalWeight(Weight.DIST.name());
 		});
 		
 		result.put("count", cd -> {
