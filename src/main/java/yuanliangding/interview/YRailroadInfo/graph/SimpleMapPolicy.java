@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
-import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
 
 /** 
  * @ClassName: SimpleMapPolicy

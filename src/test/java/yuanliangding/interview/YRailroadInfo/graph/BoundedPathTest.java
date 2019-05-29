@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.visit;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,9 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
+import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 
 /** 
  * @ClassName: BoundedPathTest

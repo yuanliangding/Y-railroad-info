@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.visit;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.MinPath;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 

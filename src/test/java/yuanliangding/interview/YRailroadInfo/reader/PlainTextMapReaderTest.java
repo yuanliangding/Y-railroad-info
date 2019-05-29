@@ -25,8 +25,6 @@ public class PlainTextMapReaderTest {
 
 	private PlainTextMapReader plainTextMapReader = null;
 
-	private GraphDatum graphDatum = null;
-	
 	private MapPolicy<?,?> mapPolicy = null;
 	
 	private String textPath = null;
@@ -35,9 +33,7 @@ public class PlainTextMapReaderTest {
 	public void before() throws IOException {
 		plainTextMapReader = PlainTextMapReader.getInstance();
 
-		graphDatum = new GraphDatum();
 		mapPolicy = SimpleMapPolicy.getInstance();
-		mapPolicy.setMapDatum(graphDatum);
 
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		textPath = mapTextFile.getCanonicalPath();

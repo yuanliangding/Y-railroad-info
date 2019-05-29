@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.visit;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class MinPath extends SpecifiedPath {
 	 * @param end	路线终点
 	 * @param dim	描述针对具体维度的权重
 	 */
-	protected MinPath(Vertex begin, Vertex end, String dim) {
+	public MinPath(Vertex begin, Vertex end, String dim) {
 		super(begin, end, dim);
 	}
 	

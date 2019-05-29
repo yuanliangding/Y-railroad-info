@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.visit;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -6,6 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /**

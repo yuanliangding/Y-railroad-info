@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.visit;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.SpecifiedPath.Step;
 
 /** 
  * @ClassName: SpecifiedPath
