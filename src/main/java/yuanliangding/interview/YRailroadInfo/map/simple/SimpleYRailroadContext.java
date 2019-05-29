@@ -2,6 +2,7 @@ package yuanliangding.interview.YRailroadInfo.map.simple;
 
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
+import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
@@ -21,7 +22,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 	public void start(String mapUrl, String exit) {
 		
 		// 1 初始化地图
-		MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
+		MapPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
 		GraphReader graphReader = new PlainTextGraphReader("url");
 		mapPolicy.setGraphReader(graphReader);
 		
@@ -29,7 +30,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		CommandReceiver commandReceiver = TerminatorCommandReceiver.getInstance();
 		commandReceiver.setCommandParser(SimpleCommandParser.getInstance());
 		commandReceiver.setExitCommand(exit);
-//		commandReceiver.registeCommand(name, command);
+		commandReceiver.registeCommands(mapPolicy.getCommands());
 
 		// 3 在终端显示banner
 		System.out.println(banner());

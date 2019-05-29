@@ -88,21 +88,20 @@ public abstract class CommandReceiver {
 	}
 	
 	/**
-	 * 注册一条命令
-	 * @param name		命令名称
-	 * @param command	命令执行体
+	 * 设置命令解析器
+	 * @param commandParser	命令解析器
 	 * */
 	public void setCommandParser(CommandParser commandParser) {
 		this.commandParser = commandParser;
 	}
 	
 	/**
-	 * 注册一条命令
+	 * 注册若干条命令
 	 * @param name		命令名称
 	 * @param command	命令执行体
 	 * */
-	public void registeCommand(String name, Command command) {
-		commands.put(name, command);
+	public void registeCommands(Map<String, Command> commands) {
+		this.commands.putAll(commands);
 	}
 	
 	/**
