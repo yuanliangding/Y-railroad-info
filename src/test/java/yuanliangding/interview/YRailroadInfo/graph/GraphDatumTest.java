@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: GraphDatumTest
@@ -27,9 +27,9 @@ public class GraphDatumTest {
 	
     @Test
     public void testGetStop() {
-    	Stop a1 = graphDatum.getStop("A");
-    	Stop a2 = graphDatum.getStop("A");
-    	Stop b = graphDatum.getStop("B");
+    	Vertex a1 = graphDatum.getVertex("A");
+    	Vertex a2 = graphDatum.getVertex("A");
+    	Vertex b = graphDatum.getVertex("B");
     	
     	Assert.assertThat(
     			"获取到的站点,其中的站名应该和参数传入的名称一致", 
@@ -54,21 +54,21 @@ public class GraphDatumTest {
     
     @Test
     public void testAddRoute() {
-    	Stop a = graphDatum.getStop("A");
-    	Stop b = graphDatum.getStop("B");
-    	Stop c = graphDatum.getStop("C");
+    	Vertex a = graphDatum.getVertex("A");
+    	Vertex b = graphDatum.getVertex("B");
+    	Vertex c = graphDatum.getVertex("C");
     	
     	String dimName = "dist";
     	int dimValAB = 8;
     	int dimValAC = 9;
     	
-    	graphDatum.addRoute(a, b, dimName, dimValAB);
-    	graphDatum.addRoute(a, c, dimName, dimValAC);
+    	graphDatum.addEdge(a, b, dimName, dimValAB);
+    	graphDatum.addEdge(a, c, dimName, dimValAC);
     	
-    	Stop a_ = graphDatum.getStop("A");
-    	Stop b_ = graphDatum.getStop("B");
-    	Stop c_ = graphDatum.getStop("C");
-    	Map<Stop, Integer> nexts = a_.getNexts(dimName);
+    	Vertex a_ = graphDatum.getVertex("A");
+    	Vertex b_ = graphDatum.getVertex("B");
+    	Vertex c_ = graphDatum.getVertex("C");
+    	Map<Vertex, Integer> nexts = a_.getEdges(dimName);
     	
     	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));
     	Assert.assertThat("A,C之间维度'"+dimName+"'的边权为:"+dimValAC, nexts.get(c_),CoreMatchers.equalTo(dimValAC));

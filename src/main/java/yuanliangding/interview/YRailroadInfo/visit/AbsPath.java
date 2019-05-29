@@ -1,27 +1,27 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: AbsPath
  * @Description:  抽像路径(只指定一个起点),路径是指地图上某个点到另一个点的路线.
  * 						可以表示具体的路线,也可以只是对路线特点进行描述.
  * 						比如只指定起点和终点,要求其某个维度总权重值,是最小值的,或者居于某些数轴区间,比如在3到7之间.
- * 						关于路线的维度和权重,请参考{@link Stop}
+ * 						关于路线的维度和权重,请参考{@link Vertex}
  * 						
- * @see Stop
+ * @see Vertex
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:01:43
  */
 public abstract class AbsPath {
 	
-	protected final Stop begin;
+	protected final Vertex begin;
 	
 	/**
 	 * @param begin	路线起点
 	 * */
-	protected AbsPath(Stop begin) {
+	protected AbsPath(Vertex begin) {
 		if (begin == null) {
 			throw new RuntimeException("起点不能为空");
 		}

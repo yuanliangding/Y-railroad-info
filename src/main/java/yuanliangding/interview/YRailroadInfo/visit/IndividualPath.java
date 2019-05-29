@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: IndividualPath
@@ -15,13 +15,13 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
  */
 public class IndividualPath extends AbsPath {
 	
-	private List<Stop> rest = new ArrayList<>();
+	private List<Vertex> rest = new ArrayList<>();
 
 	/**
 	 * @param begin 路线起点
 	 *   		,.. 	剩下的点(按顺序)
 	 */
-	public IndividualPath(Stop begin, Stop ...others) {
+	public IndividualPath(Vertex begin, Vertex ...others) {
 		super(begin);
 		
 		for (int index=0;index<others.length;++index) {
@@ -30,13 +30,13 @@ public class IndividualPath extends AbsPath {
 	}
 	
 	/**
-	 * @param stops 途经的所有站点(按顺序)
+	 * @param vertexs 途经的所有站点(按顺序)
 	 */
-	public IndividualPath(List<Stop> stops) {
-		super(stops!=null && stops.size()>0?stops.get(0):null);
+	public IndividualPath(List<Vertex> vertexs) {
+		super(vertexs!=null && vertexs.size()>0?vertexs.get(0):null);
 		
-		for (int i=1;i<stops.size();++i) {
-			rest.add(stops.get(i));
+		for (int i=1;i<vertexs.size();++i) {
+			rest.add(vertexs.get(i));
 		}
 	}
 	
@@ -44,9 +44,9 @@ public class IndividualPath extends AbsPath {
 	public int getTotalWeight(String dim) {
 		int result = 0;
 		
-		Stop curr = begin;
+		Vertex curr = begin;
 		
-		for (Stop next:rest) {
+		for (Vertex next:rest) {
 			result += getWeight(curr, next, dim);
 			curr = next;
 		}
@@ -54,8 +54,8 @@ public class IndividualPath extends AbsPath {
 		return result;
 	}
 	
-	private int getWeight (Stop curr, Stop next, String dim) {
-		Integer weight = curr.getNexts(dim).get(next);
+	private int getWeight (Vertex curr, Vertex next, String dim) {
+		Integer weight = curr.getEdges(dim).get(next);
 		if (weight == null) {
 			throw new RuntimeException("NO SUCH ROUTE");
 		}

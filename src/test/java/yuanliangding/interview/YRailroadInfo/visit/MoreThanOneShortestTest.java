@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
@@ -27,21 +27,21 @@ public class MoreThanOneShortestTest {
 	public void before() throws IOException {
 		graphDatum.clear();
 
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), PathTest.DIST, 5);
-		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), PathTest.DIST, 4);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), PathTest.DIST, 8);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), PathTest.DIST, 8);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), PathTest.DIST, 6);
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), PathTest.DIST, 5);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), PathTest.DIST, 2);
-		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), PathTest.DIST, 3);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), PathTest.DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), PathTest.DIST, 4);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), PathTest.DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), PathTest.DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), PathTest.DIST, 6);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), PathTest.DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), PathTest.DIST, 2);
+		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), PathTest.DIST, 3);
 	}
 	
 	@Test
 	public void testConcrete() {
 		
-		Stop a = graphDatum.getStop("A");
-		Stop e = graphDatum.getStop("E");
+		Vertex a = graphDatum.getVertex("A");
+		Vertex e = graphDatum.getVertex("E");
 		
 		LeastPath ae_dist = new LeastPath(a, e, PathTest.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();

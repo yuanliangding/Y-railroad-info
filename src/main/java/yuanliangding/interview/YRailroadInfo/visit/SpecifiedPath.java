@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: SpecifiedPath
@@ -21,7 +21,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
  */
 public abstract class SpecifiedPath extends AbsPath {
 	
-	protected Stop end;
+	protected Vertex end;
 	
 	protected String dim;
 	
@@ -36,7 +36,7 @@ public abstract class SpecifiedPath extends AbsPath {
 	 * @param end	路线终点(传null为不指定)
 	 * @param dim	规约描述针对具体维度的权重
 	 * */
-	protected SpecifiedPath(Stop begin, Stop end, String dim) {
+	protected SpecifiedPath(Vertex begin, Vertex end, String dim) {
 		super(begin);
 		this.dim = dim;
 		this.end = end;
@@ -73,13 +73,13 @@ public abstract class SpecifiedPath extends AbsPath {
 	 * 			2	由于是采用递归操作,对于规模大的地图有可能会导致内存不足的问题.
 	 * */
 	private void nextStop(Step currTempPath) {
-		Map<Stop, Integer> edge = currTempPath.getCurr().getNexts(dim);
+		Map<Vertex, Integer> edge = currTempPath.getCurr().getEdges(dim);
 		if (edge.isEmpty()) {
 			terminates.add(currTempPath);
 		}
 		
-		edge.forEach((Stop stop,Integer weight) -> {
-			Step step = new Step(currTempPath.getTotalWeight()+weight, stop, currTempPath);
+		edge.forEach((Vertex vertex,Integer weight) -> {
+			Step step = new Step(currTempPath.getTotalWeight()+weight, vertex, currTempPath);
 			asResult(step);
 			if (toBeContinue(step)) {
 				nextStop(step);
@@ -98,7 +98,7 @@ public abstract class SpecifiedPath extends AbsPath {
 		
 		return
 				date.stream().map(tempPath -> {
-					List<Stop> tempList = Stream
+					List<Vertex> tempList = Stream
 							.iterate(tempPath, t -> t!=null, t -> t.getPrevious())
 							.map(Step::getCurr)
 							.collect(Collectors.toList());
@@ -124,10 +124,10 @@ public abstract class SpecifiedPath extends AbsPath {
 	 */
 	protected static class Step {
 		private final int totalWeight;
-		private final Stop curr;
+		private final Vertex curr;
 		private final Step previous;
 		
-		protected Step(int totalWeight, Stop curr, Step previous) {
+		protected Step(int totalWeight, Vertex curr, Step previous) {
 			this.totalWeight = totalWeight;
 			this.curr = curr;
 			this.previous = previous;
@@ -143,7 +143,7 @@ public abstract class SpecifiedPath extends AbsPath {
 		/**
 		 * @return 当前结点的前续结点.
 		 */
-		protected Stop getCurr() {
+		protected Vertex getCurr() {
 			return curr;
 		}
 

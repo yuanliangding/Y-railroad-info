@@ -5,16 +5,16 @@ import java.util.Map;
 
 /** 
  * @ClassName: GraphDatum
- * @Description:  地图存储引擎.由站点(Stop)构成的地图.
+ * @Description:  图数据存储引擎.由站点(Vertex)构成的地图.
  *
- *	@see Stop
+ *	@see Vertex
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-上午10:06:52
  */
 public class GraphDatum {
 	
-	private final Map<String, Stop> stops = new HashMap<>();
+	private final Map<String, Vertex> vertexs = new HashMap<>();
 	
 	private static GraphDatum instance = new GraphDatum();
 	
@@ -25,7 +25,7 @@ public class GraphDatum {
 	private GraphDatum() {}
 	
 	public void clear() {
-		stops.clear();
+		vertexs.clear();
 	}
 	
 	/**
@@ -36,12 +36,12 @@ public class GraphDatum {
 	 * @param dim		维度(根据实际,可以有路程"dist",行程耗时"time",跨越站数"stop")
 	 * @param weight	权重,如上可以是路程距离,行程耗时或者跨越站数值.
 	 * */
-	public void addRoute(Stop start, Stop end, String dim, int weight) {
+	public void addEdge(Vertex start, Vertex end, String dim, int weight) {
 		if (start == null || end == null) {
 			throw new RuntimeException("两个合法的站点之间才可以增加路线信息");
 		}
 		
-		start.addRoute(end, dim, weight);
+		start.addEdge(end, dim, weight);
 	}
 	
 	/**
@@ -49,19 +49,19 @@ public class GraphDatum {
 	 * 
 	 * @param name	站名
 	 * */
-	public Stop getStop(String name) {
-		Stop stop = stops.get(name);
-		if (stop == null) {
-			stop = new Stop(name);
-			stops.put(name, stop);
+	public Vertex getVertex(String name) {
+		Vertex vertex = vertexs.get(name);
+		if (vertex == null) {
+			vertex = new Vertex(name);
+			vertexs.put(name, vertex);
 		}
 		
-		return stop;
+		return vertex;
 	}
 	
 	/** 
-	 * @ClassName: Stop
-	 * @Description:  地图路线上的站点.
+	 * @ClassName: Vertex
+	 * @Description:  图上的一个顶点.
 	 * 
 	 * 	站点一般包括的信息有:
 	 * 		1,	站名名称.
@@ -81,16 +81,16 @@ public class GraphDatum {
 	 * @author 袁良锭(https://github.com/yuanliangding)
 	 * @date 2019年5月26日-上午10:11:41
 	 */
-	public static class Stop {
+	public static class Vertex {
 		
-		private final Map<String, Map<Stop,Integer>> routes = new HashMap<>();
+		private final Map<String, Map<Vertex,Integer>> routes = new HashMap<>();
 		
 		private final String name;
 
 		/**
 		 * @param name 站点名称
 		 * */
-		private Stop(String name) {
+		private Vertex(String name) {
 			if (name == null || "".equals(name)) {
 				throw new RuntimeException("站名不合法,名称长度至少为1");
 			}
@@ -109,7 +109,7 @@ public class GraphDatum {
 		 * 
 		 * @param dim
 		 * */
-		public Map<Stop,Integer> getNexts(String dim) {
+		public Map<Vertex,Integer> getEdges(String dim) {
 			return routes.getOrDefault(dim, new HashMap<>());
 		}
 		
@@ -118,20 +118,20 @@ public class GraphDatum {
 		 * 
 		 * TODO 该方法不是线程安全的
 		 * 
-		 * @param stop		相应站点
+		 * @param vertex		相应站点
 		 * @param dim 		维度
 		 * @param weight	权重
 		 * 
 		 * */
-		protected void addRoute(Stop stop, String dim, int weight) {
-			Map<Stop,Integer> routesByDim = routes.get(dim);
+		protected void addEdge(Vertex vertex, String dim, int weight) {
+			Map<Vertex,Integer> routesByDim = routes.get(dim);
 			
 			if (routesByDim == null) {
 				routesByDim = new HashMap<>();
 				routes.put(dim, routesByDim);
 			}
 			
-			routesByDim.put(stop, weight);
+			routesByDim.put(vertex, weight);
 		}
 
 		@Override
@@ -142,8 +142,8 @@ public class GraphDatum {
 		@Override
 		public boolean equals(Object obj) {
 			boolean result = false;
-			if (obj != null && obj instanceof Stop) {
-				Stop other = (Stop)obj;
+			if (obj != null && obj instanceof Vertex) {
+				Vertex other = (Vertex)obj;
 				result = other.getName().equals(this.getName());
 			}
 			return result;

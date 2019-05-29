@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
 
@@ -44,10 +44,10 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 	 */
 	@Override
 	public void addRoute(String start, String end, Weight weight, int value) {
-		Stop startStop = map.getStop(start);
-		Stop endStop = map.getStop(end);
-		map.addRoute(startStop, endStop, Weight.DIST.name(), value);
-		map.addRoute(startStop, endStop, Weight.STOP.name(), 1);
+		Vertex startStop = map.getVertex(start);
+		Vertex endStop = map.getVertex(end);
+		map.addEdge(startStop, endStop, Weight.DIST.name(), value);
+		map.addEdge(startStop, endStop, Weight.STOP.name(), 1);
 	}
 	
 	/**
@@ -69,10 +69,10 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 			if(arg == null || "".equals(arg)) {
 				throw new RuntimeException("请在-p后附上路径信息.命令格式:dist -p A-B-C 求从A到B然后到C的路程");
 			}
-			List<Stop> stops = Stream.of(arg.split("-"))
-					.map(map::getStop)
+			List<Vertex> vertexs = Stream.of(arg.split("-"))
+					.map(map::getVertex)
 					.collect(Collectors.toList());
-			IndividualPath individualPath = new IndividualPath(stops);
+			IndividualPath individualPath = new IndividualPath(vertexs);
 			return individualPath.getTotalWeight(Weight.DIST.name());
 		});
 		

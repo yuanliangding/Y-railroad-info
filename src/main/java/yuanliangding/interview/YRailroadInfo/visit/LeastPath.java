@@ -3,7 +3,7 @@ package yuanliangding.interview.YRailroadInfo.visit;
 import java.util.HashMap;
 import java.util.Map;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: LeastPath
@@ -14,14 +14,14 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
  */
 public class LeastPath extends SpecifiedPath {
 	
-	private Map<Stop, Integer> tempPaths = new HashMap<>();
+	private Map<Vertex, Integer> tempPaths = new HashMap<>();
 
 	/**
 	 * @param begin	路线起点
 	 * @param end	路线终点
 	 * @param dim	描述针对具体维度的权重
 	 */
-	protected LeastPath(Stop begin, Stop end, String dim) {
+	protected LeastPath(Vertex begin, Vertex end, String dim) {
 		super(begin, end, dim);
 	}
 	
@@ -35,7 +35,7 @@ public class LeastPath extends SpecifiedPath {
 	protected boolean toBeContinue(Step step) {
 		boolean result = true;
 		
-		Stop curr = step.getCurr();
+		Vertex curr = step.getCurr();
 		if (tempPaths.containsKey(curr)) {
 			int lastTotalWeight = tempPaths.get(curr);
 			

@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /**
  * @ClassName: IndividualPathTest
@@ -21,11 +21,11 @@ public class IndividualPathTest extends PathTest{
 
 	@Test
 	public void testGetTotalWeight() {
-		Stop a = graphDatum.getStop("A");
-		Stop b = graphDatum.getStop("B");
-		Stop c = graphDatum.getStop("C");
-		Stop d = graphDatum.getStop("D");
-		Stop e = graphDatum.getStop("E");
+		Vertex a = graphDatum.getVertex("A");
+		Vertex b = graphDatum.getVertex("B");
+		Vertex c = graphDatum.getVertex("C");
+		Vertex d = graphDatum.getVertex("D");
+		Vertex e = graphDatum.getVertex("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
 		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
@@ -42,9 +42,9 @@ public class IndividualPathTest extends PathTest{
 	
 	@Test
 	public void testNoSuchRoute() {
-		Stop a = graphDatum.getStop("A");
-		Stop d = graphDatum.getStop("D");
-		Stop e = graphDatum.getStop("E");
+		Vertex a = graphDatum.getVertex("A");
+		Vertex d = graphDatum.getVertex("D");
+		Vertex e = graphDatum.getVertex("E");
 		
 		noSuchRouteException.expect(RuntimeException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");

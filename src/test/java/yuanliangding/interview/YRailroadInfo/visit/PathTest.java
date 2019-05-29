@@ -26,25 +26,25 @@ public class PathTest {
 	public void before() throws IOException {
 		graphDatum.clear();
 
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), DIST, 5);
-		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), DIST, 4);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), DIST, 8);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), DIST, 8);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), DIST, 6);
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), DIST, 5);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), DIST, 2);
-		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), DIST, 3);
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("E"), DIST, 7);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), DIST, 4);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), DIST, 6);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), DIST, 2);
+		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), DIST, 3);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("E"), DIST, 7);
 		
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), STOP, 1);
-		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("E"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), STOP, 1);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("E"), STOP, 1);
 	}
 
 }

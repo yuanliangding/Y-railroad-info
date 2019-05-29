@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
  * @ClassName: LimitedPath
@@ -23,7 +23,7 @@ public class LimitedPath extends SpecifiedPath {
 	 * @param min	权重总值最小值(包含该值)
 	 * @param max	权重总值最大值(包含该值)
 	 */
-	public LimitedPath(Stop begin, Stop end, String dim, int min, int max) {
+	public LimitedPath(Vertex begin, Vertex end, String dim, int min, int max) {
 		super(begin, end, dim);
 		
 		if (min > max) {
@@ -43,7 +43,7 @@ public class LimitedPath extends SpecifiedPath {
 	 * @param minContainsEq	权重总值最小值是否包含该值
 	 * @param maxContainsEq	权重总值最大值是否包含该值
 	 */
-	public LimitedPath(Stop begin, Stop end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
+	public LimitedPath(Vertex begin, Vertex end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
 		this(begin, end, dim, min, max);
 		
 		this.minContainsEq = minContainsEq;
