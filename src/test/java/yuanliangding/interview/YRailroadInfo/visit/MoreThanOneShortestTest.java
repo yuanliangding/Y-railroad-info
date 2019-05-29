@@ -43,7 +43,7 @@ public class MoreThanOneShortestTest {
 		Vertex a = graphDatum.getVertex("A");
 		Vertex e = graphDatum.getVertex("E");
 		
-		LeastPath ae_dist = new LeastPath(a, e, PathTest.DIST);
+		MinPath ae_dist = new MinPath(a, e, PathTest.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
 		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(

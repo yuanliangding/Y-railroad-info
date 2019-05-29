@@ -11,8 +11,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({IndividualPathTest.class,
-	LeastPathTest.class,
-	LimitedPathTest.class,
+	MinPathTest.class,
+	BoundedPathTest.class,
 	MoreThanOneShortestTest.class})
 public class AllPathTest {
 

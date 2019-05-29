@@ -3,13 +3,13 @@ package yuanliangding.interview.YRailroadInfo.visit;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
- * @ClassName: LimitedPath
+ * @ClassName: BoundedPath
  * @Description:  权重总值受限的路线.权重总值被指定了最大值和最小值.
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午9:24:12
  */
-public class LimitedPath extends SpecifiedPath {
+public class BoundedPath extends SpecifiedPath {
 	
 	private int min;
 	private int max;
@@ -23,7 +23,7 @@ public class LimitedPath extends SpecifiedPath {
 	 * @param min	权重总值最小值(包含该值)
 	 * @param max	权重总值最大值(包含该值)
 	 */
-	public LimitedPath(Vertex begin, Vertex end, String dim, int min, int max) {
+	public BoundedPath(Vertex begin, Vertex end, String dim, int min, int max) {
 		super(begin, end, dim);
 		
 		if (min > max) {
@@ -43,7 +43,7 @@ public class LimitedPath extends SpecifiedPath {
 	 * @param minContainsEq	权重总值最小值是否包含该值
 	 * @param maxContainsEq	权重总值最大值是否包含该值
 	 */
-	public LimitedPath(Vertex begin, Vertex end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
+	public BoundedPath(Vertex begin, Vertex end, String dim, int min, int max, boolean minContainsEq, boolean maxContainsEq) {
 		this(begin, end, dim, min, max);
 		
 		this.minContainsEq = minContainsEq;

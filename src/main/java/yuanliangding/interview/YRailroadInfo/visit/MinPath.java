@@ -6,13 +6,13 @@ import java.util.Map;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 
 /** 
- * @ClassName: LeastPath
+ * @ClassName: MinPath
  * @Description:  权重总值最小的路径.如果选择的维度是路程dist,则就是最短路径.
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午2:00:18
  */
-public class LeastPath extends SpecifiedPath {
+public class MinPath extends SpecifiedPath {
 	
 	private Map<Vertex, Integer> tempPaths = new HashMap<>();
 
@@ -21,7 +21,7 @@ public class LeastPath extends SpecifiedPath {
 	 * @param end	路线终点
 	 * @param dim	描述针对具体维度的权重
 	 */
-	protected LeastPath(Vertex begin, Vertex end, String dim) {
+	protected MinPath(Vertex begin, Vertex end, String dim) {
 		super(begin, end, dim);
 	}
 	
