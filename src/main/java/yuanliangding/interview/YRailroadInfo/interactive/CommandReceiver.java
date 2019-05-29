@@ -113,9 +113,7 @@ public abstract class CommandReceiver {
 	 * 指定"退出命令",当接收到该命令时,命令接收器停止工作.若没有指定,默认为 "exit"
 	 * */
 	public void setExitCommand(String exit) {
-		if (exit != null && !"".equals(exit)) {
-			this.exitCommand = exit;
-		}
+		this.exitCommand = exit;
 	}
 
 }
