@@ -1,5 +1,11 @@
 package yuanliangding.interview.YRailroadInfo;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
 import yuanliangding.interview.YRailroadInfo.map.simple.SimpleYRailroadContext;
 
@@ -14,8 +20,27 @@ import yuanliangding.interview.YRailroadInfo.map.simple.SimpleYRailroadContext;
 public class Application {
 
 	public static void main(String[] args) {
+		
+		List<String> argsList = Stream.of(args).collect(Collectors.toList());
+		if (argsList.size() % 2 == 1) {
+			argsList.add(null);
+		}
+		
+		Map<String,String> argsMap = IntStream.rangeClosed(1, argsList.size()/2).boxed()
+				.collect(
+					Collectors.toMap(
+							i -> argsList.get(i*2-2), 
+							i -> argsList.get(i*2-1)
+						)
+				);
+		
+		argsMap.forEach((k,v) -> System.out.println(k + "  ->  " + v));
+		
+		String data = argsMap.get("--data");
+		String exit = argsMap.get("--exit");
+		
 		YRailroadContext yRailroadContext = new SimpleYRailroadContext();
-		yRailroadContext.start(null/*mapUrl*/, null/*exit*/);
+		yRailroadContext.start(data, exit);
 	}
 
 }
