@@ -1,16 +1,21 @@
 package yuanliangding.interview.YRailroadInfo.map.simple;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.MinPath;
+import yuanliangding.interview.YRailroadInfo.graph.SpecifiedPath;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
+import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /** 
@@ -63,25 +68,111 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 		});
 		
 		result.put("dist", cd -> {
-			String arg = cd.getOptions().get("p");
-			if(arg == null || "".equals(arg)) {
-				throw new RuntimeException("请在-p后附上路径信息.命令格式:dist -p A-B-C 求从A到B然后到C的路程");
-			}
-			List<Vertex> vertexs = Stream.of(arg.split("-"))
-					.map(map::getVertex)
-					.collect(Collectors.toList());
-			IndividualPath individualPath = new IndividualPath(vertexs);
-			return individualPath.getTotalWeight(Weight.DIST.name());
+
+			return null;
 		});
 		
 		result.put("count", cd -> {
-			
 			
 			
 			return null;
 		});
 		
 		return result;
+	}
+	
+	protected List<IndividualPath> calcPath(CommandData commandData) {
+		Map<String, String> options = commandData.getOptions();
+		if (options == null || options.isEmpty()) {
+			throw new RuntimeException("执行错误,请输入必要的选项参考.");
+		}
+		
+		String path = options.get("p");
+		if (path != null) {
+			if("".equals(path)) {
+				throw new RuntimeException("执行错误.请在-p后附上合法的路径信息.比如 A-B-C 求从A经停B最终到C");
+			}
+			List<Vertex> vertexs = Stream.of(path.split("-"))
+					.map(map::getVertex)
+					.collect(Collectors.toList());
+			IndividualPath individualPath = new IndividualPath(vertexs);
+			
+			return Arrays.asList(individualPath);
+		} else {
+			String focus = options.get("f");
+			if (focus == null || "".equals(focus)) {
+				throw new RuntimeException("执行错误.请在-p或者-f参数,必须指定一个.");
+			}
+			
+			String begin = options.get("b");
+			if (begin == null || "".equals(begin)) {
+				throw new RuntimeException("执行错误.指定了-f参数,必须指定一个-b路径起点参数.");
+			}
+			Vertex beginVertex = map.getVertex(begin);
+			
+			Vertex endVertex = null;
+			String end = options.get("e");
+			if (end != null && !"".equals(end)) {
+				endVertex = map.getVertex(end);
+			} else {
+				// TODO 这里可以不报错,计算到所有可达点的路径(去掉这里的else就可以)
+				throw new RuntimeException("执行错误.指定了-f参数,必须指定一个-e路径终点参数.");
+			}
+			
+			SpecifiedPath specifiedPath = null;
+			
+			SimpleMapPolicy.Weight weight = null;
+			
+			switch(focus) {
+				case "d":
+					weight = SimpleMapPolicy.Weight.DIST;
+				case "s":
+					if (weight == null) {
+						weight = SimpleMapPolicy.Weight.STOP;
+					}
+					
+					String max = options.get("M");
+					if (max == null || "".equals(max)) {
+						throw new RuntimeException("执行错误.指定了-f s或者-f d参数,必须指定-M参数.");
+					}
+					
+					boolean maxContainsEq = true;
+					if (max.startsWith("n")) {
+						maxContainsEq = false;
+						max = max.substring(1);
+					}
+					
+					int maxV = Integer.parseInt(max);
+					
+					String min = options.get("m");
+					int minV = 0;
+					boolean minContainsEq = true;
+					if (min != null && !"".equals(min)) {
+						if (min.startsWith("n")) {
+							minContainsEq = false;
+							min = min.substring(1);
+						}
+						
+						minV = Integer.parseInt(min);
+					}
+					
+					specifiedPath = new BoundedPath(beginVertex, endVertex, weight.name(), minV, maxV, minContainsEq, maxContainsEq);
+					break;
+				case "md":
+					weight = SimpleMapPolicy.Weight.DIST;
+				case "ms":
+					if (weight == null) {
+						weight = SimpleMapPolicy.Weight.STOP;
+					}
+					
+					specifiedPath = new MinPath(beginVertex, endVertex, weight.name());
+					break;
+				default:
+					throw new RuntimeException("执行错误.请在-f参数的有效值可以是:d,s,md,ms.");
+				}
+			
+				return specifiedPath.concrete();
+		}
 	}
 	
 	/**该策略提供给用户的命令操作手册*/
