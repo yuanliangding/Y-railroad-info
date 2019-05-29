@@ -64,6 +64,8 @@ public abstract class CommandReceiver {
 		boolean run = true;
 		
 		while(run) {
+			standardOut.print(">> ");
+			
 			String commandStr = scanner.nextLine();
 			if (exitCommand.equals(commandStr)) {
 				run = false;
