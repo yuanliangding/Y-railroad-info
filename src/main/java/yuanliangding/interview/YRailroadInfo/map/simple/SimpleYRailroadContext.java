@@ -24,7 +24,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 	@Override
 	public void start(String mapUrl, String exit) {
 		
-		if (exit != null && !"".equals(exit)) {
+		if (exit == null || "".equals(exit)) {
 			exit = "exit";
 		}
 		
@@ -42,7 +42,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 
 		// 3 在终端显示banner
 		String bannerStr = 
-				banner() + 
+				banner() + "\n" +
 				"输入 " + exit + "退出该程序!\n" + 
 				"\n\n" + 
 				"你可以使用的命令有:\n" + 
