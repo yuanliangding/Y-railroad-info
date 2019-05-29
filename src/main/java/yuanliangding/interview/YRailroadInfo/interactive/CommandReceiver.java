@@ -71,16 +71,9 @@ public abstract class CommandReceiver {
 				run = false;
 			} else {
 				try {
-					CommandData commandData = commandParser.parser(commandStr);
-					
-					Command command = commands.get(commandData.getName());
-					if (command == null) {
-						throw new RuntimeException("不认识的命令");
-					}
-					
-					Object result = command.execute(commandData);
-					
-					standardOut.println(result);
+					standardOut.println(
+								exec(commandStr)
+							);
 				} catch(Exception e) {
 					standardError.println(e.getMessage());
 				}
@@ -88,6 +81,17 @@ public abstract class CommandReceiver {
 		}
 		
 		destory();
+	}
+	
+	public Object exec(String cmd) {
+		CommandData commandData = commandParser.parser(cmd);
+		
+		Command command = commands.get(commandData.getName());
+		if (command == null) {
+			throw new RuntimeException("不认识的命令");
+		}
+		
+		return command.execute(commandData);
 	}
 	
 	private void destory() {
