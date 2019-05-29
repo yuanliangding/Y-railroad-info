@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader.GraphEdge;
-import yuanliangding.interview.YRailroadInfo.map.simple.PlainTextGraphReader;
 
 /**
  * @ClassName: PlainTextGraphReaderTest
@@ -31,9 +30,7 @@ public class PlainTextGraphReaderTest {
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		textPath = mapTextFile.getCanonicalPath();
 		try (FileWriter fileWriter = new FileWriter(mapTextFile)) {
-			fileWriter.write("AB5\n");
-			fileWriter.write("BC4\n");
-			fileWriter.write("CD8\n");
+			fileWriter.write("AB5\nBC4\nCD8\n");
 		}
 		
 		plainTextGraphReader = new PlainTextGraphReader(textPath);
