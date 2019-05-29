@@ -68,14 +68,16 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 		});
 		
 		result.put("dist", cd -> {
-
-			return null;
+			List<IndividualPath> paths = calcPath(cd);
+			if (paths == null || paths.size() == 0) {
+				throw new RuntimeException("NO SUCH ROUTE");
+			}
+			return String.valueOf(paths.get(0).getTotalWeight(Weight.DIST.name()));
 		});
 		
 		result.put("count", cd -> {
-			
-			
-			return null;
+			List<IndividualPath> paths = calcPath(cd);
+			return paths.size();
 		});
 		
 		return result;
