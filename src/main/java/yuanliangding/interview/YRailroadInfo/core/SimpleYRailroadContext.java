@@ -4,6 +4,8 @@ import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 import yuanliangding.interview.YRailroadInfo.interactive.SimpleCommandParser;
 import yuanliangding.interview.YRailroadInfo.interactive.TerminatorCommandReceiver;
 import yuanliangding.interview.YRailroadInfo.map.MapDatum;
+import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.reader.MapReader;
 import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
@@ -24,8 +26,12 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		
 		// 1 初始化地图
 		MapDatum mapDatum = MapDatum.getInstance();
+		
+		MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
+		mapPolicy.setMapDatum(mapDatum);
+		
 		MapReader mapReader = PlainTextMapReader.getInstance();
-		mapReader.from(mapDatum, mapUrl);
+		mapReader.from(mapPolicy, mapUrl);
 		
 		// 2 准备命令接收器
 		CommandReceiver commandReceiver = TerminatorCommandReceiver.getInstance();
