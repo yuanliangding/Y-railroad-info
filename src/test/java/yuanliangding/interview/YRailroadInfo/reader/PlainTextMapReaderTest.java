@@ -10,10 +10,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /**
  * @ClassName: PlainTextMapReaderTest
@@ -25,7 +25,7 @@ public class PlainTextMapReaderTest {
 
 	private PlainTextMapReader plainTextMapReader = null;
 
-	private MapDatum mapDatum = null;
+	private GraphDatum graphDatum = null;
 	
 	private MapPolicy<?,?> mapPolicy = null;
 	
@@ -35,9 +35,9 @@ public class PlainTextMapReaderTest {
 	public void before() throws IOException {
 		plainTextMapReader = PlainTextMapReader.getInstance();
 
-		mapDatum = MapDatum.getInstance();
+		graphDatum = GraphDatum.getInstance();
 		mapPolicy = SimpleMapPolicy.getInstance();
-		mapPolicy.setMapDatum(mapDatum);
+		mapPolicy.setMapDatum(graphDatum);
 
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		textPath = mapTextFile.getCanonicalPath();
@@ -64,11 +64,11 @@ public class PlainTextMapReaderTest {
 	public void testFrom() {
 		plainTextMapReader.from(mapPolicy, textPath);
 		
-		Stop a = mapDatum.getStop("A");
-		Stop b = mapDatum.getStop("B");
-		Stop c = mapDatum.getStop("C");
-		Stop d = mapDatum.getStop("D");
-		Stop e = mapDatum.getStop("E");
+		Stop a = graphDatum.getStop("A");
+		Stop b = graphDatum.getStop("B");
+		Stop c = graphDatum.getStop("C");
+		Stop d = graphDatum.getStop("D");
+		Stop e = graphDatum.getStop("E");
 		
 		Assert.assertThat("验证AB5出错", a.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(b),CoreMatchers.equalTo(5));
 		Assert.assertThat("验证AB5出错", a.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(b),CoreMatchers.equalTo(1));

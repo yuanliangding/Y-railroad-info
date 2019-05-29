@@ -7,7 +7,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
  * @ClassName: LeastPathTest
@@ -20,9 +20,9 @@ public class LeastPathTest extends PathTest {
 	@Test
 	public void testConcrete() {
 		
-		Stop a = mapDatum.getStop("A");
-		Stop b = mapDatum.getStop("B");
-		Stop c = mapDatum.getStop("C");
+		Stop a = graphDatum.getStop("A");
+		Stop b = graphDatum.getStop("B");
+		Stop c = graphDatum.getStop("C");
 		
 		LeastPath ac_dist = new LeastPath(a, c, DIST);
 		List<IndividualPath> ac_dist_paths = ac_dist.concrete();

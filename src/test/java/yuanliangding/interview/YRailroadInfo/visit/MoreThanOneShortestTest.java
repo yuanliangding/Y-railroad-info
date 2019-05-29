@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
@@ -21,27 +21,27 @@ import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
  */
 public class MoreThanOneShortestTest {
 	
-	protected MapDatum mapDatum = MapDatum.getInstance();
+	protected GraphDatum graphDatum = GraphDatum.getInstance();
 
 	@Before
 	public void before() throws IOException {
-		mapDatum.clear();
+		graphDatum.clear();
 
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("B"), PathTest.DIST, 5);
-		mapDatum.addRoute(mapDatum.getStop("B"), mapDatum.getStop("C"), PathTest.DIST, 4);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("D"), PathTest.DIST, 8);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("C"), PathTest.DIST, 8);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("E"), PathTest.DIST, 6);
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("D"), PathTest.DIST, 5);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("E"), PathTest.DIST, 2);
-		mapDatum.addRoute(mapDatum.getStop("E"), mapDatum.getStop("B"), PathTest.DIST, 3);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), PathTest.DIST, 5);
+		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), PathTest.DIST, 4);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), PathTest.DIST, 8);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), PathTest.DIST, 8);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), PathTest.DIST, 6);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), PathTest.DIST, 5);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), PathTest.DIST, 2);
+		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), PathTest.DIST, 3);
 	}
 	
 	@Test
 	public void testConcrete() {
 		
-		Stop a = mapDatum.getStop("A");
-		Stop e = mapDatum.getStop("E");
+		Stop a = graphDatum.getStop("A");
+		Stop e = graphDatum.getStop("E");
 		
 		LeastPath ae_dist = new LeastPath(a, e, PathTest.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();

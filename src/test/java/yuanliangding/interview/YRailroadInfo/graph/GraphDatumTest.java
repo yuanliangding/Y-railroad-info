@@ -7,29 +7,29 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
- * @ClassName: MapDatumTest
+ * @ClassName: GraphDatumTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:03:00
  */
-public class MapDatumTest {
+public class GraphDatumTest {
 	
-	private MapDatum mapDatum = null;
+	private GraphDatum graphDatum = null;
 	
 	@Before
 	public void before() {
-		mapDatum = MapDatum.getInstance();
+		graphDatum = GraphDatum.getInstance();
 	}
 	
     @Test
     public void testGetStop() {
-    	Stop a1 = mapDatum.getStop("A");
-    	Stop a2 = mapDatum.getStop("A");
-    	Stop b = mapDatum.getStop("B");
+    	Stop a1 = graphDatum.getStop("A");
+    	Stop a2 = graphDatum.getStop("A");
+    	Stop b = graphDatum.getStop("B");
     	
     	Assert.assertThat(
     			"获取到的站点,其中的站名应该和参数传入的名称一致", 
@@ -54,20 +54,20 @@ public class MapDatumTest {
     
     @Test
     public void testAddRoute() {
-    	Stop a = mapDatum.getStop("A");
-    	Stop b = mapDatum.getStop("B");
-    	Stop c = mapDatum.getStop("C");
+    	Stop a = graphDatum.getStop("A");
+    	Stop b = graphDatum.getStop("B");
+    	Stop c = graphDatum.getStop("C");
     	
     	String dimName = "dist";
     	int dimValAB = 8;
     	int dimValAC = 9;
     	
-    	mapDatum.addRoute(a, b, dimName, dimValAB);
-    	mapDatum.addRoute(a, c, dimName, dimValAC);
+    	graphDatum.addRoute(a, b, dimName, dimValAB);
+    	graphDatum.addRoute(a, c, dimName, dimValAC);
     	
-    	Stop a_ = mapDatum.getStop("A");
-    	Stop b_ = mapDatum.getStop("B");
-    	Stop c_ = mapDatum.getStop("C");
+    	Stop a_ = graphDatum.getStop("A");
+    	Stop b_ = graphDatum.getStop("B");
+    	Stop c_ = graphDatum.getStop("C");
     	Map<Stop, Integer> nexts = a_.getNexts(dimName);
     	
     	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
  * @ClassName: SpecifiedPath

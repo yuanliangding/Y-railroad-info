@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
 
@@ -20,7 +20,7 @@ import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
  */
 public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weight> {
 	
-	private MapDatum map = null;
+	private GraphDatum map = null;
 	
 	private static SimpleMapPolicy instance = new SimpleMapPolicy();
 
@@ -31,8 +31,8 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 	private SimpleMapPolicy() {}
 	
 	@Override
-	public void setMapDatum(MapDatum mapDatum) {
-		map = mapDatum;
+	public void setMapDatum(GraphDatum graphDatum) {
+		map = graphDatum;
 	}
 
 	/**

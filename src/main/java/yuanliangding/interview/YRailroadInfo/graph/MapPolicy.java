@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface MapPolicy<C, W extends Enum<W>> {
 	
-	public void setMapDatum(MapDatum mapDatum);
+	public void setMapDatum(GraphDatum graphDatum);
 	
 	public void addRoute(String start, String end, W weight, int value);
 	

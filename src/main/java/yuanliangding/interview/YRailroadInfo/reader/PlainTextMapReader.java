@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 
@@ -16,7 +16,7 @@ import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
  * 			每一行为一条路线距离信息.其格式为:AB3,代表站点A到站点B距离为3.站点名称为一个字符的字符串
  * 			存储到存储中心,采用dist stop两个维度信息记录,以上记录A到B dist=3,stop=1
  *
- *	@see MapDatum
+ *	@see GraphDatum
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10

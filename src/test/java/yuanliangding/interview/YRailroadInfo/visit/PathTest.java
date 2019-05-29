@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Before;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 
 /** 
  * @ClassName: PathTest
@@ -20,31 +20,31 @@ public class PathTest {
 	
 	public static final String STOP = "stop";
 	
-	protected MapDatum mapDatum = MapDatum.getInstance();
+	protected GraphDatum graphDatum = GraphDatum.getInstance();
 
 	@Before
 	public void before() throws IOException {
-		mapDatum.clear();
+		graphDatum.clear();
 
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("B"), DIST, 5);
-		mapDatum.addRoute(mapDatum.getStop("B"), mapDatum.getStop("C"), DIST, 4);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("D"), DIST, 8);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("C"), DIST, 8);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("E"), DIST, 6);
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("D"), DIST, 5);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("E"), DIST, 2);
-		mapDatum.addRoute(mapDatum.getStop("E"), mapDatum.getStop("B"), DIST, 3);
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("E"), DIST, 7);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), DIST, 5);
+		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), DIST, 4);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), DIST, 8);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), DIST, 8);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), DIST, 6);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), DIST, 5);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), DIST, 2);
+		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), DIST, 3);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("E"), DIST, 7);
 		
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("B"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("B"), mapDatum.getStop("C"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("D"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("C"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("E"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("D"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("E"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("E"), mapDatum.getStop("B"), STOP, 1);
-		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("E"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("B"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("B"), graphDatum.getStop("C"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("D"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("C"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("D"), graphDatum.getStop("E"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("D"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("C"), graphDatum.getStop("E"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("E"), graphDatum.getStop("B"), STOP, 1);
+		graphDatum.addRoute(graphDatum.getStop("A"), graphDatum.getStop("E"), STOP, 1);
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** 
- * @ClassName: MapDatum
+ * @ClassName: GraphDatum
  * @Description:  地图存储引擎.由站点(Stop)构成的地图.
  *
  *	@see Stop
@@ -12,17 +12,17 @@ import java.util.Map;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-上午10:06:52
  */
-public class MapDatum {
+public class GraphDatum {
 	
 	private final Map<String, Stop> stops = new HashMap<>();
 	
-	private static MapDatum instance = new MapDatum();
+	private static GraphDatum instance = new GraphDatum();
 	
-	public static MapDatum getInstance() {
+	public static GraphDatum getInstance() {
 		return instance;
 	}
 	
-	private MapDatum() {}
+	private GraphDatum() {}
 	
 	public void clear() {
 		stops.clear();

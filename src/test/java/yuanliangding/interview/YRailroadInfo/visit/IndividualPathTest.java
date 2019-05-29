@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /**
  * @ClassName: IndividualPathTest
@@ -21,11 +21,11 @@ public class IndividualPathTest extends PathTest{
 
 	@Test
 	public void testGetTotalWeight() {
-		Stop a = mapDatum.getStop("A");
-		Stop b = mapDatum.getStop("B");
-		Stop c = mapDatum.getStop("C");
-		Stop d = mapDatum.getStop("D");
-		Stop e = mapDatum.getStop("E");
+		Stop a = graphDatum.getStop("A");
+		Stop b = graphDatum.getStop("B");
+		Stop c = graphDatum.getStop("C");
+		Stop d = graphDatum.getStop("D");
+		Stop e = graphDatum.getStop("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
 		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
@@ -42,9 +42,9 @@ public class IndividualPathTest extends PathTest{
 	
 	@Test
 	public void testNoSuchRoute() {
-		Stop a = mapDatum.getStop("A");
-		Stop d = mapDatum.getStop("D");
-		Stop e = mapDatum.getStop("E");
+		Stop a = graphDatum.getStop("A");
+		Stop d = graphDatum.getStop("D");
+		Stop e = graphDatum.getStop("E");
 		
 		noSuchRouteException.expect(RuntimeException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");

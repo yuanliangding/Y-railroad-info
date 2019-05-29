@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.visit;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
  * @ClassName: LimitedPath

@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.core;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
@@ -25,10 +25,10 @@ public class SimpleYRailroadContext extends YRailroadContext {
 	public void start(String mapUrl, String exit) {
 		
 		// 1 初始化地图
-		MapDatum mapDatum = MapDatum.getInstance();
+		GraphDatum graphDatum = GraphDatum.getInstance();
 		
 		MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
-		mapPolicy.setMapDatum(mapDatum);
+		mapPolicy.setMapDatum(graphDatum);
 		
 		MapReader mapReader = PlainTextMapReader.getInstance();
 		mapReader.from(mapPolicy, mapUrl);

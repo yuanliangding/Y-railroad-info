@@ -7,7 +7,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Stop;
 
 /** 
  * @ClassName: LimitedPathTest
@@ -21,8 +21,8 @@ public class LimitedPathTest extends PathTest {
 	@Test
 	public void testConcrete() {
 		
-		Stop a = mapDatum.getStop("A");
-		Stop c = mapDatum.getStop("C");
+		Stop a = graphDatum.getStop("A");
+		Stop c = graphDatum.getStop("C");
 		
 		LimitedPath cc_stop_0_3 = new LimitedPath(c, c, STOP, 0, 3);
 		List<IndividualPath> cc_stop_0_3_paths = cc_stop_0_3.concrete();
