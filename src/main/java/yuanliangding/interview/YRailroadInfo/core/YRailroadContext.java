@@ -9,7 +9,7 @@ package yuanliangding.interview.YRailroadInfo.core;
  */
 public abstract class YRailroadContext {
 	
-	protected abstract void start(String mapUrl, String exit);
+	public abstract void start(String mapUrl, String exit);
 	
 	protected abstract String banner();
 }

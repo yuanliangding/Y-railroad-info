@@ -24,6 +24,8 @@ public class SimpleCommandParser implements CommandParser {
 	public static SimpleCommandParser getInstance() {
 		return instance;
 	}
+	
+	private SimpleCommandParser(){}
 
 	@Override
 	public CommandData parser(String commandStr) {

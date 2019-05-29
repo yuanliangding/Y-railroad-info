@@ -17,7 +17,7 @@ public class TerminatorCommandReceiver extends CommandReceiver {
 	 * @param standardError
 	 * @param commandParser
 	 */
-	public TerminatorCommandReceiver() {
+	private TerminatorCommandReceiver() {
 		super(System.in, System.out, System.err);
 	}
 	

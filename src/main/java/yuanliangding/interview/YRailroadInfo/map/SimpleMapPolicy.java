@@ -3,6 +3,7 @@ package yuanliangding.interview.YRailroadInfo.map;
 import java.util.Map;
 
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /** 
  * @ClassName: SimpleMapPolicy

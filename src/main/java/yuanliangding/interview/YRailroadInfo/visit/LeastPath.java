@@ -3,7 +3,7 @@ package yuanliangding.interview.YRailroadInfo.visit;
 import java.util.HashMap;
 import java.util.Map;
 
-import yuanliangding.interview.YRailroadInfo.map.Stop;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /** 
  * @ClassName: LeastPath

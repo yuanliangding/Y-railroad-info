@@ -20,7 +20,7 @@ import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 public class SimpleYRailroadContext extends YRailroadContext {
 
 	@Override
-	protected void start(String mapUrl, String exit) {
+	public void start(String mapUrl, String exit) {
 		
 		// 1 初始化地图
 		MapDatum mapDatum = MapDatum.getInstance();

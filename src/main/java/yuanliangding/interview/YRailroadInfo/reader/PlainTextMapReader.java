@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
-import yuanliangding.interview.YRailroadInfo.map.Stop;
 import yuanliangding.interview.YRailroadInfo.map.MapDatum;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /** 
  * @ClassName: PlainTextMapReader

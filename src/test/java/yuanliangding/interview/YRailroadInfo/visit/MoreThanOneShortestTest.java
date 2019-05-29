@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.map.Stop;
 import yuanliangding.interview.YRailroadInfo.map.MapDatum;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /** 
  * @ClassName: MoreThanOneShortestTest

@@ -2,6 +2,8 @@ package yuanliangding.interview.YRailroadInfo.map;
 
 import java.util.Map;
 
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
+
 /** 
  * @ClassName: MapPolicy
  * @Description:  地图策略,

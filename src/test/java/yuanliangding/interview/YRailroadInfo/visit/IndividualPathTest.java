@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuanliangding.interview.YRailroadInfo.map.Stop;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /**
  * @ClassName: IndividualPathTest
