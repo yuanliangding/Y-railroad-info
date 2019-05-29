@@ -33,12 +33,6 @@ public class PlainTextGraphReaderTest {
 			fileWriter.write("AB5\n");
 			fileWriter.write("BC4\n");
 			fileWriter.write("CD8\n");
-			fileWriter.write("DC8\n");
-			fileWriter.write("DE6\n");
-			fileWriter.write("AD5\n");
-			fileWriter.write("CE2\n");
-			fileWriter.write("EB3\n");
-			fileWriter.write("AE7\n");
 		}
 		
 		plainTextGraphReader = new PlainTextGraphReader(textPath);
@@ -55,7 +49,7 @@ public class PlainTextGraphReaderTest {
 		List<GraphEdge> results = plainTextGraphReader.read();
 		
 		int count = results.size();
-		Assert.assertThat("总共读取了9条数据才对", count, CoreMatchers.equalTo(9));
+		Assert.assertThat("总共读取了3条数据才对", count, CoreMatchers.equalTo(3));
 		
 		GraphEdge graphEdge0 = results.get(0);
 		Assert.assertThat("验证AB5出错",graphEdge0.getStart(), CoreMatchers.equalTo("A"));
