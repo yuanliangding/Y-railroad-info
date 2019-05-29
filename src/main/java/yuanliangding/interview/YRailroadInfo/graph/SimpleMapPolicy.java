@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.map;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
 
 /** 
@@ -87,7 +87,7 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 	}
 	
 	/* (non-Javadoc)
-	 * @see yuanliangding.interview.YRailroadInfo.map.MapPolicy#man()
+	 * @see yuanliangding.interview.YRailroadInfo.graph.MapPolicy#man()
 	 */
 	@Override
 	public String man() {

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Before;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
 
 /** 
  * @ClassName: PathTest

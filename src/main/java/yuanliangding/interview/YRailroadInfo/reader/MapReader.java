@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.reader;
 
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 
 /** 
  * @ClassName: MapReader

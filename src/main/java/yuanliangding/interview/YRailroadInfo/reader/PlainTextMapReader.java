@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
-import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 
 /** 
  * @ClassName: PlainTextMapReader

@@ -7,7 +7,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
 
 /** 
  * @ClassName: LimitedPathTest

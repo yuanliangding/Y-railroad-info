@@ -10,10 +10,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum;
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
-import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
 
 /**
  * @ClassName: PlainTextMapReaderTest

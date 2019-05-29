@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
 
 /** 
  * @ClassName: IndividualPath

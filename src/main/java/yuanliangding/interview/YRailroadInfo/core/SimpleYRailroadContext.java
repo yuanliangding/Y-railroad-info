@@ -1,11 +1,11 @@
 package yuanliangding.interview.YRailroadInfo.core;
 
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 import yuanliangding.interview.YRailroadInfo.interactive.SimpleCommandParser;
 import yuanliangding.interview.YRailroadInfo.interactive.TerminatorCommandReceiver;
-import yuanliangding.interview.YRailroadInfo.map.MapDatum;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
-import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.reader.MapReader;
 import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 

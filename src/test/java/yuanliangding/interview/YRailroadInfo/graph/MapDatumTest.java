@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.map;
+package yuanliangding.interview.YRailroadInfo.graph;
 
 import java.util.Map;
 
@@ -7,7 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum;
+import yuanliangding.interview.YRailroadInfo.graph.MapDatum.Stop;
 
 /** 
  * @ClassName: MapDatumTest
