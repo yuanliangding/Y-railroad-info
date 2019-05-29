@@ -8,25 +8,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** 
- * @ClassName: StopMapTest
+ * @ClassName: MapDatumTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:03:00
  */
-public class StopMapTest {
+public class MapDatumTest {
 	
-	private StopMap stopMap = null;
+	private MapDatum mapDatum = null;
 	
 	@Before
 	public void before() {
-		stopMap = StopMap.getInstance();
+		mapDatum = MapDatum.getInstance();
 	}
 	
     @Test
     public void testGetStop() {
-    	Stop a1 = stopMap.getStop("A");
-    	Stop a2 = stopMap.getStop("A");
-    	Stop b = stopMap.getStop("B");
+    	Stop a1 = mapDatum.getStop("A");
+    	Stop a2 = mapDatum.getStop("A");
+    	Stop b = mapDatum.getStop("B");
     	
     	Assert.assertThat(
     			"获取到的站点,其中的站名应该和参数传入的名称一致", 
@@ -51,20 +51,20 @@ public class StopMapTest {
     
     @Test
     public void testAddRoute() {
-    	Stop a = stopMap.getStop("A");
-    	Stop b = stopMap.getStop("B");
-    	Stop c = stopMap.getStop("C");
+    	Stop a = mapDatum.getStop("A");
+    	Stop b = mapDatum.getStop("B");
+    	Stop c = mapDatum.getStop("C");
     	
     	String dimName = "dist";
     	int dimValAB = 8;
     	int dimValAC = 9;
     	
-    	stopMap.addRoute(a, b, dimName, dimValAB);
-    	stopMap.addRoute(a, c, dimName, dimValAC);
+    	mapDatum.addRoute(a, b, dimName, dimValAB);
+    	mapDatum.addRoute(a, c, dimName, dimValAC);
     	
-    	Stop a_ = stopMap.getStop("A");
-    	Stop b_ = stopMap.getStop("B");
-    	Stop c_ = stopMap.getStop("C");
+    	Stop a_ = mapDatum.getStop("A");
+    	Stop b_ = mapDatum.getStop("B");
+    	Stop c_ = mapDatum.getStop("C");
     	Map<Stop, Integer> nexts = a_.getNexts(dimName);
     	
     	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));

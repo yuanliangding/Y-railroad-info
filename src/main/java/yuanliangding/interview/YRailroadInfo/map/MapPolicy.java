@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface MapPolicy<C, W extends Enum<W>> {
 	
-	public void addRoute(StopMap map, Stop start, Stop end, W weight, int value);
+	public void addRoute(MapDatum map, Stop start, Stop end, W weight, int value);
 	
 	public Map<String, C> getCommands();
 

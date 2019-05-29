@@ -31,7 +31,7 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 	 * @param value		权重值
 	 */
 	@Override
-	public void addRoute(StopMap map, Stop start, Stop end, Weight weight, int value) {
+	public void addRoute(MapDatum map, Stop start, Stop end, Weight weight, int value) {
 		map.addRoute(start, end, Weight.DIST.name(), value);
 		map.addRoute(start, end, Weight.STOP.name(), 1);
 	}

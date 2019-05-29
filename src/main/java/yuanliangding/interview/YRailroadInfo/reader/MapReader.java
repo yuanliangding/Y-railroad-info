@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.reader;
 
-import yuanliangding.interview.YRailroadInfo.map.StopMap;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum;
 
 /** 
  * @ClassName: MapReader
@@ -11,6 +11,6 @@ import yuanliangding.interview.YRailroadInfo.map.StopMap;
  */
 public interface MapReader {
 	
-	public void from(StopMap map, String path);
+	public void from(MapDatum map, String path);
 
 }

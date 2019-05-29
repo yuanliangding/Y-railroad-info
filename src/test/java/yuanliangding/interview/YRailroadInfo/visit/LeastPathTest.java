@@ -20,9 +20,9 @@ public class LeastPathTest extends PathTest {
 	@Test
 	public void testConcrete() {
 		
-		Stop a = stopMap.getStop("A");
-		Stop b = stopMap.getStop("B");
-		Stop c = stopMap.getStop("C");
+		Stop a = mapDatum.getStop("A");
+		Stop b = mapDatum.getStop("B");
+		Stop c = mapDatum.getStop("C");
 		
 		LeastPath ac_dist = new LeastPath(a, c, DIST);
 		List<IndividualPath> ac_dist_paths = ac_dist.concrete();

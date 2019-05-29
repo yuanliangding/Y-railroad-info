@@ -21,11 +21,11 @@ public class IndividualPathTest extends PathTest{
 
 	@Test
 	public void testGetTotalWeight() {
-		Stop a = stopMap.getStop("A");
-		Stop b = stopMap.getStop("B");
-		Stop c = stopMap.getStop("C");
-		Stop d = stopMap.getStop("D");
-		Stop e = stopMap.getStop("E");
+		Stop a = mapDatum.getStop("A");
+		Stop b = mapDatum.getStop("B");
+		Stop c = mapDatum.getStop("C");
+		Stop d = mapDatum.getStop("D");
+		Stop e = mapDatum.getStop("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
 		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
@@ -42,9 +42,9 @@ public class IndividualPathTest extends PathTest{
 	
 	@Test
 	public void testNoSuchRoute() {
-		Stop a = stopMap.getStop("A");
-		Stop d = stopMap.getStop("D");
-		Stop e = stopMap.getStop("E");
+		Stop a = mapDatum.getStop("A");
+		Stop d = mapDatum.getStop("D");
+		Stop e = mapDatum.getStop("E");
 		
 		noSuchRouteException.expect(RuntimeException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");

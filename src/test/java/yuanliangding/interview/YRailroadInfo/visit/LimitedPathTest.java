@@ -21,8 +21,8 @@ public class LimitedPathTest extends PathTest {
 	@Test
 	public void testConcrete() {
 		
-		Stop a = stopMap.getStop("A");
-		Stop c = stopMap.getStop("C");
+		Stop a = mapDatum.getStop("A");
+		Stop c = mapDatum.getStop("C");
 		
 		LimitedPath cc_stop_0_3 = new LimitedPath(c, c, STOP, 0, 3);
 		List<IndividualPath> cc_stop_0_3_paths = cc_stop_0_3.concrete();

@@ -7,7 +7,7 @@ import java.io.IOException;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.Stop;
-import yuanliangding.interview.YRailroadInfo.map.StopMap;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum;
 
 /** 
  * @ClassName: PlainTextMapReader
@@ -17,7 +17,7 @@ import yuanliangding.interview.YRailroadInfo.map.StopMap;
  * 			每一行为一条路线距离信息.其格式为:AB3,代表站点A到站点B距离为3.站点名称为一个字符的字符串
  * 			存储到存储中心,采用dist stop两个维度信息记录,以上记录A到B dist=3,stop=1
  *
- *	@see StopMap
+ *	@see MapDatum
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10
@@ -35,7 +35,7 @@ public class PlainTextMapReader implements MapReader {
 	private PlainTextMapReader() {}
 
 	@Override
-	public void from(StopMap map, String path) {
+	public void from(MapDatum map, String path) {
 		try (FileReader mapFileReader = new FileReader(path);
 				BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
 			String route;

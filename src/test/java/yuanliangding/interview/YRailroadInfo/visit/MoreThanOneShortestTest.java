@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
-import yuanliangding.interview.YRailroadInfo.map.StopMap;
+import yuanliangding.interview.YRailroadInfo.map.MapDatum;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
@@ -21,27 +21,27 @@ import yuanliangding.interview.YRailroadInfo.map.StopMap;
  */
 public class MoreThanOneShortestTest {
 	
-	protected StopMap stopMap = StopMap.getInstance();
+	protected MapDatum mapDatum = MapDatum.getInstance();
 
 	@Before
 	public void before() throws IOException {
-		stopMap.clear();
+		mapDatum.clear();
 
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PathTest.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PathTest.DIST, 4);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PathTest.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PathTest.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PathTest.DIST, 6);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PathTest.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PathTest.DIST, 2);
-		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PathTest.DIST, 3);
+		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("B"), PathTest.DIST, 5);
+		mapDatum.addRoute(mapDatum.getStop("B"), mapDatum.getStop("C"), PathTest.DIST, 4);
+		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("D"), PathTest.DIST, 8);
+		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("C"), PathTest.DIST, 8);
+		mapDatum.addRoute(mapDatum.getStop("D"), mapDatum.getStop("E"), PathTest.DIST, 6);
+		mapDatum.addRoute(mapDatum.getStop("A"), mapDatum.getStop("D"), PathTest.DIST, 5);
+		mapDatum.addRoute(mapDatum.getStop("C"), mapDatum.getStop("E"), PathTest.DIST, 2);
+		mapDatum.addRoute(mapDatum.getStop("E"), mapDatum.getStop("B"), PathTest.DIST, 3);
 	}
 	
 	@Test
 	public void testConcrete() {
 		
-		Stop a = stopMap.getStop("A");
-		Stop e = stopMap.getStop("E");
+		Stop a = mapDatum.getStop("A");
+		Stop e = mapDatum.getStop("E");
 		
 		LeastPath ae_dist = new LeastPath(a, e, PathTest.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
