@@ -3,6 +3,7 @@ package yuanliangding.interview.YRailroadInfo.reader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
@@ -10,10 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
-import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.reader.GraphReader.GraphEdge;
 
 /**
  * @ClassName: PlainTextMapReaderTest
@@ -23,18 +21,12 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  */
 public class PlainTextMapReaderTest {
 
-	private PlainTextMapReader plainTextMapReader = null;
-
-	private MapPolicy<?,?> mapPolicy = null;
-	
 	private String textPath = null;
+	
+	private PlainTextMapReader plainTextMapReader = null;
 
 	@Before
 	public void before() throws IOException {
-		plainTextMapReader = PlainTextMapReader.getInstance();
-
-		mapPolicy = SimpleMapPolicy.getInstance();
-
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		textPath = mapTextFile.getCanonicalPath();
 		try (FileWriter fileWriter = new FileWriter(mapTextFile)) {
@@ -48,6 +40,8 @@ public class PlainTextMapReaderTest {
 			fileWriter.write("EB3\n");
 			fileWriter.write("AE7\n");
 		}
+		
+		plainTextMapReader = new PlainTextMapReader(textPath);
 	}
 
 	@After
@@ -57,41 +51,29 @@ public class PlainTextMapReaderTest {
 	}
 
 	@Test
-	public void testFrom() {
-		plainTextMapReader.from(mapPolicy, textPath);
+	public void testRead() {
+		List<GraphEdge> results = plainTextMapReader.read();
 		
-		Vertex a = graphDatum.getVertex("A");
-		Vertex b = graphDatum.getVertex("B");
-		Vertex c = graphDatum.getVertex("C");
-		Vertex d = graphDatum.getVertex("D");
-		Vertex e = graphDatum.getVertex("E");
+		int count = results.size();
+		Assert.assertThat("总共读取了9条数据才对", count, CoreMatchers.equalTo(9));
 		
-		Assert.assertThat("验证AB5出错", a.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(b),CoreMatchers.equalTo(5));
-		Assert.assertThat("验证AB5出错", a.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(b),CoreMatchers.equalTo(1));
+		GraphEdge graphEdge0 = results.get(0);
+		Assert.assertThat("验证AB5出错",graphEdge0.getStart(), CoreMatchers.equalTo("A"));
+		Assert.assertThat("验证AB5出错",graphEdge0.getEnd(), CoreMatchers.equalTo("B"));
+		Assert.assertThat("验证AB5出错",graphEdge0.getWeightValue(), CoreMatchers.equalTo(5));
+		Assert.assertThat("验证AB5出错",graphEdge0.getWeightName(), CoreMatchers.nullValue());
 		
-		Assert.assertThat("验证BC4出错", b.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(c),CoreMatchers.equalTo(4));
-		Assert.assertThat("验证BC4出错", b.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(c),CoreMatchers.equalTo(1));
+		GraphEdge graphEdge1 = results.get(1);
+		Assert.assertThat("验证BC4出错",graphEdge1.getStart(), CoreMatchers.equalTo("B"));
+		Assert.assertThat("验证BC4出错",graphEdge1.getEnd(), CoreMatchers.equalTo("C"));
+		Assert.assertThat("验证BC4出错",graphEdge1.getWeightValue(), CoreMatchers.equalTo(4));
+		Assert.assertThat("验证BC4出错",graphEdge1.getWeightName(), CoreMatchers.nullValue());
 		
-		Assert.assertThat("验证CD8出错", c.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(d),CoreMatchers.equalTo(8));
-		Assert.assertThat("验证CD8出错", c.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(d),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证DC8出错", d.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(c),CoreMatchers.equalTo(8));
-		Assert.assertThat("验证DC8出错", d.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(c),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证DE6出错", d.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(6));
-		Assert.assertThat("验证DE6出错", d.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证AD5出错", a.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(d),CoreMatchers.equalTo(5));
-		Assert.assertThat("验证AD5出错", a.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(d),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证CE2出错", c.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(2));
-		Assert.assertThat("验证CE2出错", c.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证EB3出错", e.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(b),CoreMatchers.equalTo(3));
-		Assert.assertThat("验证EB3出错", e.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(b),CoreMatchers.equalTo(1));
-		
-		Assert.assertThat("验证AE7出错", a.getEdges(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(7));
-		Assert.assertThat("验证AE7出错", a.getEdges(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
+		GraphEdge graphEdge2 = results.get(2);
+		Assert.assertThat("验证CD8出错",graphEdge2.getStart(), CoreMatchers.equalTo("C"));
+		Assert.assertThat("验证CD8出错",graphEdge2.getEnd(), CoreMatchers.equalTo("D"));
+		Assert.assertThat("验证CD8出错",graphEdge2.getWeightValue(), CoreMatchers.equalTo(8));
+		Assert.assertThat("验证CD8出错",graphEdge2.getWeightName(), CoreMatchers.nullValue());
 	}
 
 }

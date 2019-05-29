@@ -3,9 +3,10 @@ package yuanliangding.interview.YRailroadInfo.reader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 
 /** 
@@ -21,18 +22,18 @@ import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10
  */
-public class PlainTextMapReader implements MapReader {
+public class PlainTextMapReader implements GraphReader {
 	
-	private static PlainTextMapReader instance = new PlainTextMapReader();
+	private String path = null;
 	
-	public static PlainTextMapReader getInstance() {
-		return instance;
+	public PlainTextMapReader(String path) {
+		this.path = path;
 	}
-	
-	private PlainTextMapReader() {}
 
 	@Override
-	public void from(MapPolicy<?,?> mapPolicy, String path) {
+	public List<GraphEdge> read() {
+		List<GraphEdge> results = new ArrayList<>();
+		
 		try (FileReader mapFileReader = new FileReader(path);
 				BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
 			String route;
@@ -43,11 +44,13 @@ public class PlainTextMapReader implements MapReader {
 				
 				int distV = Integer.parseInt(dist);
 				
-				mapPolicy.addRoute(begin, end, null, distV);
+				results.add(new GraphEdge(begin,end,null,distV));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return results;
 	}
 
 }
