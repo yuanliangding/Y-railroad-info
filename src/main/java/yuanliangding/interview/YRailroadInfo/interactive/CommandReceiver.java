@@ -60,25 +60,30 @@ public abstract class CommandReceiver {
 	/** 进入工作状态 */
 	public void work () {
 		scanner = new Scanner(standardIn);
-				
-		String commandStr = null;
-		do {
-			commandStr = scanner.nextLine();
-			try {
-				CommandData commandData = commandParser.parser(commandStr);
-				
-				Command command = commands.get(commandData.getName());
-				if (command == null) {
-					throw new RuntimeException("不认识的命令");
+		
+		boolean run = true;
+		
+		while(run) {
+			String commandStr = scanner.nextLine();
+			if (exitCommand.equals(commandStr)) {
+				run = false;
+			} else {
+				try {
+					CommandData commandData = commandParser.parser(commandStr);
+					
+					Command command = commands.get(commandData.getName());
+					if (command == null) {
+						throw new RuntimeException("不认识的命令");
+					}
+					
+					Object result = command.execute(commandData);
+					
+					standardOut.println(result);
+				} catch(Exception e) {
+					standardError.println(e.getMessage());
 				}
-				
-				Object result = command.execute(commandData);
-				
-				standardOut.println(result);
-			} catch(Exception e) {
-				standardError.println(e.getMessage());
 			}
-		}while(!exitCommand.equals(commandStr));
+		}
 		
 		destory();
 	}
