@@ -22,7 +22,7 @@ public class GraphDatumTest {
 	
 	@Before
 	public void before() {
-		graphDatum = GraphDatum.getInstance();
+		graphDatum = new GraphDatum();
 	}
 	
     @Test

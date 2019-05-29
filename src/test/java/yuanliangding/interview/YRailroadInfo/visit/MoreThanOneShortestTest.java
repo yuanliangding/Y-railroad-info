@@ -21,7 +21,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  */
 public class MoreThanOneShortestTest {
 	
-	protected GraphDatum graphDatum = GraphDatum.getInstance();
+	protected GraphDatum graphDatum = new GraphDatum();
 
 	@Before
 	public void before() throws IOException {

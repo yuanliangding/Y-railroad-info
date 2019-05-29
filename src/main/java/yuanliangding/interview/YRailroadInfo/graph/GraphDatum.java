@@ -16,14 +16,6 @@ public class GraphDatum {
 	
 	private final Map<String, Vertex> vertexs = new HashMap<>();
 	
-	private static GraphDatum instance = new GraphDatum();
-	
-	public static GraphDatum getInstance() {
-		return instance;
-	}
-	
-	private GraphDatum() {}
-	
 	public void clear() {
 		vertexs.clear();
 	}

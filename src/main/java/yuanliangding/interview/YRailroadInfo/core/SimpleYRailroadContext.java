@@ -25,11 +25,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 	public void start(String mapUrl, String exit) {
 		
 		// 1 初始化地图
-		GraphDatum graphDatum = GraphDatum.getInstance();
-		
 		MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
-		mapPolicy.setMapDatum(graphDatum);
-		
 		MapReader mapReader = PlainTextMapReader.getInstance();
 		mapReader.from(mapPolicy, mapUrl);
 		

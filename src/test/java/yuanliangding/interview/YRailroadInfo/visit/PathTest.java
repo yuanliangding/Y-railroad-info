@@ -20,12 +20,10 @@ public class PathTest {
 	
 	public static final String STOP = "stop";
 	
-	protected GraphDatum graphDatum = GraphDatum.getInstance();
+	protected GraphDatum graphDatum = new GraphDatum();
 
 	@Before
 	public void before() throws IOException {
-		graphDatum.clear();
-
 		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), DIST, 5);
 		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), DIST, 4);
 		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), DIST, 8);

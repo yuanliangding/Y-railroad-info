@@ -20,7 +20,7 @@ import yuanliangding.interview.YRailroadInfo.visit.IndividualPath;
  */
 public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weight> {
 	
-	private GraphDatum map = null;
+	private GraphDatum map = new GraphDatum();
 	
 	private static SimpleMapPolicy instance = new SimpleMapPolicy();
 
@@ -30,11 +30,6 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 
 	private SimpleMapPolicy() {}
 	
-	@Override
-	public void setMapDatum(GraphDatum graphDatum) {
-		map = graphDatum;
-	}
-
 	/**
 	 * 一般只会传起点,终点和这之间有向边的权重值.在该策略中,既表示dist=weight,stop=1
 	 * @param start		起点

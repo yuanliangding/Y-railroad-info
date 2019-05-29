@@ -35,7 +35,7 @@ public class PlainTextMapReaderTest {
 	public void before() throws IOException {
 		plainTextMapReader = PlainTextMapReader.getInstance();
 
-		graphDatum = GraphDatum.getInstance();
+		graphDatum = new GraphDatum();
 		mapPolicy = SimpleMapPolicy.getInstance();
 		mapPolicy.setMapDatum(graphDatum);
 
