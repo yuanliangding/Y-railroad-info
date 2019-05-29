@@ -19,7 +19,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-上午9:04:04
  */
-public abstract class SpecifiedPath extends AbsPath {
+public abstract class SpecifiedPath extends Path {
 	
 	protected Vertex end;
 	

@@ -13,7 +13,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:22:00
  */
-public class IndividualPath extends AbsPath {
+public class IndividualPath extends Path {
 	
 	private List<Vertex> rest = new ArrayList<>();
 
