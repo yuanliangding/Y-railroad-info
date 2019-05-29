@@ -49,20 +49,22 @@ public class SimpleYRailroadContextTest {
 	}
 
 	@Parameters
-	public static List<List<String>> data() {
-		List<List<String>> dataSet = new ArrayList<>();
-		dataSet.add(Arrays.asList("dist -p A-B-C","9"));
-		dataSet.add(Arrays.asList("dist -p A-D","5"));
-		dataSet.add(Arrays.asList("dist -p A-D-C","13"));
-		dataSet.add(Arrays.asList("dist -p A-E-B-C-D","22"));
-		dataSet.add(Arrays.asList("dist -p A-E-D","NO SUCH ROUTE"));
-		dataSet.add(Arrays.asList("count -f s -b C -e C -M 3","2"));
-		dataSet.add(Arrays.asList("count -f s -b A -e C -m 4 -M 4","3"));
-		dataSet.add(Arrays.asList("dist -f md -b A -e C","9"));
-		dataSet.add(Arrays.asList("dist -f md -b B -e B","9"));
-		dataSet.add(Arrays.asList("count -f d -b C -e C -M n30","7"));
-		dataSet.add(Arrays.asList("exit",""));
-		
+	public static List<String[]> data() {
+		List<String[]> dataSet = Arrays.asList(
+															new String[][]{
+																{"dist -p A-B-C","9"},
+																{"dist -p A-D","5"},
+																{"dist -p A-D-C","13"},
+																{"dist -p A-E-B-C-D","22"},
+																{"dist -p A-E-D","NO SUCH ROUTE"},
+																{"count -f s -b C -e C -M 3","2"},
+																{"count -f s -b A -e C -m 4 -M 4","3"},
+																{"dist -f md -b A -e C","9"},
+																{"dist -f md -b B -e B","9"},
+																{"count -f d -b C -e C -M n30","7"},
+																{"exit",""}
+															}
+														);
 		return dataSet;
 	}
 	
@@ -102,7 +104,7 @@ public class SimpleYRailroadContextTest {
 		}
 		
 		simpleYRailroadContext = new SimpleYRailroadContext();
-		simpleYRailroadContext.start(textPath, null);
+//		simpleYRailroadContext.start(textPath, null);
 	}
 
 	@AfterClass
