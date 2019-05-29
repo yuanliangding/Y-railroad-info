@@ -23,8 +23,5 @@ public interface MapPolicy<C, W extends Enum<W>> {
 	
 	/**该策略提供的命令集*/
 	public Map<String, C> getCommands();
-	
-	/**针对该策略的命令操作手册*/
-	public String man();
 
 }

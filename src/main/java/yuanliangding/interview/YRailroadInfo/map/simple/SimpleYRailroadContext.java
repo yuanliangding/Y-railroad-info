@@ -1,5 +1,8 @@
 package yuanliangding.interview.YRailroadInfo.map.simple;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
@@ -25,15 +28,21 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		MapPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
 		GraphReader graphReader = new PlainTextGraphReader("url");
 		mapPolicy.setGraphReader(graphReader);
+		Map<String,Command> commands = mapPolicy.getCommands();
 		
 		// 2 准备命令接收器
 		CommandReceiver commandReceiver = TerminatorCommandReceiver.getInstance();
 		commandReceiver.setCommandParser(SimpleCommandParser.getInstance());
 		commandReceiver.setExitCommand(exit);
-		commandReceiver.registeCommands(mapPolicy.getCommands());
+		commandReceiver.registeCommands(commands);
 
 		// 3 在终端显示banner
-		System.out.println(banner());
+		String bannerStr = 
+				banner() + 
+				"\n\n" + 
+				"你可以使用的命令有:\n" + 
+				commands.keySet().stream().collect(Collectors.joining(","));
+		System.out.println(bannerStr);
 		
 		// 4 命令接收器进入工作状态
 		commandReceiver.work();
@@ -41,7 +50,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 
 	@Override
 	protected String banner() {
-		return "这个系统好用不.....";
+		return "欢迎使用Y-Railroad info系统.(ver 1.0.0)";
 	}
 
 }
