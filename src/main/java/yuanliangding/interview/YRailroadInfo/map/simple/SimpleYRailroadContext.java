@@ -26,7 +26,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		
 		// 1 初始化地图
 		MapPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
-		GraphReader graphReader = new PlainTextGraphReader("url");
+		GraphReader graphReader = new PlainTextGraphReader(mapUrl);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
