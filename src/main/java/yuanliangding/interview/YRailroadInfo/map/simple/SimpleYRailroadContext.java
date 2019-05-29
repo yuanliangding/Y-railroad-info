@@ -46,7 +46,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 				"输入 " + exit + "退出该程序!\n" + 
 				"\n\n" + 
 				"你可以使用的命令有:\n" + 
-				commands.keySet().stream().collect(Collectors.joining(","));
+				commands.keySet().stream().collect(Collectors.joining(", "));
 		System.out.println(bannerStr);
 		
 		// 4 命令接收器进入工作状态
