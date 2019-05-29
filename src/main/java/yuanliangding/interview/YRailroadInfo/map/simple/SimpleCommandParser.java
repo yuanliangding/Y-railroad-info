@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser;
-import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 
 /** 
  * @ClassName: SimpleCommandParser

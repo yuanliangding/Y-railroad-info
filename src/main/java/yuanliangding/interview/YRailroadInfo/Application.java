@@ -15,7 +15,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		YRailroadContext yRailroadContext = new SimpleYRailroadContext();
-//		yRailroadContext.start(mapUrl, exit);
+		yRailroadContext.start(null/*mapUrl*/, null/*exit*/);
 	}
 
 }
