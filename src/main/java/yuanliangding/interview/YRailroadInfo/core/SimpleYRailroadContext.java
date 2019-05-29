@@ -1,10 +1,12 @@
 package yuanliangding.interview.YRailroadInfo.core;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 import yuanliangding.interview.YRailroadInfo.interactive.SimpleCommandParser;
 import yuanliangding.interview.YRailroadInfo.interactive.TerminatorCommandReceiver;
+import yuanliangding.interview.YRailroadInfo.reader.PlainTextGraphReader;
 
 /** 
  * @ClassName: SimpleYRailroadContext
@@ -23,8 +25,8 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		
 		// 1 初始化地图
 		MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
-//		GraphReader graphReader = PlainTextMapReader.getInstance();
-//		graphReader.from(mapPolicy, mapUrl);
+		GraphReader graphReader = new PlainTextGraphReader("url");
+		mapPolicy.setGraphReader(graphReader);
 		
 		// 2 准备命令接收器
 		CommandReceiver commandReceiver = TerminatorCommandReceiver.getInstance();

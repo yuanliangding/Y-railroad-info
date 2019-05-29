@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
+import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
 
 /** 
- * @ClassName: PlainTextMapReader
+ * @ClassName: PlainTextGraphReader
  * @Description:  普通文本格式的地图加载器.采用{@link SimpleMapPolicy}策略进行存储.
  * 
  * 		文本内容的格式规则为:
@@ -22,11 +23,11 @@ import yuanliangding.interview.YRailroadInfo.graph.SimpleMapPolicy;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10
  */
-public class PlainTextMapReader implements GraphReader {
+public class PlainTextGraphReader implements GraphReader {
 	
 	private String path = null;
 	
-	public PlainTextMapReader(String path) {
+	public PlainTextGraphReader(String path) {
 		this.path = path;
 	}
 

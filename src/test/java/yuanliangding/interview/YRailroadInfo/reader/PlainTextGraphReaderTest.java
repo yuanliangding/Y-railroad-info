@@ -11,19 +11,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.reader.GraphReader.GraphEdge;
+import yuanliangding.interview.YRailroadInfo.graph.GraphReader.GraphEdge;
 
 /**
- * @ClassName: PlainTextMapReaderTest
+ * @ClassName: PlainTextGraphReaderTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午12:26:56
  */
-public class PlainTextMapReaderTest {
+public class PlainTextGraphReaderTest {
 
 	private String textPath = null;
 	
-	private PlainTextMapReader plainTextMapReader = null;
+	private PlainTextGraphReader plainTextGraphReader = null;
 
 	@Before
 	public void before() throws IOException {
@@ -41,7 +41,7 @@ public class PlainTextMapReaderTest {
 			fileWriter.write("AE7\n");
 		}
 		
-		plainTextMapReader = new PlainTextMapReader(textPath);
+		plainTextGraphReader = new PlainTextGraphReader(textPath);
 	}
 
 	@After
@@ -52,7 +52,7 @@ public class PlainTextMapReaderTest {
 
 	@Test
 	public void testRead() {
-		List<GraphEdge> results = plainTextMapReader.read();
+		List<GraphEdge> results = plainTextGraphReader.read();
 		
 		int count = results.size();
 		Assert.assertThat("总共读取了9条数据才对", count, CoreMatchers.equalTo(9));

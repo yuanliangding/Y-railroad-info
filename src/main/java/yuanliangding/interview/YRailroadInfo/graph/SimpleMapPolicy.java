@@ -29,6 +29,11 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 
 	private SimpleMapPolicy() {}
 	
+	@Override
+	public void setGraphReader(GraphReader graphReader) {
+		graphReader.read().forEach(e -> addRoute(e.getStart(),e.getEnd(),null,e.getWeightValue()));
+	}
+	
 	/**
 	 * 一般只会传起点,终点和这之间有向边的权重值.在该策略中,既表示dist=weight,stop=1
 	 * @param start		起点
@@ -36,8 +41,7 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 	 * @param weight	(这个参数,在该策略中不需要)
 	 * @param value		权重值
 	 */
-	@Override
-	public void addRoute(String start, String end, Weight weight, int value) {
+	private void addRoute(String start, String end, Weight weight, int value) {
 		Vertex startStop = map.getVertex(start);
 		Vertex endStop = map.getVertex(end);
 		map.addEdge(startStop, endStop, Weight.DIST.name(), value);

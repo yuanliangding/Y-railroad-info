@@ -16,7 +16,8 @@ import java.util.Map;
  */
 public interface MapPolicy<C, W extends Enum<W>> {
 	
-	public void addRoute(String start, String end, W weight, int value);
+	/**设置图数据导入器(设置好后,自动加载)*/
+	public void setGraphReader(GraphReader graphReader);
 	
 	/**该策略提供的命令集*/
 	public Map<String, C> getCommands();
