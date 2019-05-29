@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import yuanliangding.interview.YRailroadInfo.map.MapDatum;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
-import yuanliangding.interview.YRailroadInfo.map.MapDatum;
-import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
 
 /** 
  * @ClassName: PlainTextMapReader
@@ -24,8 +23,6 @@ import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
  */
 public class PlainTextMapReader implements MapReader {
 	
-	private MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
-	
 	private static PlainTextMapReader instance = new PlainTextMapReader();
 	
 	public static PlainTextMapReader getInstance() {
@@ -35,7 +32,7 @@ public class PlainTextMapReader implements MapReader {
 	private PlainTextMapReader() {}
 
 	@Override
-	public void from(MapDatum map, String path) {
+	public void from(MapPolicy<?,?> mapPolicy, String path) {
 		try (FileReader mapFileReader = new FileReader(path);
 				BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
 			String route;
@@ -44,11 +41,9 @@ public class PlainTextMapReader implements MapReader {
 				String end = route.substring(1, 2);
 				String dist = route.substring(2, 3);
 				
-				Stop beginStop = map.getStop(begin);
-				Stop endStop = map.getStop(end);
 				int distV = Integer.parseInt(dist);
 				
-				mapPolicy.addRoute(map, beginStop, endStop, null, distV);
+				mapPolicy.addRoute(begin, end, null, distV);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

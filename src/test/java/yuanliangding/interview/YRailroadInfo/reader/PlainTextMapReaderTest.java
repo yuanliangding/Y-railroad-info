@@ -10,9 +10,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.MapDatum;
 import yuanliangding.interview.YRailroadInfo.map.MapDatum.Stop;
+import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
+import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 
 /**
  * @ClassName: PlainTextMapReaderTest
@@ -25,6 +26,9 @@ public class PlainTextMapReaderTest {
 	private PlainTextMapReader plainTextMapReader = null;
 
 	private MapDatum mapDatum = null;
+	
+	private MapPolicy<?,?> mapPolicy = null;
+	
 	private String textPath = null;
 
 	@Before
@@ -32,6 +36,8 @@ public class PlainTextMapReaderTest {
 		plainTextMapReader = PlainTextMapReader.getInstance();
 
 		mapDatum = MapDatum.getInstance();
+		mapPolicy = SimpleMapPolicy.getInstance();
+		mapPolicy.setMapDatum(mapDatum);
 
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		textPath = mapTextFile.getCanonicalPath();
@@ -56,7 +62,7 @@ public class PlainTextMapReaderTest {
 
 	@Test
 	public void testFrom() {
-		plainTextMapReader.from(mapDatum, textPath);
+		plainTextMapReader.from(mapPolicy, textPath);
 		
 		Stop a = mapDatum.getStop("A");
 		Stop b = mapDatum.getStop("B");
