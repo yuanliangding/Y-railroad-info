@@ -18,7 +18,7 @@ import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午11:52:24
  */
-public class BoundedPathTest extends PathTest {
+public class BoundedPathTest extends DefaultDataProvider {
 	
 	@Test
 	public void testConcrete() {

@@ -29,14 +29,14 @@ public class MoreThanOneShortestTest {
 	public void before() throws IOException {
 		graphDatum.clear();
 
-		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), PathTest.DIST, 5);
-		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), PathTest.DIST, 4);
-		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), PathTest.DIST, 8);
-		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), PathTest.DIST, 8);
-		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), PathTest.DIST, 6);
-		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), PathTest.DIST, 5);
-		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), PathTest.DIST, 2);
-		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), PathTest.DIST, 3);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), DefaultDataProvider.DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), DefaultDataProvider.DIST, 4);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), DefaultDataProvider.DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), DefaultDataProvider.DIST, 8);
+		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), DefaultDataProvider.DIST, 6);
+		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), DefaultDataProvider.DIST, 5);
+		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), DefaultDataProvider.DIST, 2);
+		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), DefaultDataProvider.DIST, 3);
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class MoreThanOneShortestTest {
 		Vertex a = graphDatum.getVertex("A");
 		Vertex e = graphDatum.getVertex("E");
 		
-		MinPath ae_dist = new MinPath(a, e, PathTest.DIST);
+		MinPath ae_dist = new MinPath(a, e, DefaultDataProvider.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
 		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
@@ -55,11 +55,11 @@ public class MoreThanOneShortestTest {
 				);
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(0).getTotalWeight(PathTest.DIST), 
+				ae_dist_paths.get(0).getTotalWeight(DefaultDataProvider.DIST), 
 				CoreMatchers.equalTo(11));
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(1).getTotalWeight(PathTest.DIST), 
+				ae_dist_paths.get(1).getTotalWeight(DefaultDataProvider.DIST), 
 				CoreMatchers.equalTo(11));
 		}
 

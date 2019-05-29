@@ -17,7 +17,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午4:13:29
  */
-public class MinPathTest extends PathTest {
+public class MinPathTest extends DefaultDataProvider {
 	
 	@Test
 	public void testConcrete() {
