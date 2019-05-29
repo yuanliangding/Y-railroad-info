@@ -3,6 +3,8 @@ package yuanliangding.interview.YRailroadInfo.map.simple;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,22 +34,38 @@ public class PlainTextGraphReader implements GraphReader {
 
 	@Override
 	public List<GraphEdge> read() {
+		if (path == null) {
+			try(
+					InputStream defaultInputStream = this.getClass().getResourceAsStream("/default.txt");
+					InputStreamReader defaultinputStreamReader = new InputStreamReader(defaultInputStream);
+					BufferedReader mapBufferedReader = new BufferedReader(defaultinputStreamReader)
+							){
+				return read(mapBufferedReader);
+			} catch (IOException e) {
+				throw new RuntimeException("程序启动失败,没找到默认的地图数据文件.");
+			}
+		} else {
+			try (FileReader mapFileReader = new FileReader(path);
+					BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
+				return read(mapBufferedReader);
+			} catch (IOException e) {
+				throw new RuntimeException("程序启动失败,没找到指定的地图数据文件.");
+			}
+		}
+	}
+	
+	private List<GraphEdge> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
 		List<GraphEdge> results = new ArrayList<>();
 		
-		try (FileReader mapFileReader = new FileReader(path);
-				BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
-			String route;
-			while ((route = mapBufferedReader.readLine()) != null) {
-				String begin = route.substring(0, 1);
-				String end = route.substring(1, 2);
-				String dist = route.substring(2, 3);
-				
-				int distV = Integer.parseInt(dist);
-				
-				results.add(new GraphEdge(begin,end,null,distV));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		String route;
+		while ((route = bufferedReader.readLine()) != null) {
+			String begin = route.substring(0, 1);
+			String end = route.substring(1, 2);
+			String dist = route.substring(2, 3);
+			
+			int distV = Integer.parseInt(dist);
+			
+			results.add(new GraphEdge(begin,end,null,distV));
 		}
 		
 		return results;
