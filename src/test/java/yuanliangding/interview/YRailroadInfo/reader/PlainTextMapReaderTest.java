@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import yuanliangding.interview.YRailroadInfo.map.SimpleMapPolicy;
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 import yuanliangding.interview.YRailroadInfo.map.StopMap;
 
@@ -63,32 +64,32 @@ public class PlainTextMapReaderTest {
 		Stop d = stopMap.getStop("D");
 		Stop e = stopMap.getStop("E");
 		
-		Assert.assertThat("验证AB5出错", a.getNexts(PlainTextMapReader.DIST).get(b),CoreMatchers.equalTo(5));
-		Assert.assertThat("验证AB5出错", a.getNexts(PlainTextMapReader.STOP).get(b),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证AB5出错", a.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(b),CoreMatchers.equalTo(5));
+		Assert.assertThat("验证AB5出错", a.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(b),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证BC4出错", b.getNexts(PlainTextMapReader.DIST).get(c),CoreMatchers.equalTo(4));
-		Assert.assertThat("验证BC4出错", b.getNexts(PlainTextMapReader.STOP).get(c),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证BC4出错", b.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(c),CoreMatchers.equalTo(4));
+		Assert.assertThat("验证BC4出错", b.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(c),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证CD8出错", c.getNexts(PlainTextMapReader.DIST).get(d),CoreMatchers.equalTo(8));
-		Assert.assertThat("验证CD8出错", c.getNexts(PlainTextMapReader.STOP).get(d),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证CD8出错", c.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(d),CoreMatchers.equalTo(8));
+		Assert.assertThat("验证CD8出错", c.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(d),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证DC8出错", d.getNexts(PlainTextMapReader.DIST).get(c),CoreMatchers.equalTo(8));
-		Assert.assertThat("验证DC8出错", d.getNexts(PlainTextMapReader.STOP).get(c),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证DC8出错", d.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(c),CoreMatchers.equalTo(8));
+		Assert.assertThat("验证DC8出错", d.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(c),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证DE6出错", d.getNexts(PlainTextMapReader.DIST).get(e),CoreMatchers.equalTo(6));
-		Assert.assertThat("验证DE6出错", d.getNexts(PlainTextMapReader.STOP).get(e),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证DE6出错", d.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(6));
+		Assert.assertThat("验证DE6出错", d.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证AD5出错", a.getNexts(PlainTextMapReader.DIST).get(d),CoreMatchers.equalTo(5));
-		Assert.assertThat("验证AD5出错", a.getNexts(PlainTextMapReader.STOP).get(d),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证AD5出错", a.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(d),CoreMatchers.equalTo(5));
+		Assert.assertThat("验证AD5出错", a.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(d),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证CE2出错", c.getNexts(PlainTextMapReader.DIST).get(e),CoreMatchers.equalTo(2));
-		Assert.assertThat("验证CE2出错", c.getNexts(PlainTextMapReader.STOP).get(e),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证CE2出错", c.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(2));
+		Assert.assertThat("验证CE2出错", c.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证EB3出错", e.getNexts(PlainTextMapReader.DIST).get(b),CoreMatchers.equalTo(3));
-		Assert.assertThat("验证EB3出错", e.getNexts(PlainTextMapReader.STOP).get(b),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证EB3出错", e.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(b),CoreMatchers.equalTo(3));
+		Assert.assertThat("验证EB3出错", e.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(b),CoreMatchers.equalTo(1));
 		
-		Assert.assertThat("验证AE7出错", a.getNexts(PlainTextMapReader.DIST).get(e),CoreMatchers.equalTo(7));
-		Assert.assertThat("验证AE7出错", a.getNexts(PlainTextMapReader.STOP).get(e),CoreMatchers.equalTo(1));
+		Assert.assertThat("验证AE7出错", a.getNexts(SimpleMapPolicy.Weight.DIST.name()).get(e),CoreMatchers.equalTo(7));
+		Assert.assertThat("验证AE7出错", a.getNexts(SimpleMapPolicy.Weight.STOP.name()).get(e),CoreMatchers.equalTo(1));
 	}
 
 }

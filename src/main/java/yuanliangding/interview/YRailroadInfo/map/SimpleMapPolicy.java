@@ -12,13 +12,7 @@ import yuanliangding.interview.YRailroadInfo.interactive.Command;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-上午6:28:46
  */
-public class SimpleMapPolicy implements MapPolicy<Command> {
-	
-	/** 距离 */
-	public static final String DIST = "dist";
-	
-	/** 跨越站数 */
-	public static final String STOP = "stop";
+public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weight> {
 	
 	private static SimpleMapPolicy instance = new SimpleMapPolicy();
 
@@ -26,20 +20,20 @@ public class SimpleMapPolicy implements MapPolicy<Command> {
 		return instance;
 	}
 
-	private SimpleMapPolicy() {
-	}
+	private SimpleMapPolicy() {}
 
 	/**
 	 * 一般只会传起点,终点和这之间有向边的权重值.在该策略中,既表示dist=weight,stop=1
 	 * @param map		地图存储器
 	 * @param start		起点
 	 * @param end		终点
-	 * @param weight	权重
+	 * @param weight	(这个参数,在该策略中不需要)
+	 * @param value		权重值
 	 */
 	@Override
-	public void addRoute(StopMap map, Stop start, Stop end, String dim, int weight) {
-		map.addRoute(start, end, DIST, weight);
-		map.addRoute(start, end, STOP, 1);
+	public void addRoute(StopMap map, Stop start, Stop end, Weight weight, int value) {
+		map.addRoute(start, end, Weight.DIST.name(), value);
+		map.addRoute(start, end, Weight.STOP.name(), 1);
 	}
 	
 	/* (non-Javadoc)
@@ -49,6 +43,12 @@ public class SimpleMapPolicy implements MapPolicy<Command> {
 	public Map<String, Command> getCommands() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/** 权重名 */
+	public static enum Weight {
+		DIST,	//距离
+		STOP	//跨越站数
 	}
 	
 }

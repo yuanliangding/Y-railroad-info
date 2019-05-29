@@ -13,9 +13,9 @@ import java.util.Map;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-上午6:20:42
  */
-public interface MapPolicy<C> {
+public interface MapPolicy<C, W extends Enum<W>> {
 	
-	public void addRoute(StopMap map, Stop start, Stop end, String dim, int weight);
+	public void addRoute(StopMap map, Stop start, Stop end, W weight, int value);
 	
 	public Map<String, C> getCommands();
 

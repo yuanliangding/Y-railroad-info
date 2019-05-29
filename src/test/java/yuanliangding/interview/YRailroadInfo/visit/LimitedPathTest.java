@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
-import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
 /** 
  * @ClassName: LimitedPathTest
@@ -25,7 +24,7 @@ public class LimitedPathTest extends PathTest {
 		Stop a = stopMap.getStop("A");
 		Stop c = stopMap.getStop("C");
 		
-		LimitedPath cc_stop_0_3 = new LimitedPath(c, c, PlainTextMapReader.STOP, 0, 3);
+		LimitedPath cc_stop_0_3 = new LimitedPath(c, c, STOP, 0, 3);
 		List<IndividualPath> cc_stop_0_3_paths = cc_stop_0_3.concrete();
 		Assert.assertThat("从C到C,路程最多跨越3站的路线有2条", cc_stop_0_3_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
@@ -34,7 +33,7 @@ public class LimitedPathTest extends PathTest {
 				CoreMatchers.hasItems("C-D-C","C-E-B-C")
 				);
 		
-		LimitedPath ac_stop_4_4 = new LimitedPath(a, c, PlainTextMapReader.STOP, 4, 4);
+		LimitedPath ac_stop_4_4 = new LimitedPath(a, c, STOP, 4, 4);
 		List<IndividualPath> ac_stop_4_4_paths = ac_stop_4_4.concrete();
 		Assert.assertThat("从A到C,路程正好跨越4站的路线有3条", ac_stop_4_4_paths.size(), CoreMatchers.equalTo(3));
 		Assert.assertThat(
@@ -43,7 +42,7 @@ public class LimitedPathTest extends PathTest {
 				CoreMatchers.hasItems("A-B-C-D-C","A-D-C-D-C", "A-D-E-B-C")
 				);
 		
-		LimitedPath cc_dist_0_30 = new LimitedPath(c, c, PlainTextMapReader.DIST, 0, 30, true, false);
+		LimitedPath cc_dist_0_30 = new LimitedPath(c, c, DIST, 0, 30, true, false);
 		List<IndividualPath> cc_dist_0_30_paths = cc_dist_0_30.concrete();
 		Assert.assertThat("从C到C,路程小于30的路线有7条", cc_dist_0_30_paths.size(), CoreMatchers.equalTo(7));
 		Assert.assertThat(

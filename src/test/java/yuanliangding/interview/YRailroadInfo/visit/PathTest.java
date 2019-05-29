@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.junit.Before;
 
 import yuanliangding.interview.YRailroadInfo.map.StopMap;
-import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
 /** 
  * @ClassName: PathTest
@@ -17,31 +16,35 @@ import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
  */
 public class PathTest {
 	
+	public static final String DIST = "dist";
+	
+	public static final String STOP = "stop";
+	
 	protected StopMap stopMap = StopMap.getInstance();
 
 	@Before
 	public void before() throws IOException {
 		stopMap.clear();
 
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.DIST, 4);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PlainTextMapReader.DIST, 6);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.DIST, 2);
-		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.DIST, 3);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), PlainTextMapReader.DIST, 7);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), DIST, 5);
+		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), DIST, 4);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), DIST, 8);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), DIST, 8);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), DIST, 6);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), DIST, 5);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), DIST, 2);
+		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), DIST, 3);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), DIST, 7);
 		
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.STOP, 1);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), PlainTextMapReader.STOP, 1);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), STOP, 1);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("E"), STOP, 1);
 	}
 
 }

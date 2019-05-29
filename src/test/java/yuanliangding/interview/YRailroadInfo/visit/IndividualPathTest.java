@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
-import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
 /**
  * @ClassName: IndividualPathTest
@@ -29,16 +28,16 @@ public class IndividualPathTest extends PathTest{
 		Stop e = stopMap.getStop("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
-		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(PlainTextMapReader.DIST), CoreMatchers.equalTo(9));
+		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
 
 		IndividualPath ad = new IndividualPath(a, d);
-		Assert.assertThat("验证" + ad + "路径长度出错", ad.getTotalWeight(PlainTextMapReader.DIST), CoreMatchers.equalTo(5));
+		Assert.assertThat("验证" + ad + "路径长度出错", ad.getTotalWeight(DIST), CoreMatchers.equalTo(5));
 
 		IndividualPath adc = new IndividualPath(a, d, c);
-		Assert.assertThat("验证" + adc + "路径长度出错", adc.getTotalWeight(PlainTextMapReader.DIST), CoreMatchers.equalTo(13));
+		Assert.assertThat("验证" + adc + "路径长度出错", adc.getTotalWeight(DIST), CoreMatchers.equalTo(13));
 
 		IndividualPath aebcd = new IndividualPath(a, e, b, c, d);
-		Assert.assertThat("验证" + aebcd + "路径长度出错", aebcd.getTotalWeight(PlainTextMapReader.DIST), CoreMatchers.equalTo(22));
+		Assert.assertThat("验证" + aebcd + "路径长度出错", aebcd.getTotalWeight(DIST), CoreMatchers.equalTo(22));
 	}
 	
 	@Test
@@ -50,7 +49,7 @@ public class IndividualPathTest extends PathTest{
 		noSuchRouteException.expect(RuntimeException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");
 		IndividualPath aed = new IndividualPath(a, e, d);
-		aed.getTotalWeight(PlainTextMapReader.DIST);
+		aed.getTotalWeight(DIST);
 	}
 
 }

@@ -24,7 +24,7 @@ import yuanliangding.interview.YRailroadInfo.map.StopMap;
  */
 public class PlainTextMapReader implements MapReader {
 	
-	private MapPolicy<?> mapPolicy = SimpleMapPolicy.getInstance();
+	private MapPolicy<?,?> mapPolicy = SimpleMapPolicy.getInstance();
 	
 	private static PlainTextMapReader instance = new PlainTextMapReader();
 	

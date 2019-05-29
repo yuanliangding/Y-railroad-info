@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.map.Stop;
 import yuanliangding.interview.YRailroadInfo.map.StopMap;
-import yuanliangding.interview.YRailroadInfo.reader.PlainTextMapReader;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
@@ -28,14 +27,14 @@ public class MoreThanOneShortestTest {
 	public void before() throws IOException {
 		stopMap.clear();
 
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PlainTextMapReader.DIST, 4);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PlainTextMapReader.DIST, 8);
-		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PlainTextMapReader.DIST, 6);
-		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PlainTextMapReader.DIST, 5);
-		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PlainTextMapReader.DIST, 2);
-		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PlainTextMapReader.DIST, 3);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("B"), PathTest.DIST, 5);
+		stopMap.addRoute(stopMap.getStop("B"), stopMap.getStop("C"), PathTest.DIST, 4);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("D"), PathTest.DIST, 8);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("C"), PathTest.DIST, 8);
+		stopMap.addRoute(stopMap.getStop("D"), stopMap.getStop("E"), PathTest.DIST, 6);
+		stopMap.addRoute(stopMap.getStop("A"), stopMap.getStop("D"), PathTest.DIST, 5);
+		stopMap.addRoute(stopMap.getStop("C"), stopMap.getStop("E"), PathTest.DIST, 2);
+		stopMap.addRoute(stopMap.getStop("E"), stopMap.getStop("B"), PathTest.DIST, 3);
 	}
 	
 	@Test
@@ -44,7 +43,7 @@ public class MoreThanOneShortestTest {
 		Stop a = stopMap.getStop("A");
 		Stop e = stopMap.getStop("E");
 		
-		LeastPath ae_dist = new LeastPath(a, e, PlainTextMapReader.DIST);
+		LeastPath ae_dist = new LeastPath(a, e, PathTest.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
 		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
@@ -54,11 +53,11 @@ public class MoreThanOneShortestTest {
 				);
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(0).getTotalWeight(PlainTextMapReader.DIST), 
+				ae_dist_paths.get(0).getTotalWeight(PathTest.DIST), 
 				CoreMatchers.equalTo(11));
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(1).getTotalWeight(PlainTextMapReader.DIST), 
+				ae_dist_paths.get(1).getTotalWeight(PathTest.DIST), 
 				CoreMatchers.equalTo(11));
 		}
 
