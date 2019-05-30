@@ -1,5 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
@@ -27,7 +28,7 @@ public class BoundedPath extends SpecifiedPath {
 		super(begin, end, dim);
 		
 		if (min > max) {
-			throw new RuntimeException("最小值大小不能超过最大值");
+			throw new GraphException("最小值大小不能超过最大值");
 		}
 		
 		this.min = min;

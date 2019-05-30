@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /**
@@ -47,7 +47,7 @@ public class IndividualPathTest extends DefaultDataPrepared{
 		Vertex d = graph.getVertex("D");
 		Vertex e = graph.getVertex("E");
 		
-		noSuchRouteException.expect(RuntimeException.class);
+		noSuchRouteException.expect(GraphException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");
 		IndividualPath aed = new IndividualPath(a, e, d);
 		aed.getTotalWeight(DIST);

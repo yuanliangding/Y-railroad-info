@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 import yuanliangding.interview.YRailroadInfo.graph.base.Path;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
@@ -58,7 +59,7 @@ public class IndividualPath extends Path {
 	private int getWeight (Vertex curr, Vertex next, String dim) {
 		Integer weight = curr.getEdges(dim).get(next);
 		if (weight == null) {
-			throw new RuntimeException("NO SUCH ROUTE");
+			throw new GraphException("NO SUCH ROUTE");
 		}
 		return weight;
 	}
