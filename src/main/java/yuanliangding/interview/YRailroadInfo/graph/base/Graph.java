@@ -39,7 +39,7 @@ public class Graph {
 			throw new GraphException("必须为边指定");
 		}
 		
-		start.addEdge(end, layer, weight);
+		start.setWeight(end, layer, weight);
 	}
 	
 	/**

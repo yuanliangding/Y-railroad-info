@@ -2,6 +2,7 @@ package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import yuanliangding.interview.YRailroadInfo.graph.GraphException;
@@ -57,11 +58,15 @@ public class IndividualPath extends Path {
 	}
 	
 	private int getWeight (Vertex curr, Vertex next, String dim) {
-		Integer weight = curr.getEdges(dim).get(next);
-		if (weight == null) {
+		if (!curr.getEdges().containsKey(next)) {
 			throw new GraphException("NO SUCH ROUTE");
 		}
-		return weight;
+		
+		Map<String, Integer> weights = curr.getEdges().get(next);
+		if (!weights.containsKey(dim)) {
+			throw new GraphException("没有"+dim+"维度的权重值");
+		}
+		return weights.get(dim);
 	}
 
 	@Override

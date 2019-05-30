@@ -29,7 +29,7 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 public class Vertex {
 	
 	// 以该顶点为起点的所有有向边.先按层进行存储,在层里,再存储所有边.
-	private final Map<String, Map<Vertex,Integer>> routes = new HashMap<>();
+	private final Map<Vertex, Map<String, Integer>> edges = new HashMap<>();
 	
 	// 顶点名称
 	private final String name;
@@ -53,30 +53,26 @@ public class Vertex {
 	
 	/**
 	 * 根据所属层,返回以该顶点为起点的所有有向边,用(顶点,权重)对来表示返回结果
-	 * 
-	 * @param layer
 	 * */
-	public Map<Vertex,Integer> getEdges(String layer) {
-		return routes.getOrDefault(layer, new HashMap<>());
+	public Map<Vertex, Map<String, Integer>> getEdges() {
+		return edges;
 	}
 	
 	/**
 	 * 为当前顶点增加一条出去的有向边,当前顶点做为有向边的起始点.
 	 * 
 	 * @param vertex	边的终点
-	 * @param layer 	边所属的层
+	 * @param dim 	边所属的层
 	 * @param weight	边的权重
 	 * 
 	 * */
-	protected void addEdge(Vertex vertex, String layer, int weight) {
-		Map<Vertex,Integer> routesByLayer = routes.get(layer);
-		
-		if (routesByLayer == null) {
-			routesByLayer = new HashMap<>();
-			routes.put(layer, routesByLayer);
+	protected void setWeight(Vertex vertex, String dim, int weight) {
+		if (!edges.containsKey(vertex)) {
+			edges.put(vertex, new HashMap<>());
 		}
 		
-		routesByLayer.put(vertex, weight);
+		Map<String, Integer> weights = edges.get(vertex);
+		weights.put(dim, weight);
 	}
 
 	@Override

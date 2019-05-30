@@ -67,10 +67,18 @@ public class GraphTest {
     	Vertex a_ = graph.getVertex("A");
     	Vertex b_ = graph.getVertex("B");
     	Vertex c_ = graph.getVertex("C");
-    	Map<Vertex, Integer> nexts = a_.getEdges(layer);
+    	Map<Vertex, Map<String, Integer>> edges = a_.getEdges();
     	
-    	Assert.assertThat("A,B之间所属层为'"+layer+"'的边的权重为:"+weightAB, nexts.get(b_),CoreMatchers.equalTo(weightAB));
-    	Assert.assertThat("A,C之间所层层为'"+layer+"'的边的权重为:"+weightAC, nexts.get(c_),CoreMatchers.equalTo(weightAC));
+    	Assert.assertThat(
+    			"A到B的有向边,维度"+layer+"不具有值为"+weightAB+"的权重值", 
+    			edges.get(b_).get(layer),
+    			CoreMatchers.equalTo(weightAB)
+    			);
+    	Assert.assertThat(
+    			"A到C的有向边,维度"+layer+"不具有值为"+weightAC+"的权重值", 
+    			edges.get(c_).get(layer),
+    			CoreMatchers.equalTo(weightAC)
+    			);
     }
 
 }

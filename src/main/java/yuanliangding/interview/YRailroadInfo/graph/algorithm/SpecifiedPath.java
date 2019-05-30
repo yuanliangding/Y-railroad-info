@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 import yuanliangding.interview.YRailroadInfo.graph.base.Path;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
@@ -74,13 +75,16 @@ public abstract class SpecifiedPath extends Path {
 	 * 			2	由于是采用递归操作,对于规模大的地图有可能会导致内存不足的问题.
 	 * */
 	private void nextStop(Step currTempPath) {
-		Map<Vertex, Integer> edge = currTempPath.getCurr().getEdges(dim);
-		if (edge.isEmpty()) {
+		Map<Vertex, Map<String, Integer>> edges = currTempPath.getCurr().getEdges();
+		if (edges.isEmpty()) {
 			terminates.add(currTempPath);
 		}
 		
-		edge.forEach((Vertex vertex,Integer weight) -> {
-			Step step = new Step(currTempPath.getTotalWeight()+weight, vertex, currTempPath);
+		edges.forEach((Vertex vertex,Map<String, Integer> weights) -> {
+			if (!weights.containsKey(dim)) {
+				throw new GraphException("没有" + dim + "维度的权重值.");
+			}
+			Step step = new Step(currTempPath.getTotalWeight()+weights.get(dim), vertex, currTempPath);
 			asResult(step);
 			if (toBeContinue(step)) {
 				nextStop(step);
