@@ -1,13 +1,26 @@
 package yuanliangding.interview.YRailroadInfo.graph.base;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.BoundedPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.MinPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.SpecifiedPath;
+
 /** 
  * @ClassName: Path
- * @Description:  抽像路径(只指定一个起点),路径是指地图上某个点到另一个点的路线.
- * 						可以表示具体的路线,也可以只是对路线特点进行描述.
- * 						比如只指定起点和终点,要求其某个维度总权重值,是最小值的,或者居于某些数轴区间,比如在3到7之间.
- * 						关于路线的维度和权重,请参考{@link Vertex}
- * 						
+ * @Description:  路径,
+ * 						这是比较泛化的路径,只指定了起点,后续的途经点根据具体路径类型确定.
+ * 						具体参考该类的所有子类
+ * 							{@link IndividualPath},
+ * 							{@link SpecifiedPath},
+ * 							{@link MinPath},
+ * 							{@link BoundedPath}
+ * 
  * @see Vertex
+ * @see IndividualPath
+ * @see SpecifiedPath
+ * @see MinPath
+ * @see BoundedPath
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:01:43
@@ -21,19 +34,19 @@ public abstract class Path {
 	 * */
 	protected Path(Vertex begin) {
 		if (begin == null) {
-			throw new RuntimeException("起点不能为空");
+			throw new GraphException("起点不能为空");
 		}
 		
 		this.begin = begin;
 	}
 
 	/**
-	 * 计算具体维度的总权重值.
+	 * 计算在某层上的边的总权重
 	 * 
-	 * @param dim 维度
+	 * @param layer 在该层上的边的总权重
 	 * */
-	public int getTotalWeight(String dim) {
-		throw new RuntimeException("该类型路径不支持计算总权重.");
+	public int getTotalWeight(String layer) {
+		throw new GraphException("该类型路径不支持计算总权重.");
 	}
 	
 }

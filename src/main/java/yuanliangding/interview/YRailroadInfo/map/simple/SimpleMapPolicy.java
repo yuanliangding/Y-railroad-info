@@ -43,7 +43,7 @@ public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weigh
 		graphReader.read().forEach(e -> {
 				Vertex startStop = map.getVertex(e.getStart());
 				Vertex endStop = map.getVertex(e.getEnd());
-				map.addEdge(startStop, endStop, Weight.DIST.name(), e.getWeightValue());
+				map.addEdge(startStop, endStop, Weight.DIST.name(), e.getWeight());
 				map.addEdge(startStop, endStop, Weight.STOP.name(), 1);
 			}
 		);

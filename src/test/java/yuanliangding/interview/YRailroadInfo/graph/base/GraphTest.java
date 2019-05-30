@@ -25,25 +25,25 @@ public class GraphTest {
 	}
 	
     @Test
-    public void testGetStop() {
+    public void testGetVertex() {
     	Vertex a1 = graph.getVertex("A");
     	Vertex a2 = graph.getVertex("A");
     	Vertex b = graph.getVertex("B");
     	
     	Assert.assertThat(
-    			"获取到的站点,其中的站名应该和参数传入的名称一致", 
+    			"获取到的顶点,其中的顶点名称应该和参数传入的名称一致", 
     			a1.getName() , 
     			CoreMatchers.equalTo("A")
     			);
     	
     	Assert.assertThat(
-    			"相同的站名,获取到的应该是同样的站点实例", 
+    			"相同的顶点名称,获取到的应该是同样的顶点实例", 
     			a1, 
     			CoreMatchers.sameInstance(a2)
     			);
     	
     	Assert.assertThat(
-    			"不同的站名,获取到的应该是不同的站点实例,并且通过实例equal计算也获得不同的值", 
+    			"不同的顶点名称,获取到的应该是不同的顶点实例,并且通过实例equal计算应该是不相等的", 
     			a1,
     			CoreMatchers.allOf(
     					CoreMatchers.not(CoreMatchers.sameInstance(b)),
@@ -52,25 +52,25 @@ public class GraphTest {
     }
     
     @Test
-    public void testAddRoute() {
+    public void testAddEdge() {
     	Vertex a = graph.getVertex("A");
     	Vertex b = graph.getVertex("B");
     	Vertex c = graph.getVertex("C");
     	
-    	String dimName = "dist";
-    	int dimValAB = 8;
-    	int dimValAC = 9;
+    	String layer = "L0";
+    	int weightAB = 8;
+    	int weightAC = 9;
     	
-    	graph.addEdge(a, b, dimName, dimValAB);
-    	graph.addEdge(a, c, dimName, dimValAC);
+    	graph.addEdge(a, b, layer, weightAB);
+    	graph.addEdge(a, c, layer, weightAC);
     	
     	Vertex a_ = graph.getVertex("A");
     	Vertex b_ = graph.getVertex("B");
     	Vertex c_ = graph.getVertex("C");
-    	Map<Vertex, Integer> nexts = a_.getEdges(dimName);
+    	Map<Vertex, Integer> nexts = a_.getEdges(layer);
     	
-    	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));
-    	Assert.assertThat("A,C之间维度'"+dimName+"'的边权为:"+dimValAC, nexts.get(c_),CoreMatchers.equalTo(dimValAC));
+    	Assert.assertThat("A,B之间所属层为'"+layer+"'的边的权重为:"+weightAB, nexts.get(b_),CoreMatchers.equalTo(weightAB));
+    	Assert.assertThat("A,C之间所层层为'"+layer+"'的边的权重为:"+weightAC, nexts.get(c_),CoreMatchers.equalTo(weightAC));
     }
 
 }

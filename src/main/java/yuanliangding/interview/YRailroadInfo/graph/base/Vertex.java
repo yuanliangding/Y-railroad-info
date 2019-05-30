@@ -3,79 +3,80 @@ package yuanliangding.interview.YRailroadInfo.graph.base;
 import java.util.HashMap;
 import java.util.Map;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
+
 /** 
  * @ClassName: Vertex
- * @Description:  图上的一个顶点.
+ * @Description:  	图上的一个顶点.
+ * 						名称相同则代表是同一个顶点.
  * 
- * 	站点一般包括的信息有:
- * 		1,	站名名称.
- * 		2,	站点的后续站点.后续站点相关信息会划分成几个维度来记录.
- * 			比如当前站点为A,后续直接站点有B和C.从A到B的距离为3,行驶时间为20,跨越站数为1,从A到C的距离为2,行驶时间为15,跨越站数为1,
- * 			则可以记录为
- * 				[A] {
- * 						"dist":{"<B>":3,"<C>":2},
- * 						"time":{"<B>":20,"<C>":15},
- * 						"stop":{"<B>":1,"<C>":1}
+ * 	顶点一般包括的信息有:
+ * 		1,	顶名名称.
+ * 		2,	顶点通过有向边关联的后续所有顶点.有向边除了具有权重信息外,还具有所属层.
+ * 			比如顶点A,以A为起点有有一条权重为3的有向边关联到B,另一条权重为2的有向边关联到C,这两条边所属的层为L0,
+ * 			属于L1层的,以A为起点还有两有向条,分别是权重为20关联到B,权重为15关联到C.
+ * 			属于L2层,以A为起点的有向条是:权重1关联到B,权重2关联到C.
+ * 			则被记录为
+ * 				A: {
+ * 						"L0":{"<B>":3,"<C>":2},
+ * 						"L1":{"<B>":20,"<C>":15},
+ * 						"L2":{"<B>":1,"<C>":2}
  * 					}
- * 			
- * 			站点和站点之间的跨度,耗时,或者经信站,分别用不同的带权重有向边进行记录.三条有向边被视为三个维度的权重有向边.
- * 			对于要计算最短经停,或最短耗时,或最短距离的路线,可以采用统一的算法.只要选择对应的维度边便可以.
- * 			或者需要在相应维度上其它要求的路径计算(编码)
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-上午10:11:41
  */
 public class Vertex {
 	
+	// 以该顶点为起点的所有有向边.先按层进行存储,在层里,再存储所有边.
 	private final Map<String, Map<Vertex,Integer>> routes = new HashMap<>();
 	
+	// 顶点名称
 	private final String name;
 
 	/**
-	 * @param name 站点名称
+	 * @param name 顶点名称
 	 * */
-	Vertex(String name) {
+	protected Vertex(String name) {
 		if (name == null || "".equals(name)) {
-			throw new RuntimeException("站名不合法,名称长度至少为1");
+			throw new GraphException("顶点名称不合法,名称长度至少为1");
 		}
 		this.name = name;
 	}
 	
 	/**
-	 * 获取站点名称
+	 * 获取顶点名称
 	 * */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 根据维度信息,返回后续站点.和对应的权重值
+	 * 根据所属层,返回以该顶点为起点的所有有向边,用(顶点,权重)对来表示返回结果
 	 * 
-	 * @param dim
+	 * @param layer
 	 * */
-	public Map<Vertex,Integer> getEdges(String dim) {
-		return routes.getOrDefault(dim, new HashMap<>());
+	public Map<Vertex,Integer> getEdges(String layer) {
+		return routes.getOrDefault(layer, new HashMap<>());
 	}
 	
 	/**
-	 * 为指定的维度,增加有向边.
+	 * 为当前顶点增加一条出去的有向边,当前顶点做为有向边的起始点.
 	 * 
-	 * TODO 该方法不是线程安全的
-	 * 
-	 * @param vertex		相应站点
-	 * @param dim 		维度
-	 * @param weight	权重
+	 * @param vertex	边的终点
+	 * @param layer 	边所属的层
+	 * @param weight	边的权重
 	 * 
 	 * */
-	protected void addEdge(Vertex vertex, String dim, int weight) {
-		Map<Vertex,Integer> routesByDim = routes.get(dim);
+	protected void addEdge(Vertex vertex, String layer, int weight) {
+		Map<Vertex,Integer> routesByLayer = routes.get(layer);
 		
-		if (routesByDim == null) {
-			routesByDim = new HashMap<>();
-			routes.put(dim, routesByDim);
+		if (routesByLayer == null) {
+			routesByLayer = new HashMap<>();
+			routes.put(layer, routesByLayer);
 		}
 		
-		routesByDim.put(vertex, weight);
+		routesByLayer.put(vertex, weight);
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class PlainTextGraphReader implements GraphReader {
 	}
 
 	@Override
-	public List<GraphEdge> read() {
+	public List<EdgeData> read() {
 		if (path == null) {
 			try(
 					InputStream defaultInputStream = this.getClass().getResourceAsStream("/default.txt");
@@ -54,8 +54,8 @@ public class PlainTextGraphReader implements GraphReader {
 		}
 	}
 	
-	private List<GraphEdge> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
-		List<GraphEdge> results = new ArrayList<>();
+	private List<EdgeData> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
+		List<EdgeData> results = new ArrayList<>();
 		
 		String route;
 		while ((route = bufferedReader.readLine()) != null) {
@@ -65,7 +65,7 @@ public class PlainTextGraphReader implements GraphReader {
 			
 			int distV = Integer.parseInt(dist);
 			
-			results.add(new GraphEdge(begin,end,null,distV));
+			results.add(new EdgeData(begin,end,null,distV));
 		}
 		
 		return results;

@@ -3,9 +3,14 @@ package yuanliangding.interview.YRailroadInfo.graph.base;
 import java.util.HashMap;
 import java.util.Map;
 
+import yuanliangding.interview.YRailroadInfo.graph.GraphException;
+
 /** 
  * @ClassName: Graph
- * @Description:  图数据存储引擎.由站点(Vertex)构成的地图.
+ * @Description:  图数据引擎.该数据引擎提供了存储多层图(不是多重图)的方案.
+ * 						既,除了存储顶点(Vertex)和边(Edge),还可以为边标识是属于哪一层(layer)的.
+ * 						图论算法,比如最短路径,一般是基于具体某一个层的.比如指定了层L,最短路径算法
+ * 						只在被标识为层L的所有边中进行遍历计算,
  *
  *	@see Vertex
  *
@@ -14,6 +19,7 @@ import java.util.Map;
  */
 public class Graph {
 	
+	//存储所有顶点,可以根据顶点名快速索引
 	private final Map<String, Vertex> vertexs = new HashMap<>();
 	
 	public void clear() {
@@ -21,25 +27,25 @@ public class Graph {
 	}
 	
 	/**
-	 * 增加地图信息,既增加路线信息.为某两个站点增加路径信息,如,距离,行程时间等.
+	 * 增加一条有向边
 	 * 
-	 * @param start		路线起始站点
-	 * @param end		路线结束站点
-	 * @param dim		维度(根据实际,可以有路程"dist",行程耗时"time",跨越站数"stop")
-	 * @param weight	权重,如上可以是路程距离,行程耗时或者跨越站数值.
+	 * @param start		边的起点
+	 * @param end		边的终点
+	 * @param layer		边所属的层
+	 * @param weight	边的权重
 	 * */
-	public void addEdge(Vertex start, Vertex end, String dim, int weight) {
+	public void addEdge(Vertex start, Vertex end, String layer, int weight) {
 		if (start == null || end == null) {
-			throw new RuntimeException("两个合法的站点之间才可以增加路线信息");
+			throw new GraphException("必须为边指定");
 		}
 		
-		start.addEdge(end, dim, weight);
+		start.addEdge(end, layer, weight);
 	}
 	
 	/**
-	 * 根据站名获得站点.如果第一次获取则自动创建,同样的站名,只能创建一个站点实例
+	 * 根据名称获得一个顶点
 	 * 
-	 * @param name	站名
+	 * @param name	顶点名称
 	 * */
 	public Vertex getVertex(String name) {
 		Vertex vertex = vertexs.get(name);
