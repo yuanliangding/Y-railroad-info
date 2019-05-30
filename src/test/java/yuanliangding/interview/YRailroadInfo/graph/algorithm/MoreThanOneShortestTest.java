@@ -29,14 +29,14 @@ public class MoreThanOneShortestTest {
 	public void before() throws IOException {
 		graph.clear();
 
-		graph.addEdge(graph.getVertex("A"), graph.getVertex("B"), DefaultDataPrepared.DIST, 5);
-		graph.addEdge(graph.getVertex("B"), graph.getVertex("C"), DefaultDataPrepared.DIST, 4);
-		graph.addEdge(graph.getVertex("C"), graph.getVertex("D"), DefaultDataPrepared.DIST, 8);
-		graph.addEdge(graph.getVertex("D"), graph.getVertex("C"), DefaultDataPrepared.DIST, 8);
-		graph.addEdge(graph.getVertex("D"), graph.getVertex("E"), DefaultDataPrepared.DIST, 6);
-		graph.addEdge(graph.getVertex("A"), graph.getVertex("D"), DefaultDataPrepared.DIST, 5);
-		graph.addEdge(graph.getVertex("C"), graph.getVertex("E"), DefaultDataPrepared.DIST, 2);
-		graph.addEdge(graph.getVertex("E"), graph.getVertex("B"), DefaultDataPrepared.DIST, 3);
+		graph.setWeight(graph.getVertex("A"), graph.getVertex("B"), DefaultDataPrepared.DIST, 5);
+		graph.setWeight(graph.getVertex("B"), graph.getVertex("C"), DefaultDataPrepared.DIST, 4);
+		graph.setWeight(graph.getVertex("C"), graph.getVertex("D"), DefaultDataPrepared.DIST, 8);
+		graph.setWeight(graph.getVertex("D"), graph.getVertex("C"), DefaultDataPrepared.DIST, 8);
+		graph.setWeight(graph.getVertex("D"), graph.getVertex("E"), DefaultDataPrepared.DIST, 6);
+		graph.setWeight(graph.getVertex("A"), graph.getVertex("D"), DefaultDataPrepared.DIST, 5);
+		graph.setWeight(graph.getVertex("C"), graph.getVertex("E"), DefaultDataPrepared.DIST, 2);
+		graph.setWeight(graph.getVertex("E"), graph.getVertex("B"), DefaultDataPrepared.DIST, 3);
 	}
 	
 	@Test

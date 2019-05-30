@@ -7,10 +7,12 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphException;
 
 /** 
  * @ClassName: Graph
- * @Description:  图数据引擎.该数据引擎提供了存储多层图(不是多重图)的方案.
- * 						既,除了存储顶点(Vertex)和边(Edge),还可以为边标识是属于哪一层(layer)的.
- * 						图论算法,比如最短路径,一般是基于具体某一个层的.比如指定了层L,最短路径算法
- * 						只在被标识为层L的所有边中进行遍历计算,
+ * @Description:  图数据引擎.该数据引擎提供以下数据结构的表示及相应的操作.
+ * 						图中所有顶点集,某个顶点到另一个顶点的有向边.
+ * 						以及在这个有向边上的多维度权重.
+ * 						即,权重值不只是一个简单的数字.而是由若干维度的不同值分别表示权重的各分量值.
+ * 						权重是由各维度名称及相应的权重值组成
+ * 						图论算法,比如最短路径,在这里是根据某个维度名称,基于相应的权重分量进行遍历计算,
  *
  *	@see Vertex
  *
@@ -27,19 +29,24 @@ public class Graph {
 	}
 	
 	/**
-	 * 增加一条有向边
+	 * 为有向边的某个权重分量设值,
+	 * 由起点和终天确定有向边.如果不存在则自动建立.
 	 * 
 	 * @param start		边的起点
 	 * @param end		边的终点
-	 * @param layer		边所属的层
-	 * @param weight	边的权重
+	 * @param dim		权重维度
+	 * @param weight	权重值
 	 * */
-	public void addEdge(Vertex start, Vertex end, String layer, int weight) {
+	public void setWeight(Vertex start, Vertex end, String dim, int weight) {
 		if (start == null || end == null) {
-			throw new GraphException("必须为边指定");
+			throw new GraphException("必须为边指定起点和终点");
 		}
 		
-		start.setWeight(end, layer, weight);
+		if (dim == null || "".equals(dim)) {
+			throw new GraphException("必须指定权重的维度名称");
+		}
+		
+		start.setWeight(end, dim, weight);
 	}
 	
 	/**

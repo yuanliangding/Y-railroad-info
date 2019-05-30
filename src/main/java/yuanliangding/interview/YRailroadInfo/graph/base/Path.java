@@ -30,7 +30,7 @@ public abstract class Path {
 	protected final Vertex begin;
 	
 	/**
-	 * @param begin	路线起点
+	 * @param begin	路径起点
 	 * */
 	protected Path(Vertex begin) {
 		if (begin == null) {
@@ -41,11 +41,11 @@ public abstract class Path {
 	}
 
 	/**
-	 * 计算在某层上的边的总权重
+	 * 基于某个权重维度,为当前路径的所有有向边,在该维度上的权重分量,计算权重分量的值的累加和.
 	 * 
-	 * @param layer 在该层上的边的总权重
+	 * @param dim 权重维度
 	 * */
-	public int getTotalWeight(String layer) {
+	public int getTotalWeight(String dim) {
 		throw new GraphException("该类型路径不支持计算总权重.");
 	}
 	

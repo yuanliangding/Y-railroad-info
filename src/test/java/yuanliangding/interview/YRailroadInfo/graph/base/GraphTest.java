@@ -52,17 +52,17 @@ public class GraphTest {
     }
     
     @Test
-    public void testAddEdge() {
+    public void testSetWeight() {
     	Vertex a = graph.getVertex("A");
     	Vertex b = graph.getVertex("B");
     	Vertex c = graph.getVertex("C");
     	
-    	String layer = "L0";
+    	String dim = "d0";
     	int weightAB = 8;
     	int weightAC = 9;
     	
-    	graph.addEdge(a, b, layer, weightAB);
-    	graph.addEdge(a, c, layer, weightAC);
+    	graph.setWeight(a, b, dim, weightAB);
+    	graph.setWeight(a, c, dim, weightAC);
     	
     	Vertex a_ = graph.getVertex("A");
     	Vertex b_ = graph.getVertex("B");
@@ -70,13 +70,13 @@ public class GraphTest {
     	Map<Vertex, Map<String, Integer>> edges = a_.getEdges();
     	
     	Assert.assertThat(
-    			"A到B的有向边,维度"+layer+"不具有值为"+weightAB+"的权重值", 
-    			edges.get(b_).get(layer),
+    			"A到B的有向边,维度"+dim+"不具有值为"+weightAB+"的权重值", 
+    			edges.get(b_).get(dim),
     			CoreMatchers.equalTo(weightAB)
     			);
     	Assert.assertThat(
-    			"A到C的有向边,维度"+layer+"不具有值为"+weightAC+"的权重值", 
-    			edges.get(c_).get(layer),
+    			"A到C的有向边,维度"+dim+"不具有值为"+weightAC+"的权重值", 
+    			edges.get(c_).get(dim),
     			CoreMatchers.equalTo(weightAC)
     			);
     }
