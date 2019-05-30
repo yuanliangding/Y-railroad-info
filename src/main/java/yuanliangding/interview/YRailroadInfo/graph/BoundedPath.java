@@ -1,6 +1,6 @@
 package yuanliangding.interview.YRailroadInfo.graph;
 
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
  * @ClassName: BoundedPath

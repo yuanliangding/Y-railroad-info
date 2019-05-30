@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
  * @ClassName: BoundedPathTest

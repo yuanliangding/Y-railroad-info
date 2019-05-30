@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import yuanliangding.interview.YRailroadInfo.graph.base.Path;
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
  * @ClassName: IndividualPath

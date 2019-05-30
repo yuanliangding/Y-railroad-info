@@ -1,7 +1,5 @@
 package yuanliangding.interview.YRailroadInfo.graph.base;
 
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
-
 /** 
  * @ClassName: Path
  * @Description:  抽像路径(只指定一个起点),路径是指地图上某个点到另一个点的路线.

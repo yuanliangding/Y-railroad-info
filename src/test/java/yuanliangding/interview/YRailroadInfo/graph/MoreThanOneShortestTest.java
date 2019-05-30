@@ -12,7 +12,7 @@ import org.junit.Test;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.MinPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
  * @ClassName: MoreThanOneShortestTest

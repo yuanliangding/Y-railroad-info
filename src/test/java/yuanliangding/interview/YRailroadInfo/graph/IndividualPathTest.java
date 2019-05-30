@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /**
  * @ClassName: IndividualPathTest
