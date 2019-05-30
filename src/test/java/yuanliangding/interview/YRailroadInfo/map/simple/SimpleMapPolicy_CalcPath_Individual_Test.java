@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 
 /**

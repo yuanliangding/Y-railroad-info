@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
+import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 
 /** 
  * @ClassName: PlainTextGraphReader

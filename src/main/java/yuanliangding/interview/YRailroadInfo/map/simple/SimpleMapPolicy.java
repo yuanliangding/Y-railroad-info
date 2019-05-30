@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.MinPath;
-import yuanliangding.interview.YRailroadInfo.graph.SpecifiedPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.BoundedPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.MinPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.SpecifiedPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
+import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;

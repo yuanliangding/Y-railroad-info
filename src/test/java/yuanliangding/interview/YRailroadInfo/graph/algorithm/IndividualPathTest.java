@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /**
@@ -15,7 +15,7 @@ import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午12:26:56
  */
-public class IndividualPathTest extends DefaultDataProvider{
+public class IndividualPathTest extends DefaultDataPrepared{
 
 	@Rule
 	public final ExpectedException noSuchRouteException = ExpectedException.none();

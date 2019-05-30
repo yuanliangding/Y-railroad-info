@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

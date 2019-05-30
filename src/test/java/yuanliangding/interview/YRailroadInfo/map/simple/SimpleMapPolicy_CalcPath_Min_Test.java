@@ -9,7 +9,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 
 /** 

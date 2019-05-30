@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
-import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;

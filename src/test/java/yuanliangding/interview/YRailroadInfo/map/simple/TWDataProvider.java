@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 
 /** 
  * @ClassName: TWDataProvider

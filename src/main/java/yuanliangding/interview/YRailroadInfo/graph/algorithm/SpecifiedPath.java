@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;

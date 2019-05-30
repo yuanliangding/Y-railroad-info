@@ -2,7 +2,7 @@ package yuanliangding.interview.YRailroadInfo.map;
 
 import java.util.Map;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 
 /** 
  * @ClassName: MapPolicy

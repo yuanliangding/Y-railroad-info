@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,8 +7,8 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.MinPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.MinPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
 /** 
@@ -17,7 +17,7 @@ import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午4:13:29
  */
-public class MinPathTest extends DefaultDataProvider {
+public class MinPathTest extends DefaultDataPrepared {
 	
 	@Test
 	public void testConcrete() {

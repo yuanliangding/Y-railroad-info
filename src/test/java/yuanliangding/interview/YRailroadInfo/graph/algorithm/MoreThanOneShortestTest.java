@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.algorithm;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.MinPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.algorithm.MinPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
 
@@ -29,14 +29,14 @@ public class MoreThanOneShortestTest {
 	public void before() throws IOException {
 		graph.clear();
 
-		graph.addEdge(graph.getVertex("A"), graph.getVertex("B"), DefaultDataProvider.DIST, 5);
-		graph.addEdge(graph.getVertex("B"), graph.getVertex("C"), DefaultDataProvider.DIST, 4);
-		graph.addEdge(graph.getVertex("C"), graph.getVertex("D"), DefaultDataProvider.DIST, 8);
-		graph.addEdge(graph.getVertex("D"), graph.getVertex("C"), DefaultDataProvider.DIST, 8);
-		graph.addEdge(graph.getVertex("D"), graph.getVertex("E"), DefaultDataProvider.DIST, 6);
-		graph.addEdge(graph.getVertex("A"), graph.getVertex("D"), DefaultDataProvider.DIST, 5);
-		graph.addEdge(graph.getVertex("C"), graph.getVertex("E"), DefaultDataProvider.DIST, 2);
-		graph.addEdge(graph.getVertex("E"), graph.getVertex("B"), DefaultDataProvider.DIST, 3);
+		graph.addEdge(graph.getVertex("A"), graph.getVertex("B"), DefaultDataPrepared.DIST, 5);
+		graph.addEdge(graph.getVertex("B"), graph.getVertex("C"), DefaultDataPrepared.DIST, 4);
+		graph.addEdge(graph.getVertex("C"), graph.getVertex("D"), DefaultDataPrepared.DIST, 8);
+		graph.addEdge(graph.getVertex("D"), graph.getVertex("C"), DefaultDataPrepared.DIST, 8);
+		graph.addEdge(graph.getVertex("D"), graph.getVertex("E"), DefaultDataPrepared.DIST, 6);
+		graph.addEdge(graph.getVertex("A"), graph.getVertex("D"), DefaultDataPrepared.DIST, 5);
+		graph.addEdge(graph.getVertex("C"), graph.getVertex("E"), DefaultDataPrepared.DIST, 2);
+		graph.addEdge(graph.getVertex("E"), graph.getVertex("B"), DefaultDataPrepared.DIST, 3);
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class MoreThanOneShortestTest {
 		Vertex a = graph.getVertex("A");
 		Vertex e = graph.getVertex("E");
 		
-		MinPath ae_dist = new MinPath(a, e, DefaultDataProvider.DIST);
+		MinPath ae_dist = new MinPath(a, e, DefaultDataPrepared.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
 		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
@@ -55,11 +55,11 @@ public class MoreThanOneShortestTest {
 				);
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(0).getTotalWeight(DefaultDataProvider.DIST), 
+				ae_dist_paths.get(0).getTotalWeight(DefaultDataPrepared.DIST), 
 				CoreMatchers.equalTo(11));
 		Assert.assertThat(
 				"从A到E,最短路径距离为11", 
-				ae_dist_paths.get(1).getTotalWeight(DefaultDataProvider.DIST), 
+				ae_dist_paths.get(1).getTotalWeight(DefaultDataPrepared.DIST), 
 				CoreMatchers.equalTo(11));
 		}
 
