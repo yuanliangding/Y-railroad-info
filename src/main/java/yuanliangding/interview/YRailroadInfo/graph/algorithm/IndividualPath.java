@@ -21,24 +21,24 @@ public class IndividualPath extends Path {
 	private List<Vertex> rest = new ArrayList<>();
 
 	/**
-	 * @param begin 路线起点
-	 *   		,.. 	剩下的点(按顺序)
+	 * @param begin 		路线起点
+	 * @param others		剩下的点(按顺序)
 	 */
 	public IndividualPath(Vertex begin, Vertex ...others) {
 		super(begin);
 		
-		for (int index=0;index<others.length;++index) {
+		for (int index = 0; index < others.length; ++ index) {
 			rest.add(others[index]);
 		}
 	}
 	
 	/**
-	 * @param vertexs 途经的所有站点(按顺序)
+	 * @param vertexs 路径上所有的点(按顺序)
 	 */
 	public IndividualPath(List<Vertex> vertexs) {
-		super(vertexs!=null && vertexs.size()>0?vertexs.get(0):null);
+		super(vertexs != null && vertexs.size() > 0? vertexs.get(0): null);
 		
-		for (int i=1;i<vertexs.size();++i) {
+		for (int i = 1; i < vertexs.size(); ++ i) {
 			rest.add(vertexs.get(i));
 		}
 	}
@@ -57,14 +57,14 @@ public class IndividualPath extends Path {
 		return result;
 	}
 	
-	private int getWeight (Vertex curr, Vertex next, String dim) {
-		if (!curr.getEdges().containsKey(next)) {
+	private int getWeight (Vertex start, Vertex end, String dim) {
+		if (!start.getEdges().containsKey(end)) {
 			throw new GraphException("NO SUCH ROUTE");
 		}
 		
-		Map<String, Integer> weights = curr.getEdges().get(next);
+		Map<String, Integer> weights = start.getEdges().get(end);
 		if (!weights.containsKey(dim)) {
-			throw new GraphException("没有"+dim+"维度的权重值");
+			throw new GraphException("没有" + dim + "维度的权重值");
 		}
 		return weights.get(dim);
 	}
