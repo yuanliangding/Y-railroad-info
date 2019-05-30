@@ -8,8 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
  * @ClassName: BoundedPathTest
@@ -23,8 +23,8 @@ public class BoundedPathTest extends DefaultDataProvider {
 	@Test
 	public void testConcrete() {
 		
-		Vertex a = graphDatum.getVertex("A");
-		Vertex c = graphDatum.getVertex("C");
+		Vertex a = graph.getVertex("A");
+		Vertex c = graph.getVertex("C");
 		
 		BoundedPath cc_stop_0_3 = new BoundedPath(c, c, STOP, 0, 3);
 		List<IndividualPath> cc_stop_0_3_paths = cc_stop_0_3.concrete();

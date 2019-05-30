@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /**
  * @ClassName: IndividualPathTest
@@ -22,11 +22,11 @@ public class IndividualPathTest extends DefaultDataProvider{
 
 	@Test
 	public void testGetTotalWeight() {
-		Vertex a = graphDatum.getVertex("A");
-		Vertex b = graphDatum.getVertex("B");
-		Vertex c = graphDatum.getVertex("C");
-		Vertex d = graphDatum.getVertex("D");
-		Vertex e = graphDatum.getVertex("E");
+		Vertex a = graph.getVertex("A");
+		Vertex b = graph.getVertex("B");
+		Vertex c = graph.getVertex("C");
+		Vertex d = graph.getVertex("D");
+		Vertex e = graph.getVertex("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
 		Assert.assertThat("验证" + abc + "路径长度出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
@@ -43,9 +43,9 @@ public class IndividualPathTest extends DefaultDataProvider{
 	
 	@Test
 	public void testNoSuchRoute() {
-		Vertex a = graphDatum.getVertex("A");
-		Vertex d = graphDatum.getVertex("D");
-		Vertex e = graphDatum.getVertex("E");
+		Vertex a = graph.getVertex("A");
+		Vertex d = graph.getVertex("D");
+		Vertex e = graph.getVertex("E");
 		
 		noSuchRouteException.expect(RuntimeException.class);
 		noSuchRouteException.expectMessage("NO SUCH ROUTE");

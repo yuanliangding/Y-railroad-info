@@ -1,10 +1,10 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.base;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /** 
- * @ClassName: GraphDatum
+ * @ClassName: Graph
  * @Description:  图数据存储引擎.由站点(Vertex)构成的地图.
  *
  *	@see Vertex
@@ -12,7 +12,7 @@ import java.util.Map;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-上午10:06:52
  */
-public class GraphDatum {
+public class Graph {
 	
 	private final Map<String, Vertex> vertexs = new HashMap<>();
 	

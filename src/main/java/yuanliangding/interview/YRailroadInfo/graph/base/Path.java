@@ -1,6 +1,6 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.base;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
  * @ClassName: Path

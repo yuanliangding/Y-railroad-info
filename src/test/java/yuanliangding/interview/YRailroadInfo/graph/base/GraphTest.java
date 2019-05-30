@@ -1,4 +1,4 @@
-package yuanliangding.interview.YRailroadInfo.graph;
+package yuanliangding.interview.YRailroadInfo.graph.base;
 
 import java.util.Map;
 
@@ -7,29 +7,29 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
- * @ClassName: GraphDatumTest
+ * @ClassName: GraphTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:03:00
  */
-public class GraphDatumTest {
+public class GraphTest {
 	
-	private GraphDatum graphDatum = null;
+	private Graph graph = null;
 	
 	@Before
 	public void before() {
-		graphDatum = new GraphDatum();
+		graph = new Graph();
 	}
 	
     @Test
     public void testGetStop() {
-    	Vertex a1 = graphDatum.getVertex("A");
-    	Vertex a2 = graphDatum.getVertex("A");
-    	Vertex b = graphDatum.getVertex("B");
+    	Vertex a1 = graph.getVertex("A");
+    	Vertex a2 = graph.getVertex("A");
+    	Vertex b = graph.getVertex("B");
     	
     	Assert.assertThat(
     			"获取到的站点,其中的站名应该和参数传入的名称一致", 
@@ -54,20 +54,20 @@ public class GraphDatumTest {
     
     @Test
     public void testAddRoute() {
-    	Vertex a = graphDatum.getVertex("A");
-    	Vertex b = graphDatum.getVertex("B");
-    	Vertex c = graphDatum.getVertex("C");
+    	Vertex a = graph.getVertex("A");
+    	Vertex b = graph.getVertex("B");
+    	Vertex c = graph.getVertex("C");
     	
     	String dimName = "dist";
     	int dimValAB = 8;
     	int dimValAC = 9;
     	
-    	graphDatum.addEdge(a, b, dimName, dimValAB);
-    	graphDatum.addEdge(a, c, dimName, dimValAC);
+    	graph.addEdge(a, b, dimName, dimValAB);
+    	graph.addEdge(a, c, dimName, dimValAC);
     	
-    	Vertex a_ = graphDatum.getVertex("A");
-    	Vertex b_ = graphDatum.getVertex("B");
-    	Vertex c_ = graphDatum.getVertex("C");
+    	Vertex a_ = graph.getVertex("A");
+    	Vertex b_ = graph.getVertex("B");
+    	Vertex c_ = graph.getVertex("C");
     	Map<Vertex, Integer> nexts = a_.getEdges(dimName);
     	
     	Assert.assertThat("A,BC之间维度'"+dimName+"'的边权为:"+dimValAB, nexts.get(b_),CoreMatchers.equalTo(dimValAB));

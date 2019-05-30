@@ -3,7 +3,7 @@ package yuanliangding.interview.YRailroadInfo.graph;
 import java.util.HashMap;
 import java.util.Map;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
  * @ClassName: MinPath

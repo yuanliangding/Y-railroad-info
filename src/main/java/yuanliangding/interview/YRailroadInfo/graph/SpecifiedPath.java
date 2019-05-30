@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Path;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
  * @ClassName: SpecifiedPath

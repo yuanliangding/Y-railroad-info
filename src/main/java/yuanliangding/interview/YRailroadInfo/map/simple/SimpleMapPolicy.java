@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import yuanliangding.interview.YRailroadInfo.graph.BoundedPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
 import yuanliangding.interview.YRailroadInfo.graph.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.MinPath;
 import yuanliangding.interview.YRailroadInfo.graph.SpecifiedPath;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
 import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
@@ -28,7 +28,7 @@ import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
  */
 public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weight> {
 	
-	private GraphDatum map = new GraphDatum();
+	private Graph map = new Graph();
 	
 	private static SimpleMapPolicy instance = new SimpleMapPolicy();
 

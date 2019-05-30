@@ -9,10 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum;
 import yuanliangding.interview.YRailroadInfo.graph.IndividualPath;
 import yuanliangding.interview.YRailroadInfo.graph.MinPath;
-import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
+import yuanliangding.interview.YRailroadInfo.graph.base.Graph.Vertex;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
@@ -23,27 +23,27 @@ import yuanliangding.interview.YRailroadInfo.graph.GraphDatum.Vertex;
  */
 public class MoreThanOneShortestTest {
 	
-	protected GraphDatum graphDatum = new GraphDatum();
+	protected Graph graph = new Graph();
 
 	@Before
 	public void before() throws IOException {
-		graphDatum.clear();
+		graph.clear();
 
-		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("B"), DefaultDataProvider.DIST, 5);
-		graphDatum.addEdge(graphDatum.getVertex("B"), graphDatum.getVertex("C"), DefaultDataProvider.DIST, 4);
-		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("D"), DefaultDataProvider.DIST, 8);
-		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("C"), DefaultDataProvider.DIST, 8);
-		graphDatum.addEdge(graphDatum.getVertex("D"), graphDatum.getVertex("E"), DefaultDataProvider.DIST, 6);
-		graphDatum.addEdge(graphDatum.getVertex("A"), graphDatum.getVertex("D"), DefaultDataProvider.DIST, 5);
-		graphDatum.addEdge(graphDatum.getVertex("C"), graphDatum.getVertex("E"), DefaultDataProvider.DIST, 2);
-		graphDatum.addEdge(graphDatum.getVertex("E"), graphDatum.getVertex("B"), DefaultDataProvider.DIST, 3);
+		graph.addEdge(graph.getVertex("A"), graph.getVertex("B"), DefaultDataProvider.DIST, 5);
+		graph.addEdge(graph.getVertex("B"), graph.getVertex("C"), DefaultDataProvider.DIST, 4);
+		graph.addEdge(graph.getVertex("C"), graph.getVertex("D"), DefaultDataProvider.DIST, 8);
+		graph.addEdge(graph.getVertex("D"), graph.getVertex("C"), DefaultDataProvider.DIST, 8);
+		graph.addEdge(graph.getVertex("D"), graph.getVertex("E"), DefaultDataProvider.DIST, 6);
+		graph.addEdge(graph.getVertex("A"), graph.getVertex("D"), DefaultDataProvider.DIST, 5);
+		graph.addEdge(graph.getVertex("C"), graph.getVertex("E"), DefaultDataProvider.DIST, 2);
+		graph.addEdge(graph.getVertex("E"), graph.getVertex("B"), DefaultDataProvider.DIST, 3);
 	}
 	
 	@Test
 	public void testConcrete() {
 		
-		Vertex a = graphDatum.getVertex("A");
-		Vertex e = graphDatum.getVertex("E");
+		Vertex a = graph.getVertex("A");
+		Vertex e = graph.getVertex("E");
 		
 		MinPath ae_dist = new MinPath(a, e, DefaultDataProvider.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.concrete();
