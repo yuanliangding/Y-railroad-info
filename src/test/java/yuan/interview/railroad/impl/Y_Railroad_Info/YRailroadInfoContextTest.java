@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuan.interview.railroad.test.util.TWDataProvider;
+import yuan.interview.railroad.test.util.TWDataPrepared;
 
 /** 
  * @ClassName: YRailroadInfoContextTest
@@ -18,7 +18,7 @@ import yuan.interview.railroad.test.util.TWDataProvider;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月31日-下午1:45:17
  */
-public class YRailroadInfoContextTest extends TWDataProvider{
+public class YRailroadInfoContextTest extends TWDataPrepared{
 	
 	private YRailroadInfoContext yRailroadInfoContext = null;
 

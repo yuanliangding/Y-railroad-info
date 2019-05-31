@@ -15,7 +15,7 @@ import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadGraphPolicy;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:20:38
  */
-public class YRailroadGraphPolicyPrepared extends TWDataProvider {
+public class YRailroadGraphPolicyPrepared extends TWDataPrepared {
 	
 	protected YRailroadGraphPolicy yRailroadGraphPolicy = null;
 	

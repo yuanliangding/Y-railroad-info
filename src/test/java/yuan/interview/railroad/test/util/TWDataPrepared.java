@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:20:38
  */
-public class TWDataProvider {
+public class TWDataPrepared {
 	
 	protected static String dataPath = null;
 	

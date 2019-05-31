@@ -18,7 +18,7 @@ import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.UnixStyleCommandParser;
 import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadGraphPolicy;
-import yuan.interview.railroad.test.util.TWDataProvider;
+import yuan.interview.railroad.test.util.TWDataPrepared;
 
 /**
  * @ClassName: CommandExecutorTest
@@ -27,7 +27,7 @@ import yuan.interview.railroad.test.util.TWDataProvider;
  * @date 2019年5月29日-下午5:47:09
  */
 @RunWith(Parameterized.class)
-public class CommandExecutorTest extends TWDataProvider {
+public class CommandExecutorTest extends TWDataPrepared {
 
 	private CommandExecutor commandExecutor = null;
 	
