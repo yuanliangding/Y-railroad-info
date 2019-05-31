@@ -16,7 +16,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * @Description:  简化版的通勤交通线路查询系统 Y-Railroad-Info
  * 						1 地图从本地简易文件读取
  * 						2 命令接收器是基于命令行窗口
- * 						3 采用简单的命令格式,参考{@link SimpleCommandParser}
+ * 						3 采用简单的命令格式,参考{@link UnixStyleCommandParser}
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:18:08
@@ -44,7 +44,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 		// 2 准备命令接收器
 		CommandExecutor commandExecutor = new CommandExecutor();
 		commandExecutor.setIO(standardIn, standardOut, standardError);
-		commandExecutor.setCommandParser(SimpleCommandParser.getInstance());
+		commandExecutor.setCommandParser(UnixStyleCommandParser.getInstance());
 		commandExecutor.setExitCommand(exit);
 		commandExecutor.registeCommands(commands);
 
