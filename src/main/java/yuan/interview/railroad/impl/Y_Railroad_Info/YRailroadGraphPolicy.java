@@ -34,14 +34,6 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 	
 	private Graph map = new Graph();
 	
-	private static YRailroadGraphPolicy instance = new YRailroadGraphPolicy();
-
-	public static YRailroadGraphPolicy getInstance() {
-		return instance;
-	}
-
-	private YRailroadGraphPolicy() {}
-	
 	@Override
 	public void setGraphReader(GraphReader graphReader) {
 		graphReader.read().forEach(e -> {

@@ -20,7 +20,7 @@ public class UnixStyleCommandParserTest {
 
 	@Before
 	public void before() {
-		unixStyleCommandParser = UnixStyleCommandParser.getInstance();
+		unixStyleCommandParser = new UnixStyleCommandParser();
 	}
 
 	@Test

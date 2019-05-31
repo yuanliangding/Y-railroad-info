@@ -21,7 +21,7 @@ public class YRailroadGraphPolicyPrepared extends TWDataPrepared {
 	
 	@Before
 	public void before() throws IOException {
-		yRailroadGraphPolicy = YRailroadGraphPolicy.getInstance();
+		yRailroadGraphPolicy = new YRailroadGraphPolicy();
 		yRailroadGraphPolicy.setGraphReader(new TWGraphReader(dataPath));
 	}
 

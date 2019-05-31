@@ -24,14 +24,6 @@ public class UnixStyleCommandParser implements CommandParser {
 	// 从命令中提取参数信息
 	private final Pattern optionPattern = Pattern.compile(" +-(\\S+) +(\\S+)");
 	
-	private final static UnixStyleCommandParser instance = new UnixStyleCommandParser();
-	
-	public static UnixStyleCommandParser getInstance() {
-		return instance;
-	}
-	
-	private UnixStyleCommandParser(){}
-
 	@Override
 	public CommandData parser(String commandStr) {
 		commandStr = commandStr.trim();

@@ -43,7 +43,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 		}
 		
 		// 1 初始化地图
-		GraphPolicy<Command, ?> mapPolicy = YRailroadGraphPolicy.getInstance();
+		GraphPolicy<Command, ?> mapPolicy = new YRailroadGraphPolicy();
 		GraphReader graphReader = new TWGraphReader(mapUrl);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
@@ -51,7 +51,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 		// 2 准备命令接收器
 		CommandExecutor commandExecutor = new CommandExecutor();
 		commandExecutor.setIO(standardIn, standardOut, standardError);
-		commandExecutor.setCommandParser(UnixStyleCommandParser.getInstance());
+		commandExecutor.setCommandParser(new UnixStyleCommandParser());
 		commandExecutor.setExitCommand(exit);
 		commandExecutor.registeCommands(commands);
 

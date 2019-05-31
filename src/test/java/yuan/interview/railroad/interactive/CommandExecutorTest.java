@@ -72,13 +72,13 @@ public class CommandExecutorTest extends TWDataPrepared {
 	
 	@Before
 	public void before() throws IOException {
-		GraphPolicy<Command, ?> mapPolicy = YRailroadGraphPolicy.getInstance();
+		GraphPolicy<Command, ?> mapPolicy = new YRailroadGraphPolicy();
 		GraphReader graphReader = new TWGraphReader(dataPath);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
 		commandExecutor = new CommandExecutor();
-		commandExecutor.setCommandParser(UnixStyleCommandParser.getInstance());
+		commandExecutor.setCommandParser(new UnixStyleCommandParser());
 		commandExecutor.registeCommands(commands);
 	}
 
