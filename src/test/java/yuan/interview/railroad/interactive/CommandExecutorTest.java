@@ -1,14 +1,11 @@
 package yuan.interview.railroad.interactive;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,23 +18,23 @@ import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.map.simple.PlainTextGraphReader;
 import yuan.interview.railroad.map.simple.SimpleCommandParser;
 import yuan.interview.railroad.map.simple.SimpleMapPolicy;
+import yuan.interview.railroad.test.util.TWDataProvider;
 
 /**
- * @ClassName: TerminatorCommandReceiverTest
+ * @ClassName: CommandExecutorTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:47:09
  */
 @RunWith(Parameterized.class)
-public class TerminatorCommandReceiverTest {
+public class CommandExecutorTest extends TWDataProvider {
 
-	private String path = null;
 	private CommandExecutor commandExecutor = null;
 	
 	private String command = null;
 	private String result = null;
 
-	public TerminatorCommandReceiverTest(String command, String result) {
+	public CommandExecutorTest(String command, String result) {
 		this.command = command;
 		this.result = result;
 	}
@@ -75,26 +72,14 @@ public class TerminatorCommandReceiverTest {
 	
 	@Before
 	public void beforeClass() throws IOException {
-		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
-		path = mapTextFile.getCanonicalPath();
-		try (FileWriter fileWriter = new FileWriter(mapTextFile)) {
-			fileWriter.write("AB5\nBC4\nCD8\nDC8\nDE6\nAD5\nCE2\nEB3\nAE7\n");
-		}
-		
 		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
-		GraphReader graphReader = new PlainTextGraphReader(path);
+		GraphReader graphReader = new PlainTextGraphReader(dataPath);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
 		commandExecutor = new CommandExecutor();
 		commandExecutor.setCommandParser(SimpleCommandParser.getInstance());
 		commandExecutor.registeCommands(commands);
-	}
-
-	@After
-	public void afterClass() {
-		File mapTextFile = new File(path);
-		mapTextFile.deleteOnExit();
 	}
 
 }
