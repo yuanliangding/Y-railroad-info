@@ -20,9 +20,9 @@ import yuan.interview.railroad.interactive.CommandParser;
 public class UnixStyleCommandParser implements CommandParser {
 	
 	// 用来匹配整个命令字符串是不是符合cmd -a 1 -b x格式.
-	private final Pattern legalPattern = Pattern.compile("^(\\S+)(( +-\\S+ +\\S+)*)$");
+	private final Pattern legalPattern = Pattern.compile("^(\\S+)((\\s+-\\S+\\s+\\S+)*)$");
 	// 从命令中提取参数信息
-	private final Pattern optionPattern = Pattern.compile(" +-(\\S+) +(\\S+)");
+	private final Pattern optionPattern = Pattern.compile("\\s+-(\\S+)\\s+(\\S+)");
 	
 	@Override
 	public CommandData parser(String commandStr) {
