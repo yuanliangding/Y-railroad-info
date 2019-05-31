@@ -1,24 +1,34 @@
 package yuan.interview.railroad.impl.Y_Railroad_Info;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import yuan.interview.railroad.graph.base.GraphReader.WeightInfo;
+import yuan.interview.railroad.test.util.TWDataProvider;
 
 /**
- * @ClassName: PlainTextGraphReaderTest
+ * @ClassName: TWGraphReaderTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午12:26:56
  */
-public class PlainTextGraphReaderTest extends TWDataProvider_AA{
+public class TWGraphReaderTest extends TWDataProvider {
+	
+	private TWGraphReader twGraphReader = null;
+	
+	@Before
+	public void before() throws IOException {
+		twGraphReader = new TWGraphReader(dataPath);
+	}
 
 	@Test
 	public void testRead() {
-		List<WeightInfo> results = graphReader.read();
+		List<WeightInfo> results = twGraphReader.read();
 		
 		int count = results.size();
 		Assert.assertThat("总共读取了9条数据才对", count, CoreMatchers.equalTo(9));
@@ -40,6 +50,8 @@ public class PlainTextGraphReaderTest extends TWDataProvider_AA{
 		Assert.assertThat("验证CD8出错",graphEdge2.getEnd(), CoreMatchers.equalTo("D"));
 		Assert.assertThat("验证CD8出错",graphEdge2.getWeight(), CoreMatchers.equalTo(8));
 		Assert.assertThat("验证CD8出错",graphEdge2.getDim(), CoreMatchers.nullValue());
+		
+		// 后面另的验证省略了.
 	}
 
 }

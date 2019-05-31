@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 
 import yuan.interview.railroad.graph.base.GraphReader;
-import yuan.interview.railroad.impl.Y_Railroad_Info.PlainTextGraphReader;
+import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleMapPolicy;
 
 /** 
@@ -35,7 +35,7 @@ public class TWDataProvider_AA {
 			fileWriter.write("AB5\nBC4\nCD8\nDC8\nDE6\nAD5\nCE2\nEB3\nAE7\n");
 		}
 		
-		graphReader = new PlainTextGraphReader(textPath);
+		graphReader = new TWGraphReader(textPath);
 		
 		simpleMapPolicy = SimpleMapPolicy.getInstance();
 		simpleMapPolicy.setGraphReader(graphReader);

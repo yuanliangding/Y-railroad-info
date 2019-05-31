@@ -8,27 +8,25 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import yuan.interview.railroad.graph.base.Graph;
 import yuan.interview.railroad.graph.base.GraphReader;
 
 /** 
- * @ClassName: PlainTextGraphReader
- * @Description:  普通文本格式的地图加载器.采用{@link SimpleMapPolicy}策略进行存储.
+ * @ClassName: TWGraphReader
+ * @Description:  根据ThoughtWorks Home Test的Problem one: Trains所采用的通勤线路数据格式,读取数据.
  * 
- * 		文本内容的格式规则为:
- * 			每一行为一条路线距离信息.其格式为:AB3,代表站点A到站点B距离为3.站点名称为一个字符的字符串
- * 			存储到存储中心,采用dist stop两个维度信息记录,以上记录A到B dist=3,stop=1
- *
- *	@see Graph
+ * 						可以通过path参数,指定数据文件的本地路径.如果没指定文件数据,则默认加载/default.txt(main/resources目录中)为默认数据.
+ * 
+ * 						文本内容的格式规则为:
+ * 							每一行为一条权重信息.其格式为:AB3,代表顶点A到顶点B权重为3.顶点名称为一个单字符的字符串
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10
  */
-public class PlainTextGraphReader implements GraphReader {
+public class TWGraphReader implements GraphReader {
 	
 	private String path = null;
 	
-	public PlainTextGraphReader(String path) {
+	public TWGraphReader(String path) {
 		this.path = path;
 	}
 

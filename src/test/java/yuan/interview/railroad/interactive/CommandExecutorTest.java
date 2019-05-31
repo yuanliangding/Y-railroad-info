@@ -15,7 +15,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
-import yuan.interview.railroad.impl.Y_Railroad_Info.PlainTextGraphReader;
+import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.UnixStyleCommandParser;
 import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleMapPolicy;
 import yuan.interview.railroad.test.util.TWDataProvider;
@@ -73,7 +73,7 @@ public class CommandExecutorTest extends TWDataProvider {
 	@Before
 	public void before() throws IOException {
 		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
-		GraphReader graphReader = new PlainTextGraphReader(dataPath);
+		GraphReader graphReader = new TWGraphReader(dataPath);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
