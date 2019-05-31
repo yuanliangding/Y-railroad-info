@@ -1,4 +1,4 @@
-package yuan.interview.railroad.map.simple;
+package yuan.interview.railroad.interactive;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -18,11 +18,9 @@ import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
-import yuan.interview.railroad.interactive.Command;
 import yuan.interview.railroad.map.simple.PlainTextGraphReader;
 import yuan.interview.railroad.map.simple.SimpleCommandParser;
 import yuan.interview.railroad.map.simple.SimpleMapPolicy;
-import yuan.interview.railroad.map.simple.TerminatorCommandReceiver;
 
 /**
  * @ClassName: TerminatorCommandReceiverTest
@@ -33,8 +31,8 @@ import yuan.interview.railroad.map.simple.TerminatorCommandReceiver;
 @RunWith(Parameterized.class)
 public class TerminatorCommandReceiverTest {
 
-	private static String path = null;
-	private static TerminatorCommandReceiver terminatorCommandReceiver = null;
+	private String path = null;
+	private CommandExecutor commandExecutor = null;
 	
 	private String command = null;
 	private String result = null;
@@ -67,7 +65,7 @@ public class TerminatorCommandReceiverTest {
 	public void testExec() throws IOException {
 		String runResult = null;
 		try {
-			runResult = String.valueOf(terminatorCommandReceiver.exec(command));
+			runResult = String.valueOf(commandExecutor.exec(command));
 		} catch(Exception e) {
 			runResult = e.getMessage();
 		}
@@ -75,8 +73,8 @@ public class TerminatorCommandReceiverTest {
 		Assert.assertThat("运行命令 " + command + " 的结果不正确.", runResult,CoreMatchers.equalTo(result));
 	}
 	
-	@BeforeClass
-	public static void beforeClass() throws IOException {
+	@Before
+	public void beforeClass() throws IOException {
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		path = mapTextFile.getCanonicalPath();
 		try (FileWriter fileWriter = new FileWriter(mapTextFile)) {
@@ -88,13 +86,13 @@ public class TerminatorCommandReceiverTest {
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
-		terminatorCommandReceiver = TerminatorCommandReceiver.getInstance();
-		terminatorCommandReceiver.setCommandParser(SimpleCommandParser.getInstance());
-		terminatorCommandReceiver.registeCommands(commands);
+		commandExecutor = new CommandExecutor();
+		commandExecutor.setCommandParser(SimpleCommandParser.getInstance());
+		commandExecutor.registeCommands(commands);
 	}
 
-	@AfterClass
-	public static void afterClass() {
+	@After
+	public void afterClass() {
 		File mapTextFile = new File(path);
 		mapTextFile.deleteOnExit();
 	}

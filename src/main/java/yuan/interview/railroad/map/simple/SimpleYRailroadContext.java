@@ -1,5 +1,7 @@
 package yuan.interview.railroad.map.simple;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -7,7 +9,7 @@ import yuan.interview.railroad.core.YRailroadContext;
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.interactive.Command;
-import yuan.interview.railroad.interactive.CommandReceiver;
+import yuan.interview.railroad.interactive.CommandExecutor;
 
 /** 
  * @ClassName: SimpleYRailroadContext
@@ -22,7 +24,12 @@ import yuan.interview.railroad.interactive.CommandReceiver;
 public class SimpleYRailroadContext extends YRailroadContext {
 
 	@Override
-	public void start(String mapUrl, String exit) {
+	public void start(
+			InputStream standardIn, 
+			PrintStream standardOut,
+			PrintStream standardError,
+			String mapUrl,
+			String exit) {
 		
 		if (exit == null || "".equals(exit)) {
 			exit = "exit";
@@ -35,10 +42,11 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
 		// 2 准备命令接收器
-		CommandReceiver commandReceiver = TerminatorCommandReceiver.getInstance();
-		commandReceiver.setCommandParser(SimpleCommandParser.getInstance());
-		commandReceiver.setExitCommand(exit);
-		commandReceiver.registeCommands(commands);
+		CommandExecutor commandExecutor = new CommandExecutor();
+		commandExecutor.setIO(standardIn, standardOut, standardError);
+		commandExecutor.setCommandParser(SimpleCommandParser.getInstance());
+		commandExecutor.setExitCommand(exit);
+		commandExecutor.registeCommands(commands);
 
 		// 3 在终端显示banner
 		String bannerStr = 
@@ -50,7 +58,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		System.out.println(bannerStr);
 		
 		// 4 命令接收器进入工作状态
-		commandReceiver.work();
+		commandExecutor.work();
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class Application {
 		String exit = argsMap.get("--exit");
 		
 		YRailroadContext yRailroadContext = new SimpleYRailroadContext();
-		yRailroadContext.start(data, exit);
+		yRailroadContext.start(System.in, System.out, System.err, data, exit);
 	}
 
 }

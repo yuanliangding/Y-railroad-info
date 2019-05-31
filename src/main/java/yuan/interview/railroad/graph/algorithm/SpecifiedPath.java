@@ -17,6 +17,8 @@ import yuan.interview.railroad.graph.base.Vertex;
  * 						可以进行具体化操作(concrete),根据规约描述,从图中搜索出满足规约的所有路径.
  * 						受规约的路径可以再细分成更具体的规约,
  * 						比如最短路径,权重累加和满足一定数值范围的路径等,
+ * 
+ * 		注意:	SpecifiedPath类及其子类,在路线的计算过程中,会将中间结果保存在实例变量中,所以不是线程安全的.
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-上午9:04:04

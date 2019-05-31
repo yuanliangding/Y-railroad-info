@@ -1,5 +1,8 @@
 package yuan.interview.railroad.core;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+
 /** 
  * @ClassName: YRailroadContext
  * @Description:  通勤交通线路查询系统核心上下文
@@ -9,7 +12,12 @@ package yuan.interview.railroad.core;
  */
 public abstract class YRailroadContext {
 	
-	public abstract void start(String mapUrl, String exit);
+	public abstract void start(
+			InputStream standardIn, 
+			PrintStream standardOut,
+			PrintStream standardError,
+			String mapUrl, 
+			String exit);
 	
 	protected abstract String banner();
 }
