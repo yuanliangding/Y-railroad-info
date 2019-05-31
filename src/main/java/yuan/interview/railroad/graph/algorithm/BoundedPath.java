@@ -1,6 +1,6 @@
 package yuan.interview.railroad.graph.algorithm;
 
-import yuan.interview.railroad.graph.GraphException;
+import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.base.Vertex;
 
 /** 

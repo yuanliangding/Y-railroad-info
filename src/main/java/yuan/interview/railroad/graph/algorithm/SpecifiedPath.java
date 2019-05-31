@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import yuan.interview.railroad.graph.GraphException;
+import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.base.Path;
 import yuan.interview.railroad.graph.base.Vertex;
 

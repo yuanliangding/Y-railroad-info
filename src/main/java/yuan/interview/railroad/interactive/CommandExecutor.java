@@ -123,8 +123,7 @@ public class CommandExecutor {
 	
 	/**
 	 * 注册若干条命令
-	 * @param name		命令名称
-	 * @param command	命令执行体
+	 * 用命令名称做为Map的key
 	 * */
 	public void registeCommands(Map<String, Command> commands) {
 		this.commands.putAll(commands);

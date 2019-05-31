@@ -3,7 +3,7 @@ package yuan.interview.railroad.graph.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import yuan.interview.railroad.graph.GraphException;
+import yuan.interview.railroad.exception.GraphException;
 
 /** 
  * @ClassName: Graph

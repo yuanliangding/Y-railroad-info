@@ -1,4 +1,4 @@
-package yuan.interview.railroad.graph;
+package yuan.interview.railroad.exception;
 
 /** 
  * @ClassName: GraphException

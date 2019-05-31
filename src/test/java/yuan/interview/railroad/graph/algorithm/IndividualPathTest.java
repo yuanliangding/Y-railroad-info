@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import yuan.interview.railroad.graph.GraphException;
+import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.base.Vertex;
 import yuan.interview.railroad.test.util.DefaultDataPrepared;

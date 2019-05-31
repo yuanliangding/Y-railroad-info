@@ -1,6 +1,6 @@
 package yuan.interview.railroad.graph.base;
 
-import yuan.interview.railroad.graph.GraphException;
+import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
