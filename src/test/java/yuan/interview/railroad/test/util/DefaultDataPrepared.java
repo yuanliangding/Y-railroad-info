@@ -1,4 +1,4 @@
-package yuan.interview.railroad.graph.algorithm;
+package yuan.interview.railroad.test.util;
 
 import java.io.IOException;
 

@@ -13,6 +13,7 @@ import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
 import yuan.interview.railroad.graph.base.Graph;
 import yuan.interview.railroad.graph.base.Vertex;
+import yuan.interview.railroad.test.util.DefaultDataPrepared;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
