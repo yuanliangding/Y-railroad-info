@@ -8,7 +8,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 /** 
- * @ClassName: TWDataProvider
+ * @ClassName: TWDataProvider_AA
  * @Description:  为测试准备数据,TW题目要求里的数据
  *
  * @author 袁良锭(https://github.com/yuanliangding)
@@ -19,7 +19,7 @@ public class TWDataProvider {
 	protected static String dataPath = null;
 	
 	@BeforeClass
-	public static void before() throws IOException {
+	public static void beforeClass() throws IOException {
 		File mapTextFile = File.createTempFile("y_railroad_info_map_plain_text", ".txt");
 		dataPath = mapTextFile.getCanonicalPath();
 		try (FileWriter fileWriter = new FileWriter(mapTextFile)) {
@@ -28,7 +28,7 @@ public class TWDataProvider {
 	}
 
 	@AfterClass
-	public static void after() {
+	public static void afterClass() {
 		File mapTextFile = new File(dataPath);
 		mapTextFile.deleteOnExit();
 	}

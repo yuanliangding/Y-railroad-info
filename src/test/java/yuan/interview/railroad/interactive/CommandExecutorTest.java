@@ -71,7 +71,7 @@ public class CommandExecutorTest extends TWDataProvider {
 	}
 	
 	@Before
-	public void beforeClass() throws IOException {
+	public void before() throws IOException {
 		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
 		GraphReader graphReader = new PlainTextGraphReader(dataPath);
 		mapPolicy.setGraphReader(graphReader);

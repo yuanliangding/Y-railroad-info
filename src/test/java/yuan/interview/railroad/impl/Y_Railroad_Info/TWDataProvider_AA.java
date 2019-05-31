@@ -12,14 +12,14 @@ import yuan.interview.railroad.impl.Y_Railroad_Info.PlainTextGraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleMapPolicy;
 
 /** 
- * @ClassName: TWDataProvider
+ * @ClassName: TWDataProvider_AA
  * @Description:  为测试准备数据,TW题目要求里的数据
  *
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:20:38
  */
-public class TWDataProvider {
+public class TWDataProvider_AA {
 	
 	private String textPath = null;
 	

@@ -23,7 +23,7 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
  * @date 2019年5月29日-下午5:47:09
  */
 @RunWith(Parameterized.class)
-public class SimpleMapPolicy_CalcPath_Individual_Test extends TWDataProvider {
+public class SimpleMapPolicy_CalcPath_Individual_Test extends TWDataProvider_AA {
 
 	private String path = null;
 

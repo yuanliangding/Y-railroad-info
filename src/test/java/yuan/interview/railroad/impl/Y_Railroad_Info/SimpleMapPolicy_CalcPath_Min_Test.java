@@ -20,7 +20,7 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:26:57
  */
-public class SimpleMapPolicy_CalcPath_Min_Test extends TWDataProvider {
+public class SimpleMapPolicy_CalcPath_Min_Test extends TWDataProvider_AA {
 	
 	@Test
 	public void test() {

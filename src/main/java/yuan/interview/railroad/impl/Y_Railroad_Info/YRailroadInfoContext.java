@@ -12,8 +12,8 @@ import yuan.interview.railroad.interactive.Command;
 import yuan.interview.railroad.interactive.CommandExecutor;
 
 /** 
- * @ClassName: SimpleYRailroadContext
- * @Description:  简化版的通勤交通线路查询系统
+ * @ClassName: YRailroadInfoContext
+ * @Description:  简化版的通勤交通线路查询系统 Y-Railroad-Info
  * 						1 地图从本地简易文件读取
  * 						2 命令接收器是基于命令行窗口
  * 						3 采用简单的命令格式,参考{@link SimpleCommandParser}
@@ -21,7 +21,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:18:08
  */
-public class SimpleYRailroadContext extends ApplicationContext {
+public class YRailroadInfoContext extends ApplicationContext {
 
 	@Override
 	public void start(
