@@ -78,7 +78,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 				"    |  |       |  |\\  \\\\ '-'  |  |  |  |  ' '-' \\ '-'  \\ `-' | \n" + 
 				"    `--'       `--' '--'`--`--`--`--`--'   `---' `--`--'`---'  \n" + 
 				"                                                               \n" +
-				"欢迎使用 Y-Railroad info 系统. (" + VERSION + ")";
+				"欢迎使用 Y-Railroad info 系统  (" + VERSION + ")";
 		
 		return banner;
 	}
