@@ -1,4 +1,4 @@
-package yuan.interview.railroad.map.simple;
+package yuan.interview.railroad.impl.simple;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,8 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 
 import yuan.interview.railroad.graph.base.GraphReader;
-import yuan.interview.railroad.map.simple.PlainTextGraphReader;
-import yuan.interview.railroad.map.simple.SimpleMapPolicy;
 
 /** 
  * @ClassName: TWDataProvider

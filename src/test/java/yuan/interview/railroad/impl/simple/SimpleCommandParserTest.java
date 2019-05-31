@@ -1,4 +1,4 @@
-package yuan.interview.railroad.map.simple;
+package yuan.interview.railroad.impl.simple;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
-import yuan.interview.railroad.map.simple.SimpleCommandParser;
 
 /**
  * @ClassName: SimpleCommandParserTest

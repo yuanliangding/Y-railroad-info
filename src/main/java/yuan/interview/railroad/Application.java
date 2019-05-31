@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import yuan.interview.railroad.core.ApplicationContext;
-import yuan.interview.railroad.map.simple.SimpleYRailroadContext;
+import yuan.interview.railroad.impl.simple.SimpleYRailroadContext;
 
 /** 
  * @ClassName: Application

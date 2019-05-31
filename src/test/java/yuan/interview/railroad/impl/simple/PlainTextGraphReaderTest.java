@@ -1,4 +1,4 @@
-package yuan.interview.railroad.map.simple;
+package yuan.interview.railroad.impl.simple;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package yuan.interview.railroad.map.simple;
+package yuan.interview.railroad.impl.simple;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
