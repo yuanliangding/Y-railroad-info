@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
 		{
 			YRailroadGraphPolicy_CalcPath_Individual_Test.class,
-			SimpleMapPolicy_CalcPath_Bounded_Test.class,
+			YRailroadGraphPolicy_CalcPath_Bounded_Test.class,
 			YRailroadGraphPolicy_CalcPath_Min_Test.class
 		})
 public class YRailroadGraphPolicyTest {}

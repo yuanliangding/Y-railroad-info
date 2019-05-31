@@ -14,14 +14,13 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
 import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /** 
- * @ClassName: SimpleMapPolicy_SetGraphReader_Test
- * @Description:  测试SimpleMapPolicy方法calcPath中-f s,-f d相关逻辑测试
- *
+ * @ClassName: YRailroadGraphPolicy_CalcPath_Bounded_Test
+ * @Description:  测试YRailroadGraphPolicy类中方法calcPath中-f s,-f d相关逻辑测试
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:26:57
  */
-public class SimpleMapPolicy_CalcPath_Bounded_Test extends YRailroadGraphPolicyPrepared {
+public class YRailroadGraphPolicy_CalcPath_Bounded_Test extends YRailroadGraphPolicyPrepared {
 	
 	@Test
 	public void test() {
