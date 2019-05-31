@@ -1,4 +1,4 @@
-package yuan.interview.railroad.impl.simple;
+package yuan.interview.railroad.impl.Y_Railroad_Info;
 
 import org.junit.Ignore;
 import org.junit.Test;

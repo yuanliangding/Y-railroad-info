@@ -15,9 +15,9 @@ import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
-import yuan.interview.railroad.impl.simple.PlainTextGraphReader;
-import yuan.interview.railroad.impl.simple.SimpleCommandParser;
-import yuan.interview.railroad.impl.simple.SimpleMapPolicy;
+import yuan.interview.railroad.impl.Y_Railroad_Info.PlainTextGraphReader;
+import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleCommandParser;
+import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleMapPolicy;
 import yuan.interview.railroad.test.util.TWDataProvider;
 
 /**

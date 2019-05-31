@@ -1,10 +1,11 @@
-package yuan.interview.railroad.impl.simple;
+package yuan.interview.railroad.impl.Y_Railroad_Info;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleCommandParser;
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
 
 /**
