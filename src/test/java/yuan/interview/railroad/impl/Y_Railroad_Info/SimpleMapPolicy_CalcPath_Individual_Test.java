@@ -14,6 +14,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /**
  * @ClassName: SimpleMapPolicy_CalcPath_Individual_Test
@@ -23,7 +24,7 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
  * @date 2019年5月29日-下午5:47:09
  */
 @RunWith(Parameterized.class)
-public class SimpleMapPolicy_CalcPath_Individual_Test extends TWDataProvider_AA {
+public class SimpleMapPolicy_CalcPath_Individual_Test extends YRailroadGraphPolicyPrepared {
 
 	private String path = null;
 

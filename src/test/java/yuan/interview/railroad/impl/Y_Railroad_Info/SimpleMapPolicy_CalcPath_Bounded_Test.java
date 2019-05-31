@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /** 
  * @ClassName: SimpleMapPolicy_SetGraphReader_Test
@@ -20,7 +21,7 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:26:57
  */
-public class SimpleMapPolicy_CalcPath_Bounded_Test extends TWDataProvider_AA {
+public class SimpleMapPolicy_CalcPath_Bounded_Test extends YRailroadGraphPolicyPrepared {
 	
 	@Test
 	public void test() {
@@ -77,10 +78,6 @@ public class SimpleMapPolicy_CalcPath_Bounded_Test extends TWDataProvider_AA {
 						"C-E-B-C-E-B-C",
 						"C-E-B-C-E-B-C-E-B-C")
 				);
-		
-//		dist -f md -b A -e C
-//		dist -f md -b B -e B
-
 	}
 
 }
