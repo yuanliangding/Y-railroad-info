@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import yuanliangding.interview.YRailroadInfo.core.YRailroadContext;
 import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.policy.GraphPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandReceiver;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /** 
  * @ClassName: SimpleYRailroadContext
@@ -29,7 +29,7 @@ public class SimpleYRailroadContext extends YRailroadContext {
 		}
 		
 		// 1 初始化地图
-		MapPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
+		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
 		GraphReader graphReader = new PlainTextGraphReader(mapUrl);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();

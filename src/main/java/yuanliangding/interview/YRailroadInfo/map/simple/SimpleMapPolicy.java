@@ -14,9 +14,9 @@ import yuanliangding.interview.YRailroadInfo.graph.algorithm.SpecifiedPath;
 import yuanliangding.interview.YRailroadInfo.graph.base.Graph;
 import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
 import yuanliangding.interview.YRailroadInfo.graph.base.Vertex;
+import yuanliangding.interview.YRailroadInfo.graph.policy.GraphPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
 import yuanliangding.interview.YRailroadInfo.interactive.CommandParser.CommandData;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /** 
  * @ClassName: SimpleMapPolicy
@@ -26,7 +26,7 @@ import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-上午6:28:46
  */
-public class SimpleMapPolicy implements MapPolicy<Command, SimpleMapPolicy.Weight> {
+public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Weight> {
 	
 	private Graph map = new Graph();
 	

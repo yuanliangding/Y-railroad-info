@@ -17,8 +17,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import yuanliangding.interview.YRailroadInfo.graph.base.GraphReader;
+import yuanliangding.interview.YRailroadInfo.graph.policy.GraphPolicy;
 import yuanliangding.interview.YRailroadInfo.interactive.Command;
-import yuanliangding.interview.YRailroadInfo.map.MapPolicy;
 
 /**
  * @ClassName: TerminatorCommandReceiverTest
@@ -79,7 +79,7 @@ public class TerminatorCommandReceiverTest {
 			fileWriter.write("AB5\nBC4\nCD8\nDC8\nDE6\nAD5\nCE2\nEB3\nAE7\n");
 		}
 		
-		MapPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
+		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
 		GraphReader graphReader = new PlainTextGraphReader(path);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();
