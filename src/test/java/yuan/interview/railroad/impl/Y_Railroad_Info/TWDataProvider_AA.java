@@ -9,7 +9,7 @@ import org.junit.Before;
 
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
-import yuan.interview.railroad.impl.Y_Railroad_Info.SimpleMapPolicy;
+import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadGraphPolicy;
 
 /** 
  * @ClassName: TWDataProvider_AA
@@ -25,7 +25,7 @@ public class TWDataProvider_AA {
 	
 	protected GraphReader graphReader = null;
 	
-	protected SimpleMapPolicy simpleMapPolicy = null;
+	protected YRailroadGraphPolicy yRailroadGraphPolicy = null;
 	
 	@Before
 	public void before() throws IOException {
@@ -37,8 +37,8 @@ public class TWDataProvider_AA {
 		
 		graphReader = new TWGraphReader(textPath);
 		
-		simpleMapPolicy = SimpleMapPolicy.getInstance();
-		simpleMapPolicy.setGraphReader(graphReader);
+		yRailroadGraphPolicy = YRailroadGraphPolicy.getInstance();
+		yRailroadGraphPolicy.setGraphReader(graphReader);
 	}
 
 	@After

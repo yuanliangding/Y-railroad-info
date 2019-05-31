@@ -41,7 +41,7 @@ public class SimpleMapPolicy_CalcPath_Individual_Test extends TWDataProvider_AA 
 		Map<String, String> options = new HashMap<>();
 		options.put("p", path);
 		CommandData commandData = new CommandData("dist", options);
-		List<IndividualPath> paths = simpleMapPolicy.calcPath(commandData);
+		List<IndividualPath> paths = yRailroadGraphPolicy.calcPath(commandData);
 		Assert.assertThat("生成失败", paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat("生成路径信息不准确", paths.get(0).toString(), CoreMatchers.equalTo(path));
 	}

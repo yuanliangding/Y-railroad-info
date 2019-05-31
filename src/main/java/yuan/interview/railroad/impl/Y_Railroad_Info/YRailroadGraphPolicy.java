@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
@@ -19,24 +20,27 @@ import yuan.interview.railroad.interactive.Command;
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
 
 /** 
- * @ClassName: SimpleMapPolicy
- * @Description:  简单地图策略
- * 						维护两个维度的信息.1 dist维护的边权重,2 stop维护的边权重
+ * @ClassName: YRailroadGraphPolicy
+ * @Description:  Y-Railroad 图策略
+ * 
+ * 						提供两个维度的权重.1 DIST 2 STOP 由{@link Weight枚举提供},
+ * 						从外界数据读取到的权重存在DIST维度,表示距离,并同时加一个STOP维度,值始绐是1,表示前行一个顶点到达.
+ * 						遍历并在该STOP维度上计算,可以搜索出如下类似问题结果:从A途经3顶点到达C都哪些路径.
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-上午6:28:46
  */
-public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Weight> {
+public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraphPolicy.Weight> {
 	
 	private Graph map = new Graph();
 	
-	private static SimpleMapPolicy instance = new SimpleMapPolicy();
+	private static YRailroadGraphPolicy instance = new YRailroadGraphPolicy();
 
-	public static SimpleMapPolicy getInstance() {
+	public static YRailroadGraphPolicy getInstance() {
 		return instance;
 	}
 
-	private SimpleMapPolicy() {}
+	private YRailroadGraphPolicy() {}
 	
 	@Override
 	public void setGraphReader(GraphReader graphReader) {
@@ -50,14 +54,7 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 	}
 	
 	/**
-	 * 该策略,提供的命令有:
-	 * 		dist	-p A-B-C		求从A到B然后到C的路程
-	 * 		count	-f s -m 3 -M 5 -b A -e B
-	 * 								求从A到B的路径数量,路径跨度约束在3(包括)到5(包括)之间.
-	 * 		dist	-f md -b A -e B
-	 * 								求从A到B的最短路径长度
-	 * 		count	-f d -m 31 -nM 50 -b A -e B
-	 * 								求从A到B的路径数量,路程约束在31(包括)到50(不包括)之间.
+	 * 该图策略提供的命令,具体信息见下面的getMan方法提供的命令操作手册.
 	 */
 	@Override
 	public Map<String, Command> getCommands() {
@@ -70,7 +67,7 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 		result.put("dist", cd -> {
 			List<IndividualPath> paths = calcPath(cd);
 			if (paths == null || paths.size() == 0) {
-				throw new RuntimeException("NO SUCH ROUTE");
+				throw new YRailroadException("NO SUCH ROUTE");
 			}
 			return paths.get(0).getTotalWeight(Weight.DIST.name());
 		});
@@ -86,13 +83,13 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 	protected List<IndividualPath> calcPath(CommandData commandData) {
 		Map<String, String> options = commandData.getOptions();
 		if (options == null || options.isEmpty()) {
-			throw new RuntimeException("执行错误,请输入必要的选项参考.");
+			throw new YRailroadException("执行错误,请输入必要的选项参考.");
 		}
 		
 		String path = options.get("p");
 		if (path != null) {
 			if("".equals(path)) {
-				throw new RuntimeException("执行错误.请在-p后附上合法的路径信息.比如 A-B-C 求从A经停B最终到C");
+				throw new YRailroadException("执行错误.请在-p后附上合法的路径信息.比如 A-B-C 求从A经停B最终到C");
 			}
 			List<Vertex> vertexs = Stream.of(path.split("-"))
 					.map(map::getVertex)
@@ -103,12 +100,12 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 		} else {
 			String focus = options.get("f");
 			if (focus == null || "".equals(focus)) {
-				throw new RuntimeException("执行错误.请在-p或者-f参数,必须指定一个.");
+				throw new YRailroadException("执行错误.请在-p或者-f参数,必须指定一个.");
 			}
 			
 			String begin = options.get("b");
 			if (begin == null || "".equals(begin)) {
-				throw new RuntimeException("执行错误.指定了-f参数,必须指定一个-b路径起点参数.");
+				throw new YRailroadException("执行错误.指定了-f参数,必须指定一个-b路径起点参数.");
 			}
 			Vertex beginVertex = map.getVertex(begin);
 			
@@ -118,24 +115,24 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 				endVertex = map.getVertex(end);
 			} else {
 				// TODO 这里可以不报错,计算到所有可达点的路径(去掉这里的else就可以)
-				throw new RuntimeException("执行错误.指定了-f参数,必须指定一个-e路径终点参数.");
+				throw new YRailroadException("执行错误.指定了-f参数,必须指定一个-e路径终点参数.");
 			}
 			
 			SpecifiedPath specifiedPath = null;
 			
-			SimpleMapPolicy.Weight weight = null;
+			YRailroadGraphPolicy.Weight weight = null;
 			
 			switch(focus) {
 				case "d":
-					weight = SimpleMapPolicy.Weight.DIST;
+					weight = YRailroadGraphPolicy.Weight.DIST;
 				case "s":
 					if (weight == null) {
-						weight = SimpleMapPolicy.Weight.STOP;
+						weight = YRailroadGraphPolicy.Weight.STOP;
 					}
 					
 					String max = options.get("M");
 					if (max == null || "".equals(max)) {
-						throw new RuntimeException("执行错误.指定了-f s或者-f d参数,必须指定-M参数.");
+						throw new YRailroadException("执行错误.指定了-f s或者-f d参数,必须指定-M参数.");
 					}
 					
 					boolean maxContainsEq = true;
@@ -161,23 +158,23 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 					specifiedPath = new BoundedPath(beginVertex, endVertex, weight.name(), minV, maxV, minContainsEq, maxContainsEq);
 					break;
 				case "md":
-					weight = SimpleMapPolicy.Weight.DIST;
+					weight = YRailroadGraphPolicy.Weight.DIST;
 				case "ms":
 					if (weight == null) {
-						weight = SimpleMapPolicy.Weight.STOP;
+						weight = YRailroadGraphPolicy.Weight.STOP;
 					}
 					
 					specifiedPath = new MinPath(beginVertex, endVertex, weight.name());
 					break;
 				default:
-					throw new RuntimeException("执行错误.请在-f参数的有效值可以是:d,s,md,ms.");
+					throw new YRailroadException("执行错误.请在-f参数的有效值可以是:d,s,md,ms.");
 				}
 			
 				return specifiedPath.concrete();
 		}
 	}
 	
-	/**该策略提供给用户的命令操作手册*/
+	/**该策略提供给用户的命令操作手册(命令格式采用unix风格)*/
 	private String getMan() {
 		String man = 
 				"您可以使用的,总共有3条命令:help,dist,count.\n" + 
@@ -220,10 +217,11 @@ public class SimpleMapPolicy implements GraphPolicy<Command, SimpleMapPolicy.Wei
 				"\n" + 
 				"	count	-f d -m 31 -M n50 -b A -e B\n" + 
 				"	求从A到B的路径数量,路程约束在31(包括)到50(不包括)之间.";
+		
 		return man;
 	}
 	
-	/** 权重名 */
+	/** 权重维度 */
 	public static enum Weight {
 		DIST,	//距离
 		STOP	//跨越站数

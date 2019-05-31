@@ -36,7 +36,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 		}
 		
 		// 1 初始化地图
-		GraphPolicy<Command, ?> mapPolicy = SimpleMapPolicy.getInstance();
+		GraphPolicy<Command, ?> mapPolicy = YRailroadGraphPolicy.getInstance();
 		GraphReader graphReader = new TWGraphReader(mapUrl);
 		mapPolicy.setGraphReader(graphReader);
 		Map<String,Command> commands = mapPolicy.getCommands();

@@ -32,7 +32,7 @@ public class SimpleMapPolicy_CalcPath_Bounded_Test extends TWDataProvider_AA {
 		options1.put("e", "C");
 		options1.put("M", "3");
 		CommandData commandData1 = new CommandData("count", options1);
-		List<IndividualPath> paths1 = simpleMapPolicy.calcPath(commandData1);
+		List<IndividualPath> paths1 = yRailroadGraphPolicy.calcPath(commandData1);
 		Assert.assertThat("查询的结果数量不对", paths1.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
 				"从C到C,路程最多跨越3站的路线有:C-D-C,C-E-B-C", 
@@ -48,7 +48,7 @@ public class SimpleMapPolicy_CalcPath_Bounded_Test extends TWDataProvider_AA {
 		options2.put("m", "4");
 		options2.put("M", "4");
 		CommandData commandData2 = new CommandData("count", options2);
-		List<IndividualPath> paths2 = simpleMapPolicy.calcPath(commandData2);
+		List<IndividualPath> paths2 = yRailroadGraphPolicy.calcPath(commandData2);
 		Assert.assertThat("从A到C,路程正好跨越4站的路线有3条", paths2.size(), CoreMatchers.equalTo(3));
 		Assert.assertThat(
 				"从A到C,路程正好跨越4站的路线有3条:A-B-C-D-C,A-D-C-D-C,A-D-E-B-C", 
@@ -63,7 +63,7 @@ public class SimpleMapPolicy_CalcPath_Bounded_Test extends TWDataProvider_AA {
 		options3.put("e", "C");
 		options3.put("M", "n30");
 		CommandData commandData3 = new CommandData("count", options3);
-		List<IndividualPath> paths3 = simpleMapPolicy.calcPath(commandData3);
+		List<IndividualPath> paths3 = yRailroadGraphPolicy.calcPath(commandData3);
 		Assert.assertThat("从C到C,路程小于30的路线有7条", paths3.size(), CoreMatchers.equalTo(7));
 		Assert.assertThat(
 				"从C到C,路程小于30的路线有7条:C-D-C,C-D-C-E-B-C,C-D-E-B-C,C-E-B-C,C-E-B-C-D-C,C-E-B-C-E-B-C,C-E-B-C-E-B-C-E-B-C", 

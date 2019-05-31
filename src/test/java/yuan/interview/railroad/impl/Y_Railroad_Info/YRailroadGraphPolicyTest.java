@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /** 
- * @ClassName: SimpleMapPolicyTest
+ * @ClassName: YRailroadGraphPolicyTest
  *
  *
  * @author 袁良锭(https://github.com/yuanliangding)
@@ -18,4 +18,4 @@ import org.junit.runners.Suite;
 			SimpleMapPolicy_CalcPath_Bounded_Test.class,
 			SimpleMapPolicy_CalcPath_Min_Test.class
 		})
-public class SimpleMapPolicyTest {}
+public class YRailroadGraphPolicyTest {}
