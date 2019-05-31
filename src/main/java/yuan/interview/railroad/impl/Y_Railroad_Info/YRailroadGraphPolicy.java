@@ -198,16 +198,16 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 				"		比如 -e B 表示路径以B为终点.\n" + 
 				"\n" + 
 				"例子:\n" + 
-				"	dist	-p A-B-C\n" + 
+				"	dist -p A-B-C\n" + 
 				"	求从A到B然后到C的路程\n" + 
 				"\n" + 
-				"	count	-f s -m 3 -M 5 -b A -e B\n" + 
+				"	count -f s -m 3 -M 5 -b A -e B\n" + 
 				"	求从A到B的路径数量,路径跨度约束在3(包括)到5(包括)之间.\n" + 
 				"\n" + 
-				"	dist	-f md -b A -e B\n" + 
+				"	dist -f md -b A -e B\n" + 
 				"	求从A到B的最短路径长度\n" + 
 				"\n" + 
-				"	count	-f d -m 31 -M n50 -b A -e B\n" + 
+				"	count -f d -m 31 -M n50 -b A -e B\n" + 
 				"	求从A到B的路径数量,路程约束在31(包括)到50(不包括)之间.";
 		
 		return man;
