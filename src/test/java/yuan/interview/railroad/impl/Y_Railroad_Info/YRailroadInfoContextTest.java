@@ -18,7 +18,7 @@ import yuan.interview.railroad.test.util.TWDataPrepared;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月31日-下午1:45:17
  */
-public class YRailroadInfoContextTest extends TWDataPrepared{
+public class YRailroadInfoContextTest extends TWDataPrepared {
 	
 	private YRailroadInfoContext yRailroadInfoContext = null;
 

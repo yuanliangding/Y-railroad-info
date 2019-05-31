@@ -13,15 +13,22 @@ import yuan.interview.railroad.interactive.CommandExecutor;
 
 /** 
  * @ClassName: YRailroadInfoContext
- * @Description:  简化版的通勤交通线路查询系统 Y-Railroad-Info
- * 						1 地图从本地简易文件读取
- * 						2 命令接收器是基于命令行窗口
- * 						3 采用简单的命令格式,参考{@link UnixStyleCommandParser}
+ * @Description:  Y-Railroad-Info系统Context.
+ * 						简化版的通勤交通线路查询系统.
+ * 						1 从本地文本文件读取通勤新路数据{@link TWGraphReader}
+ * 						2 基于命令行窗口交互
+ * 
+ * @see TWGraphReader
+ * @see UnixStyleCommandParser
+ * @see YRailroadGraphPolicy
+ * @see CommandExecutor
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:18:08
  */
 public class YRailroadInfoContext extends ApplicationContext {
+	
+	private final String VERSION = "1.0.0";
 
 	@Override
 	public void start(
@@ -63,7 +70,17 @@ public class YRailroadInfoContext extends ApplicationContext {
 
 	@Override
 	protected String banner() {
-		return "欢迎使用 Y-Railroad info系统. (ver 1.0.0)";
+		String banner = 
+				"                                                               \n" + 
+				",--.   ,--.    ,------.       ,--,--.                     ,--. \n" + 
+				" \\  `.'  ,-----|  .--. ',--,--`--|  ,--.--.,---. ,--,--.,-|  | \n" + 
+				"  '.    /'-----|  '--'.' ,-.  ,--|  |  .--| .-. ' ,-.  ' .-. | \n" + 
+				"    |  |       |  |\\  \\\\ '-'  |  |  |  |  ' '-' \\ '-'  \\ `-' | \n" + 
+				"    `--'       `--' '--'`--`--`--`--`--'   `---' `--`--'`---'  \n" + 
+				"                                                               \n" +
+				"欢迎使用 Y-Railroad info系统. (" + VERSION + ")";
+		
+		return banner;
 	}
 
 }
