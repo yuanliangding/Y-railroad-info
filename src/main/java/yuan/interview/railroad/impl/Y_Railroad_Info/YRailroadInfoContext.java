@@ -57,9 +57,9 @@ public class YRailroadInfoContext extends ApplicationContext {
 
 		// 3 在终端显示banner
 		String bannerStr = 
-				banner() + "\n" +
+				banner() + "\n\n" +
 				"输入 " + exit + "退出该程序!\n" + 
-				"\n\n" + 
+				"\n" + 
 				"你可以使用的命令有:\n" + 
 				commands.keySet().stream().collect(Collectors.joining(", "));
 		System.out.println(bannerStr);
