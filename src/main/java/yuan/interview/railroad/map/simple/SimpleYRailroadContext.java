@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import yuan.interview.railroad.core.YRailroadContext;
+import yuan.interview.railroad.core.ApplicationContext;
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.interactive.Command;
@@ -21,7 +21,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:18:08
  */
-public class SimpleYRailroadContext extends YRailroadContext {
+public class SimpleYRailroadContext extends ApplicationContext {
 
 	@Override
 	public void start(

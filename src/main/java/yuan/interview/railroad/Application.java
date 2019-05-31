@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import yuan.interview.railroad.core.YRailroadContext;
+import yuan.interview.railroad.core.ApplicationContext;
 import yuan.interview.railroad.map.simple.SimpleYRailroadContext;
 
 /** 
@@ -39,8 +39,8 @@ public class Application {
 		String data = argsMap.get("--data");
 		String exit = argsMap.get("--exit");
 		
-		YRailroadContext yRailroadContext = new SimpleYRailroadContext();
-		yRailroadContext.start(System.in, System.out, System.err, data, exit);
+		ApplicationContext applicationContext = new SimpleYRailroadContext();
+		applicationContext.start(System.in, System.out, System.err, data, exit);
 	}
 
 }
