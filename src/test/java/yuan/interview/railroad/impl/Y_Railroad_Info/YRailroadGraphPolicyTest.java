@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
 		{
-			SimpleMapPolicy_CalcPath_Individual_Test.class,
+			YRailroadGraphPolicy_CalcPath_Individual_Test.class,
 			SimpleMapPolicy_CalcPath_Bounded_Test.class,
 			YRailroadGraphPolicy_CalcPath_Min_Test.class
 		})

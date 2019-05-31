@@ -17,18 +17,18 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
 import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /**
- * @ClassName: SimpleMapPolicy_CalcPath_Individual_Test
- * @Description: 测试SimpleMapPolicy方法calcPath中-p相关逻辑测试
+ * @ClassName: YRailroadGraphPolicy_CalcPath_Individual_Test
+ * @Description: 测试YRailroadGraphPolicy类中方法calcPath中-p相关逻辑测试
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:47:09
  */
 @RunWith(Parameterized.class)
-public class SimpleMapPolicy_CalcPath_Individual_Test extends YRailroadGraphPolicyPrepared {
+public class YRailroadGraphPolicy_CalcPath_Individual_Test extends YRailroadGraphPolicyPrepared {
 
 	private String path = null;
 
-	public SimpleMapPolicy_CalcPath_Individual_Test(String path) {
+	public YRailroadGraphPolicy_CalcPath_Individual_Test(String path) {
 		this.path = path;
 	}
 
