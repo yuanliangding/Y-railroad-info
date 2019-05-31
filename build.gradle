@@ -7,7 +7,7 @@ repositories {
 
 jar {
 	manifest {
-		attributes ('Main-Class': 'yuanliangding.interview.YRailroadInfo.Application',"Implementation-Title": "Y-Railroad")
+		attributes ('Main-Class': 'yuan.interview.railroad.Application',"Implementation-Title": "Y-Railroad")
 	}
 	from {
 		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
