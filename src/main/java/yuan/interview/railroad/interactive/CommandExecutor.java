@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import yuan.interview.railroad.exception.InteractiveException;
 import yuan.interview.railroad.interactive.CommandParser.CommandData;
 
 /** 
@@ -89,7 +90,7 @@ public class CommandExecutor {
 		
 		Command command = commands.get(commandData.getName());
 		if (command == null) {
-			throw new RuntimeException("不认识的命令");
+			throw new InteractiveException("不认识的命令");
 		}
 		
 		return command.execute(commandData);
@@ -111,10 +112,22 @@ public class CommandExecutor {
 			InputStream standardIn, 
 			PrintStream standardOut,
 			PrintStream standardError) {
-		// TODO 参数正确性判断
+		
+		if (standardIn == null) {
+			throw new InteractiveException("请指定可用的输入流做为标准输入");
+		}
+		if (standardOut == null) {
+			throw new InteractiveException("请指定可用的输出流做为标准输出");
+		}
+		
 		this.standardIn = standardIn;
 		this.standardOut = standardOut;
-		this.standardError = standardError;
+		
+		if (standardError == null) {
+			this.standardError = standardOut;
+		} else {
+			this.standardError = standardError;
+		}
 	}
 	
 	public void setCommandParser(CommandParser commandParser) {
