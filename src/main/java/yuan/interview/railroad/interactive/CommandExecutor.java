@@ -62,6 +62,10 @@ public class CommandExecutor {
 			standardOut.print(">> ");
 			
 			String commandStr = scanner.nextLine();
+			if (commandStr == null || "".equals(commandStr)) {
+				continue;
+			}
+			
 			if (exitCommand.equals(commandStr)) {
 				run = false;
 			} else {
