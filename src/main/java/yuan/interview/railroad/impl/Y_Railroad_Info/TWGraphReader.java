@@ -7,7 +7,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.graph.base.GraphReader;
 
 /** 
@@ -55,11 +58,20 @@ public class TWGraphReader implements GraphReader {
 	private List<WeightInfo> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
 		List<WeightInfo> results = new ArrayList<>();
 		
+		final Pattern routePattern = Pattern.compile("(\\S)(\\S)(\\d+)");
+		
 		String route;
 		while ((route = bufferedReader.readLine()) != null) {
-			String begin = route.substring(0, 1);
-			String end = route.substring(1, 2);
-			String dist = route.substring(2, 3);
+			route = route.trim();
+			
+			Matcher routeMatcher = routePattern.matcher(route);
+			if(!routeMatcher.matches()) {
+				throw new YRailroadException("命令格式错误.命令需要遵守这样的格式:cmd -a 1 -b x");
+			}
+			
+			String begin = routeMatcher.group(1);
+			String end = routeMatcher.group(2);
+			String dist = routeMatcher.group(3);
 			
 			int distV = Integer.parseInt(dist);
 			
