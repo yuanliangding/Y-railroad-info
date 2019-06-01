@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import yuan.interview.railroad.graph.base.GraphReader.WeightInfo;
+import yuan.interview.railroad.graph.io.WeightInfo;
 import yuan.interview.railroad.test.util.TWDataPrepared;
 
 /**

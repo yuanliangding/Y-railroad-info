@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import yuan.interview.railroad.core.ApplicationContext;
-import yuan.interview.railroad.graph.base.GraphReader;
+import yuan.interview.railroad.graph.io.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.interactive.Command;
 import yuan.interview.railroad.interactive.CommandExecutor;

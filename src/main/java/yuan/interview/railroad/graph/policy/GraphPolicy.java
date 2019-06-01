@@ -4,7 +4,7 @@ import java.util.Map;
 
 import yuan.interview.railroad.graph.algorithm.MinPath;
 import yuan.interview.railroad.graph.base.Graph;
-import yuan.interview.railroad.graph.base.GraphReader;
+import yuan.interview.railroad.graph.io.GraphReader;
 
 /** 
  * @ClassName: GraphPolicy

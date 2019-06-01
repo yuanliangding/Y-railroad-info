@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import yuan.interview.railroad.graph.base.GraphReader;
+import yuan.interview.railroad.graph.io.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
 import yuan.interview.railroad.impl.Y_Railroad_Info.XStyleCommandParser;

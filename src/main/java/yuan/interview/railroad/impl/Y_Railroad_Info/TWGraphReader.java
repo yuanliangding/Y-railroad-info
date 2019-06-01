@@ -11,11 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import yuan.interview.railroad.exception.YRailroadException;
-import yuan.interview.railroad.graph.base.GraphReader;
+import yuan.interview.railroad.graph.io.GraphReader;
+import yuan.interview.railroad.graph.io.WeightInfo;
 
 /** 
  * @ClassName: TWGraphReader
- * @Description:  根据ThoughtWorks Home Test的Problem one: Trains所采用的通勤线路数据格式,读取数据.
+ * @Description:  这里读取数据的格式是,根据ThoughtWorks Home Test的Problem one: Trains所采用的通勤线路数据格式
  * 
  * 						可以通过path参数,指定数据文件的本地路径.如果没指定文件数据,则默认加载/default.txt(main/resources目录中)为默认数据.
  * 
