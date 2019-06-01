@@ -33,9 +33,9 @@ import yuan.interview.railroad.graph.base.GraphReader;
 public interface GraphPolicy<C, W extends Enum<W>> {
 	
 	/** 设置图数据导入器,(设置好后,自动加载) */
-	public void setGraphReader(GraphReader graphReader);
+	void setGraphReader(GraphReader graphReader);
 	
 	/** 具体图策略子类提供的命令集 */
-	public Map<String, C> getCommands();
+	Map<String, C> getCommands();
 
 }

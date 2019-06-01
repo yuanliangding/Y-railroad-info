@@ -15,5 +15,5 @@ import yuan.interview.railroad.interactive.CommandParser.CommandData;
  */
 public interface Command {
 	
-	public Object execute(CommandData commandData);
+	Object execute(CommandData commandData);
 }

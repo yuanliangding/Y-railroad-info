@@ -13,7 +13,7 @@ import java.util.Map;
 public interface CommandParser {
 	
 	/** 将一条命令的字符串表示,解析成命令数据类{@link CommandData} */
-	public CommandData parser(String command);
+	CommandData parser(String command);
 	
 	/** 命令数据,命令解析结果 */
 	public static class CommandData {

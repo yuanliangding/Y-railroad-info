@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface GraphReader {
 	
-	public List<WeightInfo> read();
+	List<WeightInfo> read();
 	
 	/**
 	 * 一条有向边权重分量值的普通JSON表示
