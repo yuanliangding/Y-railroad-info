@@ -5,6 +5,8 @@ repositories {
 	jcenter()
 }
 
+sourceCompatibility = 1.9
+
 jar {
 	manifest {
 		attributes ('Main-Class': 'yuan.interview.railroad.Application',"Implementation-Title": "Y-Railroad")
