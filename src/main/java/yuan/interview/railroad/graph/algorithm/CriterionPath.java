@@ -106,14 +106,15 @@ public abstract class CriterionPath extends Path {
 		}
 		
 		return
-				data.stream().map(step -> {
-					List<Vertex> stepList = Stream
-							.iterate(step, t -> t != null, t -> t.getPrevious())
-							.map(Step::getCurrent)
-							.collect(Collectors.toList());
-					Collections.reverse(stepList);
-					return stepList;
-				}).map(stopList -> new IndividualPath(stopList))
+				data.stream()
+				.map(step -> 
+						Stream.iterate(step, t -> t != null, t -> t.getPrevious())
+						.map(Step::getCurrent)
+						.collect(Collectors.toList())
+				).map(vertexList -> {
+					Collections.reverse(vertexList);
+					return vertexList;
+				}).map(vertexList -> new IndividualPath(vertexList))
 				.collect(Collectors.toList());
 	}
 	
