@@ -22,7 +22,7 @@ import yuan.interview.railroad.test.util.DefaultDataPrepared;
 public class BoundedPathTest extends DefaultDataPrepared {
 	
 	@Test
-	public void testConcrete() {
+	public void testSearch() {
 		
 		Vertex a = graph.getVertex("A");
 		Vertex c = graph.getVertex("C");

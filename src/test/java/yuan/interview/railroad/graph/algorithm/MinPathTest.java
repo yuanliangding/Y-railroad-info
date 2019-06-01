@@ -21,7 +21,7 @@ import yuan.interview.railroad.test.util.DefaultDataPrepared;
 public class MinPathTest extends DefaultDataPrepared {
 	
 	@Test
-	public void testConcrete() {
+	public void testSearch() {
 		
 		Vertex a = graph.getVertex("A");
 		Vertex b = graph.getVertex("B");

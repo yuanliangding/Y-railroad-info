@@ -41,7 +41,7 @@ public class MoreThanOneShortestTest {
 	}
 	
 	@Test
-	public void testConcrete() {
+	public void testSearch() {
 		
 		Vertex a = graph.getVertex("A");
 		Vertex e = graph.getVertex("E");
