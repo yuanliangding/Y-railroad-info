@@ -10,15 +10,15 @@ import java.io.PrintStream;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:00:37
  */
-public abstract class ApplicationContext {
+public interface ApplicationContext {
 	
-	public abstract void start(
+	void start(
 			InputStream standardIn, 
 			PrintStream standardOut,
 			PrintStream standardError,
 			String mapUrl, 
 			String exit);
 	
-	protected abstract String banner();
+	String banner();
 	
 }

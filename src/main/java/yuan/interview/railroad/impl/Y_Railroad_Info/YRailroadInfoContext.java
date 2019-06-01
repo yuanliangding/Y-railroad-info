@@ -26,7 +26,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午7:18:08
  */
-public class YRailroadInfoContext extends ApplicationContext {
+public class YRailroadInfoContext implements ApplicationContext {
 	
 	private final String VERSION = "1.0.0";
 
@@ -73,7 +73,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 	}
 
 	@Override
-	protected String banner() {
+	public String banner() {
 		String banner = 
 				"                                                               \n" + 
 				",--.   ,--.    ,------.       ,--,--.                     ,--. \n" + 
