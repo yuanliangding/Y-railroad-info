@@ -7,7 +7,7 @@ import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
  * @ClassName: MinPath
- * @Description:  权重总值最小的路径(在某个维度上).
+ * @Description:  权重总值最小的路径(在某个维度上)
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午2:00:18
@@ -42,14 +42,14 @@ public class MinPath extends SpecifiedPath {
 			if (lastTotalWeight < step.getTotalWeight()) {
 				result = false;
 			} else {
-				// TODO 这里可以优化:当在遍历到某个节点时,有两条线路到这里的总权重是一样的,假设继续往后遍历就可以得到最优解.则后续的遍历操作,只进行一次就行.不需要两条路径都继续遍历
+				// TODO 这里可以优化：当在遍历到某个节点时，有两条线路到这里的总权重是一样的。假设继续往后遍历就可以得到最优解。则后续的遍历操作，只进行一次就行。不需要两条路径都继续遍历
 				totalWeights.put(curr, step.getTotalWeight());
 			}
 		} else {
 			totalWeights.put(curr, step.getTotalWeight());
 		}
 		
-		// TODO 对于权重不会为负值,遍历已经到最终结点,就没有必要继续下去了.再绕一圈,总权重不可能变小.
+		// TODO 对于权重不会为负值。遍历已经到最终结点。就没有必要继续下去了.再绕一圈,总权重不可能变小
 		if (step.getCurrent().equals(end)) {
 			result = false;
 		}

@@ -8,7 +8,7 @@ import yuan.interview.railroad.graph.base.Graph;
 
 /** 
  * @ClassName: DefaultDataPrepared
- * @Description:  为路径搜索相关类(Path的各种子类)的测试,已经提供通用的测试数据.
+ * @Description:  为路径搜索相关类(Path的各种子类)的测试，已经提供通用的测试数据
  *
  *
  * @author 袁良锭(https://github.com/yuanliangding)

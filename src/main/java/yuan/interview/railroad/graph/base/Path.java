@@ -8,8 +8,8 @@ import yuan.interview.railroad.graph.algorithm.SpecifiedPath;
 
 /** 
  * @ClassName: Path
- * @Description:  路径,
- * 						这是比较泛化的路径,只指定了起点,后续的途经点根据具体路径类型确定.
+ * @Description:  路径
+ * 						这是比较泛化的路径，只指定了起点。后续的途经点根据具体路径类型确定
  * 						具体参考该类的所有子类
  * 							{@link IndividualPath},
  * 							{@link SpecifiedPath},
@@ -46,7 +46,7 @@ public abstract class Path {
 	 * @param dim 权重维度
 	 * */
 	public long getTotalWeight(String dim) {
-		throw new GraphException("该类型路径不支持计算总权重.");
+		throw new GraphException("该类型路径不支持计算总权重");
 	}
 	
 }

@@ -60,7 +60,7 @@ public class YRailroadInfoContextTest extends TWDataPrepared {
 		yRailroadInfoContext.start(input, output, output, dataPath, null);
 		
 		Assert.assertThat(
-				"批量运行的结果期待的不一样.", 
+				"批量运行的结果期待的不一样", 
 				resultByteArrayOutputStream.toString(), 
 				CoreMatchers.containsString(expectedResult));
 	}

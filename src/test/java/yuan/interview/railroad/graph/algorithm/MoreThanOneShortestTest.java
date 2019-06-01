@@ -17,7 +17,7 @@ import yuan.interview.railroad.test.util.DefaultDataPrepared;
 
 /** 
  * @ClassName: MoreThanOneShortestTest
- * @Description:  最短路径有两条以上的测试,是否都能找到 (这里数据和原题有所区别)
+ * @Description:  最短路径有两条以上的测试，是否都能找到 (这里数据和原题有所区别)
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午5:05:41
@@ -48,20 +48,20 @@ public class MoreThanOneShortestTest {
 		
 		MinPath ae_dist = new MinPath(a, e, DefaultDataPrepared.DIST);
 		List<IndividualPath> ae_dist_paths = ae_dist.search();
-		Assert.assertThat("从A到E,最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
+		Assert.assertThat("从A到E，最短路径路线有2条", ae_dist_paths.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
-				"从A到E,最短路径路线有2条:A-B-C-E, A-D-E", 
+				"从A到E，最短路径路线有2条：A-B-C-E, A-D-E", 
 				ae_dist_paths.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("A-B-C-E", "A-D-E")
 				);
 		Assert.assertThat(
-				"从A到E,最短路径距离为11", 
+				"从A到E，最短路径距离为11", 
 				ae_dist_paths.get(0).getTotalWeight(DefaultDataPrepared.DIST), 
-				CoreMatchers.equalTo(11));
+				CoreMatchers.equalTo(11L));
 		Assert.assertThat(
-				"从A到E,最短路径距离为11", 
+				"从A到E，最短路径距离为11", 
 				ae_dist_paths.get(1).getTotalWeight(DefaultDataPrepared.DIST), 
-				CoreMatchers.equalTo(11));
+				CoreMatchers.equalTo(11L));
 		}
 
 }

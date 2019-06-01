@@ -32,9 +32,9 @@ public class YRailroadGraphPolicy_CalcPath_Min_Test extends YRailroadGraphPolicy
 		options1.put("e", "C");
 		CommandData commandData1 = new CommandData("dist", options1);
 		List<IndividualPath> paths1 = yRailroadGraphPolicy.calcPath(commandData1);
-		Assert.assertThat("从A到C,最短路径路线有1条", paths1.size(), CoreMatchers.equalTo(1));
+		Assert.assertThat("从A到C，最短路径路线有1条", paths1.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
-				"从A到C,最短路径路线有1条:A-B-C", 
+				"从A到C，最短路径路线有1条:A-B-C", 
 				paths1.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("A-B-C")
 				);
@@ -46,9 +46,9 @@ public class YRailroadGraphPolicy_CalcPath_Min_Test extends YRailroadGraphPolicy
 		options2.put("e", "B");
 		CommandData commandData2 = new CommandData("dist", options2);
 		List<IndividualPath> paths2 = yRailroadGraphPolicy.calcPath(commandData2);
-		Assert.assertThat("从B到B,最短路径路线有1条", paths2.size(), CoreMatchers.equalTo(1));
+		Assert.assertThat("从B到B，最短路径路线有1条", paths2.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
-				"从B到B,最短路径路线有1条:B-C-E-B", 
+				"从B到B，最短路径路线有1条：B-C-E-B", 
 				paths2.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("B-C-E-B")
 				);

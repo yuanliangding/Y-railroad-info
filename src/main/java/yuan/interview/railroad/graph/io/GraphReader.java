@@ -7,7 +7,7 @@ import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
  * @ClassName: GraphReader
- * @Description:  地图数据读取器,从文件中或者外界其他的流式数据中,读取图数据的有向边信息.并以普通JSON对象WeightInfo表示.
+ * @Description:  地图数据读取器，从文件中或者外界其他的流式数据中。读取图数据的有向边信息。并以普通JSON对象WeightInfo表示
  * 
  * @see Graph
  * @see Vertex

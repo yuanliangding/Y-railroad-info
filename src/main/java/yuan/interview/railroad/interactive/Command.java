@@ -2,9 +2,9 @@ package yuan.interview.railroad.interactive;
 
 /** 
  * @ClassName: Command
- * @Description:  命令规范接口.
- * 						命令执行器{@link CommandExecutor}接收该命令规范接口的具体实现类,以获得外界的具体命令运行体.
- * 						为终端或者其他输入通道输入的具体命令,运行相应的命令运行体.
+ * @Description:  命令规范接口
+ * 						命令执行器{@link CommandExecutor}接收该命令规范接口的具体实现类,以获得外界的具体命令运行体。
+ * 						为终端或者其他输入通道输入的具体命令,运行相应的命令运行体
  * 
  * @see CommandExecutor
  *

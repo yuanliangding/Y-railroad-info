@@ -32,19 +32,19 @@ public class GraphTest {
     	Vertex b = graph.getVertex("B");
     	
     	Assert.assertThat(
-    			"获取到的顶点,其中的顶点名称应该和参数传入的名称一致", 
+    			"获取到的顶点。其中的顶点名称应该和参数传入的名称一致", 
     			a1.getName() , 
     			CoreMatchers.equalTo("A")
     			);
     	
     	Assert.assertThat(
-    			"相同的顶点名称,获取到的应该是同样的顶点实例", 
+    			"相同的顶点名称。获取到的应该是同样的顶点实例", 
     			a1, 
     			CoreMatchers.sameInstance(a2)
     			);
     	
     	Assert.assertThat(
-    			"不同的顶点名称,获取到的应该是不同的顶点实例,并且通过实例equal计算应该是不相等的", 
+    			"不同的顶点名称。获取到的应该是不同的顶点实例，并且通过实例equal计算应该是不相等的", 
     			a1,
     			CoreMatchers.allOf(
     					CoreMatchers.not(CoreMatchers.sameInstance(b)),
@@ -71,12 +71,12 @@ public class GraphTest {
     	Map<Vertex, Map<String, Integer>> edges = a_.getEdges();
     	
     	Assert.assertThat(
-    			"A到B的有向边,维度"+dim+"不具有值为"+weightAB+"的权重值", 
+    			"A到B的有向边，维度"+dim+"不具有值为"+weightAB+"的权重值", 
     			edges.get(b_).get(dim),
     			CoreMatchers.equalTo(weightAB)
     			);
     	Assert.assertThat(
-    			"A到C的有向边,维度"+dim+"不具有值为"+weightAC+"的权重值", 
+    			"A到C的有向边，维度"+dim+"不具有值为"+weightAC+"的权重值", 
     			edges.get(c_).get(dim),
     			CoreMatchers.equalTo(weightAC)
     			);

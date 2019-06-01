@@ -11,7 +11,7 @@ import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
  * @ClassName: IndividualPath
- * @Description:  具体路线,起点,终点,途中经停的点都是已经确定的.
+ * @Description:  具体路线、起点、终点、途中经停的点都是已经确定的
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午2:22:00

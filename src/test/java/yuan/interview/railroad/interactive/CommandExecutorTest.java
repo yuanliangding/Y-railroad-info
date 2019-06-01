@@ -67,7 +67,7 @@ public class CommandExecutorTest extends TWDataPrepared {
 			runResult = e.getMessage();
 		}
 		
-		Assert.assertThat("运行命令 " + command + " 的结果不正确.", runResult,CoreMatchers.equalTo(result));
+		Assert.assertThat("运行命令 " + command + " 的结果不正确。", runResult,CoreMatchers.equalTo(result));
 	}
 	
 	@Before

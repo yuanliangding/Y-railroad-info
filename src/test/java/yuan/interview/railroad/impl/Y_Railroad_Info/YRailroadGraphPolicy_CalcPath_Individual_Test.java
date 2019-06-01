@@ -34,7 +34,7 @@ public class YRailroadGraphPolicy_CalcPath_Individual_Test extends YRailroadGrap
 
 	@Parameters
 	public static List<String> data() {
-		return Arrays.asList("A-B-C","A-D","A-D-C","A-E-B-C-D","A-E-D");
+		return Arrays.asList("A-B-C", "A-D", "A-D-C", "A-E-B-C-D", "A-E-D");
 	}
 
 	@Test

@@ -15,7 +15,7 @@ import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /** 
  * @ClassName: YRailroadGraphPolicy_CalcPath_Bounded_Test
- * @Description:  测试YRailroadGraphPolicy类中方法calcPath中-f s,-f d相关逻辑测试
+ * @Description:  测试YRailroadGraphPolicy类中方法calcPath中-f s，-f d相关逻辑测试
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:26:57
@@ -35,7 +35,7 @@ public class YRailroadGraphPolicy_CalcPath_Bounded_Test extends YRailroadGraphPo
 		List<IndividualPath> paths1 = yRailroadGraphPolicy.calcPath(commandData1);
 		Assert.assertThat("查询的结果数量不对", paths1.size(), CoreMatchers.equalTo(2));
 		Assert.assertThat(
-				"从C到C,路程最多跨越3站的路线有:C-D-C,C-E-B-C", 
+				"从C到C，路程最多跨越3站的路线有：C-D-C,C-E-B-C", 
 				paths1.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("C-D-C","C-E-B-C")
 				);
@@ -49,9 +49,9 @@ public class YRailroadGraphPolicy_CalcPath_Bounded_Test extends YRailroadGraphPo
 		options2.put("M", "4");
 		CommandData commandData2 = new CommandData("count", options2);
 		List<IndividualPath> paths2 = yRailroadGraphPolicy.calcPath(commandData2);
-		Assert.assertThat("从A到C,路程正好跨越4站的路线有3条", paths2.size(), CoreMatchers.equalTo(3));
+		Assert.assertThat("从A到C，路程正好跨越4站的路线有3条", paths2.size(), CoreMatchers.equalTo(3));
 		Assert.assertThat(
-				"从A到C,路程正好跨越4站的路线有3条:A-B-C-D-C,A-D-C-D-C,A-D-E-B-C", 
+				"从A到C，路程正好跨越4站的路线有3条：A-B-C-D-C,A-D-C-D-C,A-D-E-B-C", 
 				paths2.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems("A-B-C-D-C","A-D-C-D-C", "A-D-E-B-C")
 				);
@@ -64,9 +64,9 @@ public class YRailroadGraphPolicy_CalcPath_Bounded_Test extends YRailroadGraphPo
 		options3.put("M", "n30");
 		CommandData commandData3 = new CommandData("count", options3);
 		List<IndividualPath> paths3 = yRailroadGraphPolicy.calcPath(commandData3);
-		Assert.assertThat("从C到C,路程小于30的路线有7条", paths3.size(), CoreMatchers.equalTo(7));
+		Assert.assertThat("从C到C，路程小于30的路线有7条", paths3.size(), CoreMatchers.equalTo(7));
 		Assert.assertThat(
-				"从C到C,路程小于30的路线有7条:C-D-C,C-D-C-E-B-C,C-D-E-B-C,C-E-B-C,C-E-B-C-D-C,C-E-B-C-E-B-C,C-E-B-C-E-B-C-E-B-C", 
+				"从C到C，路程小于30的路线有7条：C-D-C,C-D-C-E-B-C,C-D-E-B-C,C-E-B-C,C-E-B-C-D-C,C-E-B-C-E-B-C,C-E-B-C-E-B-C-E-B-C", 
 				paths3.stream().map(IndividualPath::toString).collect(Collectors.toList()), 
 				CoreMatchers.hasItems(
 						"C-D-C",

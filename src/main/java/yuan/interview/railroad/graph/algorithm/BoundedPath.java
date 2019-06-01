@@ -5,7 +5,7 @@ import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
  * @ClassName: BoundedPath
- * @Description:  权重总值处于某个数值区间,权重总值被指定了最大值和最小值.
+ * @Description:  权重总值处于某个数值区间,权重总值被指定了最大值和最小值
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午9:24:12
@@ -51,7 +51,7 @@ public class BoundedPath extends SpecifiedPath {
 		this.maxContainsEq = maxContainsEq;
 	}
 	
-	// TODO 边的权重如果有负值,需要让返回值永远为true才能保证不会漏掉结果.
+	// TODO 边的权重如果有负值。需要让返回值永远为true才能保证不会漏掉结果
 	@Override
 	protected boolean toBeContinue(Step step) {
 		return maxContainsEq? step.getTotalWeight() <= max: step.getTotalWeight() < max;

@@ -31,16 +31,16 @@ public class IndividualPathTest extends DefaultDataPrepared{
 		Vertex e = graph.getVertex("E");
 
 		IndividualPath abc = new IndividualPath(a, b, c);
-		Assert.assertThat("验证" + abc + "路径权重总值出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9));
+		Assert.assertThat("验证" + abc + "路径权重总值出错", abc.getTotalWeight(DIST), CoreMatchers.equalTo(9L));
 
 		IndividualPath ad = new IndividualPath(a, d);
-		Assert.assertThat("验证" + ad + "路径权重总值出错", ad.getTotalWeight(DIST), CoreMatchers.equalTo(5));
+		Assert.assertThat("验证" + ad + "路径权重总值出错", ad.getTotalWeight(DIST), CoreMatchers.equalTo(5L));
 
 		IndividualPath adc = new IndividualPath(a, d, c);
-		Assert.assertThat("验证" + adc + "路径权重总值出错", adc.getTotalWeight(DIST), CoreMatchers.equalTo(13));
+		Assert.assertThat("验证" + adc + "路径权重总值出错", adc.getTotalWeight(DIST), CoreMatchers.equalTo(13L));
 
 		IndividualPath aebcd = new IndividualPath(a, e, b, c, d);
-		Assert.assertThat("验证" + aebcd + "路径权重总值出错", aebcd.getTotalWeight(DIST), CoreMatchers.equalTo(22));
+		Assert.assertThat("验证" + aebcd + "路径权重总值出错", aebcd.getTotalWeight(DIST), CoreMatchers.equalTo(22L));
 	}
 	
 	@Test

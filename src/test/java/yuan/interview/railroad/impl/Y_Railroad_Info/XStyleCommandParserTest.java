@@ -28,8 +28,8 @@ public class XStyleCommandParserTest {
 		CommandData commandData = xStyleCommandParser.parser("cmd -a 1 -b x");
 		
 		Assert.assertThat("命令名称为 cmd", commandData.getName(), CoreMatchers.equalTo("cmd"));
-		Assert.assertThat("命令含有参数a,且值为1", commandData.getOptions().get("a"), CoreMatchers.equalTo("1"));
-		Assert.assertThat("命令含有参数b,且值为x", commandData.getOptions().get("b"), CoreMatchers.equalTo("x"));
+		Assert.assertThat("命令含有参数a，且值为1", commandData.getOptions().get("a"), CoreMatchers.equalTo("1"));
+		Assert.assertThat("命令含有参数b，且值为x", commandData.getOptions().get("b"), CoreMatchers.equalTo("x"));
 	}
 
 }
