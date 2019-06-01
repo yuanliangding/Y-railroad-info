@@ -44,8 +44,8 @@ public class IndividualPath extends Path {
 	}
 	
 	@Override
-	public int getTotalWeight(String dim) {
-		int result = 0;
+	public long getTotalWeight(String dim) {
+		long result = 0;
 		
 		Vertex curr = begin;
 		
