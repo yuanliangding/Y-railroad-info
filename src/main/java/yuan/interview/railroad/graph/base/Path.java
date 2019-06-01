@@ -4,7 +4,7 @@ import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
-import yuan.interview.railroad.graph.algorithm.SpecifiedPath;
+import yuan.interview.railroad.graph.algorithm.CriterionPath;
 
 /** 
  * @ClassName: Path
@@ -12,13 +12,13 @@ import yuan.interview.railroad.graph.algorithm.SpecifiedPath;
  * 						这是比较泛化的路径，只指定了起点。后续的途经点根据具体路径类型确定
  * 						具体参考该类的所有子类
  * 							{@link IndividualPath},
- * 							{@link SpecifiedPath},
+ * 							{@link CriterionPath},
  * 							{@link MinPath},
  * 							{@link BoundedPath}
  * 
  * @see Vertex
  * @see IndividualPath
- * @see SpecifiedPath
+ * @see CriterionPath
  * @see MinPath
  * @see BoundedPath
  *

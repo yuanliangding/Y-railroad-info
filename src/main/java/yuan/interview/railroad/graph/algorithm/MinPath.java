@@ -12,7 +12,7 @@ import yuan.interview.railroad.graph.base.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-下午2:00:18
  */
-public class MinPath extends SpecifiedPath {
+public class MinPath extends CriterionPath {
 	
 	private Map<Vertex, Integer> totalWeights = new HashMap<>();
 
@@ -58,7 +58,7 @@ public class MinPath extends SpecifiedPath {
 	}
 	
 	@Override
-	protected void asResult(Step step) {
+	protected void forResult(Step step) {
 		if (step.getCurrent().equals(end)) {
 			if (results.isEmpty()) {
 				results.add(step);

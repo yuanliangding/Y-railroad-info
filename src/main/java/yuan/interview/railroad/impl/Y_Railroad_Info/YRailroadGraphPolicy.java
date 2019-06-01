@@ -11,7 +11,7 @@ import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
-import yuan.interview.railroad.graph.algorithm.SpecifiedPath;
+import yuan.interview.railroad.graph.algorithm.CriterionPath;
 import yuan.interview.railroad.graph.base.Graph;
 import yuan.interview.railroad.graph.base.Vertex;
 import yuan.interview.railroad.graph.io.GraphReader;
@@ -110,7 +110,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 				throw new YRailroadException("执行错误。指定了-f参数，必须指定一个-e路径终点参数.");
 			}
 			
-			SpecifiedPath specifiedPath = null;
+			CriterionPath criterionPath = null;
 			
 			YRailroadGraphPolicy.Weight weight = null;
 			
@@ -147,7 +147,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 						minV = Integer.parseInt(min);
 					}
 					
-					specifiedPath = new BoundedPath(beginVertex, endVertex, weight.name(), minV, maxV, minContainsEq, maxContainsEq);
+					criterionPath = new BoundedPath(beginVertex, endVertex, weight.name(), minV, maxV, minContainsEq, maxContainsEq);
 					break;
 				case "md":
 					weight = YRailroadGraphPolicy.Weight.DIST;
@@ -156,13 +156,13 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 						weight = YRailroadGraphPolicy.Weight.STOP;
 					}
 					
-					specifiedPath = new MinPath(beginVertex, endVertex, weight.name());
+					criterionPath = new MinPath(beginVertex, endVertex, weight.name());
 					break;
 				default:
 					throw new YRailroadException("执行错误。请在-f参数的有效值可以是：d、s、md、ms");
 				}
 			
-				return specifiedPath.search();
+				return criterionPath.search();
 		}
 	}
 	

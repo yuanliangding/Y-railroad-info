@@ -12,18 +12,18 @@ import yuan.interview.railroad.graph.base.Path;
 import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
- * @ClassName: SpecifiedPath
- * @Description:  规约描述的路径.既具有某种特征的路径。
+ * @ClassName: CriterionPath
+ * @Description:  	规约描述的路径.既具有某种特征的路径。
  * 						可以进行搜索操作(search)，根据规约描述,从图中搜索出满足规约的所有路径。
  * 						受规约的路径可以再细分成更具体的规约，
  * 						比如最短路径,权重累加和满足一定数值范围的路径等。
  * 
- * 		注意：	SpecifiedPath类及其子类。在路线的计算过程中，会将中间结果保存在实例变量中，所以不是线程安全的。
+ * 		注意：	CriterionPath类及其子类。在路线的计算过程中，会将中间结果保存在实例变量中，所以不是线程安全的。
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-上午9:04:04
  */
-public abstract class SpecifiedPath extends Path {
+public abstract class CriterionPath extends Path {
 	
 	// 路径终点
 	protected Vertex end;
@@ -42,7 +42,7 @@ public abstract class SpecifiedPath extends Path {
 	 * @param end	路径终点(传null为不指定)
 	 * @param dim	规约描述针对具体维度的权重
 	 * */
-	protected SpecifiedPath(Vertex begin, Vertex end, String dim) {
+	protected CriterionPath(Vertex begin, Vertex end, String dim) {
 		super(begin);
 		this.dim = dim;
 		this.end = end;
@@ -57,11 +57,10 @@ public abstract class SpecifiedPath extends Path {
 	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类搜索遍历操作不是线程安全的
 	 * */
 	public List<IndividualPath> search() {
-		
-		// 1 清理工作
+		// 1 清理工作（上次计算留下的中间结果）
 		clear();
 		
-		// 2 进行遍历寻找
+		// 2 进行递归遍历寻找
 		traverse(new Step(0, begin, null));
 		
 		// 3 整理结果集
@@ -77,19 +76,20 @@ public abstract class SpecifiedPath extends Path {
 	 * TODO	1	对于路途中有环路,要注意退出条件,以免死循环
 	 * 			2	由于是采用递归操作,对于规模大的图有可能会导致内存不足
 	 * */
-	private void traverse(Step currTempPath) {
-		Map<Vertex, Map<String, Integer>> edges = currTempPath.getCurrent().getEdges();
+	private void traverse(Step currStep) {
+		Map<Vertex, Map<String, Integer>> edges = currStep.getCurrent().getEdges();
 		if (edges.isEmpty()) {
-			terminates.add(currTempPath);
+			terminates.add(currStep);
 		}
 		
-		edges.forEach((Vertex vertex,Map<String, Integer> weights) -> {
+		edges.forEach((Vertex vertex, Map<String, Integer> weights) -> {
 			if (!weights.containsKey(dim)) {
 				throw new GraphException("没有" + dim + "维度的权重值.");
 			}
 			
-			Step step = new Step(currTempPath.getTotalWeight()+weights.get(dim), vertex, currTempPath);
-			asResult(step);
+			Step step = new Step(currStep.getTotalWeight() + weights.get(dim), vertex, currStep);
+			forResult(step);
+			
 			if (toBeContinue(step)) {
 				traverse(step);
 			}
@@ -106,13 +106,13 @@ public abstract class SpecifiedPath extends Path {
 		}
 		
 		return
-				data.stream().map(tempPath -> {
-					List<Vertex> tempList = Stream
-							.iterate(tempPath, t -> t != null, t -> t.getPrevious())
+				data.stream().map(step -> {
+					List<Vertex> stepList = Stream
+							.iterate(step, t -> t != null, t -> t.getPrevious())
 							.map(Step::getCurrent)
 							.collect(Collectors.toList());
-					Collections.reverse(tempList);
-					return tempList;
+					Collections.reverse(stepList);
+					return stepList;
 				}).map(stopList -> new IndividualPath(stopList))
 				.collect(Collectors.toList());
 	}
@@ -125,7 +125,7 @@ public abstract class SpecifiedPath extends Path {
 	/**
 	 * 遍历到每一个顶点，判读是否要做为结果存起来
 	 * */
-	protected abstract void asResult(Step step);
+	protected abstract void forResult(Step step);
 	
 	/** 
 	 * @ClassName: Step

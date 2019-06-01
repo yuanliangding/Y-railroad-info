@@ -10,7 +10,7 @@ import yuan.interview.railroad.graph.base.Vertex;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午9:24:12
  */
-public class BoundedPath extends SpecifiedPath {
+public class BoundedPath extends CriterionPath {
 	
 	private int min;
 	private int max;
@@ -58,7 +58,7 @@ public class BoundedPath extends SpecifiedPath {
 	}
 	
 	@Override
-	protected void asResult(Step step) {
+	protected void forResult(Step step) {
 		if ((maxContainsEq?step.getTotalWeight() <= max:step.getTotalWeight() < max) 
 			&& 
 			(minContainsEq? step.getTotalWeight() >= min: step.getTotalWeight() > min)) {
