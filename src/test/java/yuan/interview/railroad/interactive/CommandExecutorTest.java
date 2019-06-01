@@ -16,7 +16,7 @@ import org.junit.runners.Parameterized.Parameters;
 import yuan.interview.railroad.graph.base.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
-import yuan.interview.railroad.impl.Y_Railroad_Info.UnixStyleCommandParser;
+import yuan.interview.railroad.impl.Y_Railroad_Info.XStyleCommandParser;
 import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadGraphPolicy;
 import yuan.interview.railroad.test.util.TWDataPrepared;
 
@@ -78,7 +78,7 @@ public class CommandExecutorTest extends TWDataPrepared {
 		Map<String,Command> commands = mapPolicy.getCommands();
 		
 		commandExecutor = new CommandExecutor();
-		commandExecutor.setCommandParser(new UnixStyleCommandParser());
+		commandExecutor.setCommandParser(new XStyleCommandParser());
 		commandExecutor.registeCommands(commands);
 	}
 

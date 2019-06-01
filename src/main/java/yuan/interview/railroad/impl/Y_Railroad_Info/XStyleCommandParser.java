@@ -9,8 +9,8 @@ import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.interactive.CommandParser;
 
 /** 
- * @ClassName: UnixStyleCommandParser
- * @Description: 	unix风格的命令解析器.简易版选项和参数之前要有空格.
+ * @ClassName: XStyleCommandParser
+ * @Description: 	X toolkit命令行风格的命令解析器.简易版选项和参数之前要有空格.
  * 						只解析这样格式的命令:
  * 							cmd -a 1 -b x
  * 						执行cmd命令,并传两个参数a=1,b=x,其中空格可以任意个.
@@ -18,7 +18,7 @@ import yuan.interview.railroad.interactive.CommandParser;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月28日-下午3:59:51
  */
-public class UnixStyleCommandParser implements CommandParser {
+public class XStyleCommandParser implements CommandParser {
 	
 	// 用来匹配整个命令字符串是不是符合cmd -a 1 -b x格式.
 	private final Pattern legalPattern = Pattern.compile("^(\\S+)((\\s+-\\S+\\s+\\S+)*)$");

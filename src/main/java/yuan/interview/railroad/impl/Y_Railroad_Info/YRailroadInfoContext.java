@@ -19,7 +19,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * 						2 基于命令行窗口交互
  * 
  * @see TWGraphReader
- * @see UnixStyleCommandParser
+ * @see XStyleCommandParser
  * @see YRailroadGraphPolicy
  * @see CommandExecutor
  *
@@ -51,7 +51,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 		// 2 准备命令接收器
 		CommandExecutor commandExecutor = new CommandExecutor();
 		commandExecutor.setIO(standardIn, standardOut, standardError);
-		commandExecutor.setCommandParser(new UnixStyleCommandParser());
+		commandExecutor.setCommandParser(new XStyleCommandParser());
 		commandExecutor.setExitCommand(exit);
 		commandExecutor.registeCommands(commands);
 
