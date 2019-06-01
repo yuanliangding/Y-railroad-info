@@ -7,7 +7,7 @@ Y-railroad-info是一个简易版的通勤线路查询系统。该程序是个�
 该程序采用java编写，基于gradle工具进行构建，测试等。可以在任意编程ide工具中，以导入gradle项目的方式导入该项目进行源码阅读或再次开发。
 
 1. **编译**  
-进入项目目录中，用命令行 gradle jar 进行编译打包成可执行jar包。最终生成结果为项目目录下的build/libs子目录中的Y-railroad-info.jar。  
+进入项目目录中，用命令行 **gradle jar** 进行编译打包成可执行jar包。最终生成结果为项目目录下的build/libs子目录中的Y-railroad-info.jar。  
 <u>(由于在本项目的`CriterionPath`类中，调用了`Stream.iterate(T seed, Predicate<? super T> hasNext, UnaryOperator<T> next)`方法，所以要求编译的java版本至少为1.9)</u>  
 当然你也可以运行别的gradle任务执行别的任务，比如执行单元测试等。  
 <br />
