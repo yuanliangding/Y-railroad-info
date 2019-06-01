@@ -13,8 +13,8 @@ import yuan.interview.railroad.graph.base.Vertex;
 
 /** 
  * @ClassName: SpecifiedPath
- * @Description:  受规约的路径.既具有某种特征的路径.
- * 						可以进行具体化操作(concrete),根据规约描述,从图中搜索出满足规约的所有路径.
+ * @Description:  规约描述的路径.既具有某种特征的路径.
+ * 						可以进行搜索操作(search),根据规约描述,从图中搜索出满足规约的所有路径.
  * 						受规约的路径可以再细分成更具体的规约,
  * 						比如最短路径,权重累加和满足一定数值范围的路径等,
  * 
@@ -49,15 +49,15 @@ public abstract class SpecifiedPath extends Path {
 	}
 	
 	/**
-	 * 具体化操作.
+	 * 搜索操作.
 	 * 根据规约描述,从地图中找到满足条件的具体路线,结果往往不只一条.
 	 * 在指定维度计算权重分量的累加总值.最终筛选出满足条件的路线.
 	 * 根据具体子类的实现,可以得到最短路径,耗时最少路径.或者权重累加和满足一定数值范围(途中可能会有环路)
 	 * 
-	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类具体化遍历操作不是线程安全的.
+	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类搜索遍历操作不是线程安全的.
 	 * 
 	 * */
-	public List<IndividualPath> concrete() {
+	public List<IndividualPath> search() {
 		
 		// 1 清理工作
 		clear();
@@ -66,7 +66,7 @@ public abstract class SpecifiedPath extends Path {
 		traverse(new Step(0, begin, null));
 		
 		// 3 整理结果集
-		return processResult();
+		return getResult();
 	}
 	
 	protected void clear() {
@@ -97,7 +97,7 @@ public abstract class SpecifiedPath extends Path {
 		});
 	}
 	
-	private List<IndividualPath> processResult() {
+	private List<IndividualPath> getResult() {
 		
 		List<Step> date = null;
 		if (end == null) {

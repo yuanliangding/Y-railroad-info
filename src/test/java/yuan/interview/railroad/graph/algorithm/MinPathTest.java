@@ -28,7 +28,7 @@ public class MinPathTest extends DefaultDataPrepared {
 		Vertex c = graph.getVertex("C");
 		
 		MinPath ac_dist = new MinPath(a, c, DIST);
-		List<IndividualPath> ac_dist_paths = ac_dist.concrete();
+		List<IndividualPath> ac_dist_paths = ac_dist.search();
 		Assert.assertThat("从A到C,最短路径的路线有1条", ac_dist_paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从A到C,最短路径的路线有1条:A-B-C", 
@@ -41,7 +41,7 @@ public class MinPathTest extends DefaultDataPrepared {
 				CoreMatchers.equalTo(9));
 		
 		MinPath bb_dist = new MinPath(b, b, DIST);
-		List<IndividualPath> bb_dist_paths = bb_dist.concrete();
+		List<IndividualPath> bb_dist_paths = bb_dist.search();
 		Assert.assertThat("从B到B,最短路径的路线有1条", bb_dist_paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从B到B,最短路径的路线有1条:B-C-E-B", 

@@ -162,7 +162,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 					throw new YRailroadException("执行错误.请在-f参数的有效值可以是:d,s,md,ms.");
 				}
 			
-				return specifiedPath.concrete();
+				return specifiedPath.search();
 		}
 	}
 	
