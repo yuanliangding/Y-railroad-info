@@ -61,7 +61,7 @@ public class YRailroadInfoContext extends ApplicationContext {
 				"\n\n" +
 				"启动完整命令规范 java -jar XXX.jar -data map.txt -exit quit\n" +
 				"	XXX.jar		该程序jar包\n" +
-				"	map.txt		地图数据(每行一条信息.格式如 AB3,表示有从A到B的路线,且路径为3)\n" +
+				"	map.txt		地图数据(每行一条信息.格式如 AB32, A,B分别代表一个节点,32为A到B的路程)\n" +
 				"	quit		这里输入quit,程序的退出命令就是quit.默认为exit\n" +
 				"\n" + 
 				"你可以使用的命令有:\n" + 
