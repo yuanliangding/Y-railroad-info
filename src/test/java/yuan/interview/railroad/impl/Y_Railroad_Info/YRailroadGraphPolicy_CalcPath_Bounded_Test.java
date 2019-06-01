@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
-import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.interactive.CommandData;
 import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /** 

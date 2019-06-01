@@ -13,7 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
-import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.interactive.CommandData;
 import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /**

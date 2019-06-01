@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import yuan.interview.railroad.impl.Y_Railroad_Info.XStyleCommandParser;
-import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.interactive.CommandData;
 
 /**
  * @ClassName: XStyleCommandParserTest

@@ -1,7 +1,5 @@
 package yuan.interview.railroad.interactive;
 
-import java.util.Map;
-
 /** 
  * @ClassName: CommandParser
  * @Description:  命令解析器,
@@ -14,25 +12,5 @@ public interface CommandParser {
 	
 	/** 将一条命令的字符串表示,解析成命令数据类{@link CommandData} */
 	CommandData parser(String command);
-	
-	/** 命令数据,命令解析结果 */
-	public static class CommandData {
-		//  命令名称
-		private final String name;
-		// 命令选项参数,由参数名-参数值对组成
-		private final Map<String,String> options;
-		
-		public CommandData(String name, Map<String,String> options) {
-			this.name = name;
-			this.options = options;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		public Map<String, String> getOptions() {
-			return options;
-		}
-	}
 
 }

@@ -1,7 +1,5 @@
 package yuan.interview.railroad.interactive;
 
-import yuan.interview.railroad.interactive.CommandParser.CommandData;
-
 /** 
  * @ClassName: Command
  * @Description:  命令规范接口.

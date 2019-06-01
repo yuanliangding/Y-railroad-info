@@ -17,7 +17,7 @@ import yuan.interview.railroad.graph.base.Vertex;
 import yuan.interview.railroad.graph.io.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.interactive.Command;
-import yuan.interview.railroad.interactive.CommandParser.CommandData;
+import yuan.interview.railroad.interactive.CommandData;
 
 /** 
  * @ClassName: YRailroadGraphPolicy
