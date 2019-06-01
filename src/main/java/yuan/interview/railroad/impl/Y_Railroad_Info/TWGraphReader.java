@@ -43,14 +43,14 @@ public class TWGraphReader implements GraphReader {
 							){
 				return read(mapBufferedReader);
 			} catch (IOException e) {
-				throw new RuntimeException("程序启动失败,没找到默认的地图数据文件.");
+				throw new YRailroadException("程序启动失败,没找到默认的地图数据文件.");
 			}
 		} else {
 			try (FileReader mapFileReader = new FileReader(path);
 					BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
 				return read(mapBufferedReader);
 			} catch (IOException e) {
-				throw new RuntimeException("程序启动失败,没找到指定的地图数据文件.");
+				throw new YRailroadException("程序启动失败,没找到指定的地图数据文件.");
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class TWGraphReader implements GraphReader {
 			
 			Matcher routeMatcher = routePattern.matcher(route);
 			if(!routeMatcher.matches()) {
-				throw new YRailroadException("命令格式错误.命令需要遵守这样的格式:cmd -a 1 -b x");
+				throw new YRailroadException("地图数据 " + route + ",格式错误.应该为AB32, A,B分别代表一个节点,32为A到B的路程.");
 			}
 			
 			String begin = routeMatcher.group(1);

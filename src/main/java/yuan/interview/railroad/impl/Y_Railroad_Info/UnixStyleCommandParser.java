@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.interactive.CommandParser;
 
 /** 
@@ -30,7 +31,7 @@ public class UnixStyleCommandParser implements CommandParser {
 		
 		Matcher legalMatcher = legalPattern.matcher(commandStr);
 		if(!legalMatcher.matches()) {
-			throw new RuntimeException("命令格式错误.命令需要遵守这样的格式:cmd -a 1 -b x");
+			throw new YRailroadException("命令格式错误.命令需要遵守这样的格式:cmd -a 1 -b x");
 		}
 		
 		String commandName = legalMatcher.group(1);
