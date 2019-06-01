@@ -55,7 +55,6 @@ public abstract class SpecifiedPath extends Path {
 	 * 根据具体子类的实现，可以得到最短路径,耗时最少路径.或者权重累加和满足一定数值范围(途中可能会有环路)
 	 * 
 	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类搜索遍历操作不是线程安全的
-	 * 
 	 * */
 	public List<IndividualPath> search() {
 		
@@ -99,15 +98,15 @@ public abstract class SpecifiedPath extends Path {
 	
 	private List<IndividualPath> getResult() {
 		
-		List<Step> date = null;
+		List<Step> data = null;
 		if (end == null) {
-			date = terminates;
+			data = terminates;
 		} else {
-			date = results;
+			data = results;
 		}
 		
 		return
-				date.stream().map(tempPath -> {
+				data.stream().map(tempPath -> {
 					List<Vertex> tempList = Stream
 							.iterate(tempPath, t -> t != null, t -> t.getPrevious())
 							.map(Step::getCurrent)
