@@ -129,12 +129,17 @@ public abstract class SpecifiedPath extends Path {
 	
 	/** 
 	 * @ClassName: Step
-	 * @Description:  遍历到某个结点的相关信息。针对某个结点，记录当前节点。以及到当前节点为止在某个权重维度上的权重累加值。以及前一个节点的信息
+	 * @Description:  	从起点往后遍历，在每个结点都用Step类记录信息。
+	 * 						Step类记录当前节点。和到当前节点为止，在某个权重维度上的权重累加值。
+	 * 						以及遍历到这个节点的前一个节点的Step信息
 	 */
 	protected class Step {
 		
+		// 到当前结点为止,累积的总权重值
 		private final int totalWeight;
+		// 当前的节点
 		private final Vertex current;
+		// 前继节点信息
 		private final Step previous;
 		
 		protected Step(int totalWeight, Vertex current, Step previous) {
@@ -143,17 +148,14 @@ public abstract class SpecifiedPath extends Path {
 			this.previous = previous;
 		}
 
-		/** @return 到当前结点为止,累积的总权重值 */
 		protected int getTotalWeight() {
 			return totalWeight;
 		}
 		
-		/** @return 当前的节点 */
 		protected Vertex getCurrent() {
 			return current;
 		}
 
-		/** @return 当前结点的前续结点信息 */
 		protected Step getPrevious() {
 			return previous;
 		}
