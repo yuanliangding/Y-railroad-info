@@ -133,6 +133,7 @@ public abstract class SpecifiedPath extends Path {
 	 * @Description:  遍历到某个结点的相关信息。针对某个结点，记录当前节点。以及到当前节点为止在某个权重维度上的权重累加值。以及前一个节点的信息
 	 */
 	protected static class Step {
+		
 		private final int totalWeight;
 		private final Vertex current;
 		private final Step previous;

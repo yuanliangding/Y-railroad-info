@@ -45,7 +45,7 @@ public abstract class Path {
 	 * 
 	 * @param dim 权重维度
 	 * */
-	public long getTotalWeight(String dim) {
+	public int getTotalWeight(String dim) {
 		throw new GraphException("该类型路径不支持计算总权重");
 	}
 	

@@ -38,7 +38,7 @@ public class MinPathTest extends DefaultDataPrepared {
 		Assert.assertThat(
 				"从A到C，最短路径路程为9", 
 				ac_dist_paths.get(0).getTotalWeight(DIST), 
-				CoreMatchers.equalTo(9L));
+				CoreMatchers.equalTo(9));
 		
 		MinPath bb_dist = new MinPath(b, b, DIST);
 		List<IndividualPath> bb_dist_paths = bb_dist.search();
@@ -51,7 +51,7 @@ public class MinPathTest extends DefaultDataPrepared {
 		Assert.assertThat(
 				"从A到C，最短路径路程为 9", 
 				bb_dist_paths.get(0).getTotalWeight(DIST), 
-				CoreMatchers.equalTo(9L));
+				CoreMatchers.equalTo(9));
 		}
 
 }

@@ -57,11 +57,11 @@ public class MoreThanOneShortestTest {
 		Assert.assertThat(
 				"从A到E，最短路径距离为11", 
 				ae_dist_paths.get(0).getTotalWeight(DefaultDataPrepared.DIST), 
-				CoreMatchers.equalTo(11L));
+				CoreMatchers.equalTo(11));
 		Assert.assertThat(
 				"从A到E，最短路径距离为11", 
 				ae_dist_paths.get(1).getTotalWeight(DefaultDataPrepared.DIST), 
-				CoreMatchers.equalTo(11L));
+				CoreMatchers.equalTo(11));
 		}
 
 }
