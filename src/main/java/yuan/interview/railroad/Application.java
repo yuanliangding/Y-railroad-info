@@ -19,6 +19,14 @@ public class Application {
 
 	public static void main(String[] args) {
 		
+		/*
+		 * 以 -data map.txt -exit quit 的方式接收参数
+		 * map.txt		指定的地图数据文件(每行一条信息.格式如 AB32, A,B分别代表一个节点,32为A到B的路程)
+		 * 					不指定,则以default.txt为默认的数据
+		 * quit			这里输入quit,程序的退出命令就是quit.默认为exit
+		 * 					不指定,则默认是 'exit'
+		 * */
+		
 		// 处理和补充参数
 		List<String> argsList = Stream.of(args).collect(Collectors.toList());
 		if (argsList.size() % 2 == 1) {
