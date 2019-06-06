@@ -51,7 +51,7 @@ public class BoundedPath extends CriterionPath {
 		this.maxContainsEq = maxContainsEq;
 	}
 	
-	// TODO 边的权重如果有负值。需要让返回值永远为true才能保证不会漏掉结果
+	// XXX: 边的权重如果有负值。需要让返回值永远为true才能保证不会漏掉结果
 	@Override
 	protected boolean toBeContinue(Step step) {
 		return maxContainsEq? step.getTotalWeight() <= max: step.getTotalWeight() < max;

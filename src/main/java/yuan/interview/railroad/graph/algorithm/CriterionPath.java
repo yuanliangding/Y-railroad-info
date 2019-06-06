@@ -54,7 +54,7 @@ public abstract class CriterionPath extends Path {
 	 * 在指定维度计算权重分量的累加总值.最终筛选出满足条件的路线。
 	 * 根据具体子类的实现，可以得到最短路径,耗时最少路径.或者权重累加和满足一定数值范围(途中可能会有环路)
 	 * 
-	 * TODO 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类搜索遍历操作不是线程安全的
+	 * XXX: 由于遍历的时候,临时数据放在了实例变量中,所以该类及其所有子类搜索遍历操作不是线程安全的
 	 * */
 	public List<IndividualPath> search() {
 		// 1 清理工作（上次计算留下的中间结果）
@@ -73,7 +73,7 @@ public abstract class CriterionPath extends Path {
 	}
 	
 	/**
-	 * TODO	1	对于路途中有环路,要注意退出条件,以免死循环
+	 * XXX:	1	对于路途中有环路,要注意退出条件,以免死循环
 	 * 			2	由于是采用递归操作,对于规模大的图有可能会导致内存不足
 	 * */
 	private void traverse(Step currStep) {

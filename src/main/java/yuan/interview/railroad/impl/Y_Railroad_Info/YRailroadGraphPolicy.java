@@ -106,7 +106,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 			if (end != null && !"".equals(end)) {
 				endVertex = map.getVertex(end);
 			} else {
-				// TODO 这里可以不报错,计算到所有可达点的路径(去掉这里的else就可以)
+				// XXX: 这里可以不报错,计算到所有可达点的路径(去掉这里的else就可以)
 				throw new YRailroadException("执行错误。指定了-f参数，必须指定一个-e路径终点参数.");
 			}
 			
