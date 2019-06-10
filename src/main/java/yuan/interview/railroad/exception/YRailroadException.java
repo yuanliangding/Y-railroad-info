@@ -1,8 +1,8 @@
 package yuan.interview.railroad.exception;
 
 /** 
- * @ClassName: GraphException
- * @Description: 底层图相关的异常信息
+ * @ClassName: YRailroadException
+ * @Description: YRailroad应用相关的异常信息
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月30日-上午10:29:30
