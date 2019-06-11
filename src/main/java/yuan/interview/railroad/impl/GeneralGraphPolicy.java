@@ -21,6 +21,8 @@ import yuan.interview.railroad.interactive.Command;
 /** 
  * @ClassName: GeneralGraphPolicy
  * @Description:  图策略基础实现
+ * 
+ *  					提供三个维度的权重。1 DIST 2 STOP 3 TIME 由{@link Weight枚举提供}。
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-上午6:28:46

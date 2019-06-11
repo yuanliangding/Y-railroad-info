@@ -5,7 +5,7 @@ import yuan.interview.railroad.graph.io.GraphReader;
 import yuan.interview.railroad.impl.GeneralGraphPolicy;
 
 /** 
- * @ClassName: GeneralGraphPolicy
+ * @ClassName: YRailroadGraphPolicy
  * @Description:  Y-Railroad 图策略
  * 
  * 						提供两个维度的权重。1 DIST 2 STOP 由{@link Weight枚举提供}。
