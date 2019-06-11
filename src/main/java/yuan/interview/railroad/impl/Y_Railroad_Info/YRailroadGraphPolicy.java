@@ -9,15 +9,14 @@ import java.util.stream.Stream;
 
 import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
+import yuan.interview.railroad.graph.algorithm.CriterionPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
-import yuan.interview.railroad.graph.algorithm.CriterionPath;
 import yuan.interview.railroad.graph.base.Graph;
 import yuan.interview.railroad.graph.base.Vertex;
 import yuan.interview.railroad.graph.io.GraphReader;
 import yuan.interview.railroad.graph.policy.GraphPolicy;
 import yuan.interview.railroad.interactive.Command;
-import yuan.interview.railroad.interactive.CommandData;
 
 /** 
  * @ClassName: YRailroadGraphPolicy
@@ -57,7 +56,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		});
 		
 		result.put("dist", cd -> {
-			List<IndividualPath> paths = calcPath(cd);
+			List<IndividualPath> paths = calcPath(cd.getOptions());
 			if (paths == null || paths.size() == 0) {
 				throw new YRailroadException("NO SUCH ROUTE");
 			}
@@ -65,15 +64,14 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		});
 		
 		result.put("count", cd -> {
-			List<IndividualPath> paths = calcPath(cd);
+			List<IndividualPath> paths = calcPath(cd.getOptions());
 			return paths.size();
 		});
 		
 		return result;
 	}
 	
-	protected List<IndividualPath> calcPath(CommandData commandData) {
-		Map<String, String> options = commandData.getOptions();
+	protected List<IndividualPath> calcPath(Map<String, String> options) {
 		if (options == null || options.isEmpty()) {
 			throw new YRailroadException("执行错误,请输入必要的选项参考");
 		}

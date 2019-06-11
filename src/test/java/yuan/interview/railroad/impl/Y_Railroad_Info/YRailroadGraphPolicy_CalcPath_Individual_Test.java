@@ -13,7 +13,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
-import yuan.interview.railroad.interactive.CommandData;
 import yuan.interview.railroad.test.util.YRailroadGraphPolicyPrepared;
 
 /**
@@ -41,8 +40,7 @@ public class YRailroadGraphPolicy_CalcPath_Individual_Test extends YRailroadGrap
 	public void test() {
 		Map<String, String> options = new HashMap<>();
 		options.put("p", path);
-		CommandData commandData = new CommandData("dist", options);
-		List<IndividualPath> paths = yRailroadGraphPolicy.calcPath(commandData);
+		List<IndividualPath> paths = yRailroadGraphPolicy.calcPath(options);
 		Assert.assertThat("生成失败", paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat("生成路径信息不准确", paths.get(0).toString(), CoreMatchers.equalTo(path));
 	}
