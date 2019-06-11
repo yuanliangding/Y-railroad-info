@@ -49,7 +49,7 @@ public class TWGraphReader extends GeneralGraphReader {
 			
 			int distV = Integer.parseInt(dist);
 			
-			results.add(new WeightInfo(begin,end,null,distV));
+			results.add(new WeightInfo(begin, end, null, distV));
 		});
 		
 		return results;

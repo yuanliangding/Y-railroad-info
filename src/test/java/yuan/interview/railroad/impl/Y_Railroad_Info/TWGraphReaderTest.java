@@ -13,7 +13,7 @@ import yuan.interview.railroad.graph.io.WeightInfo;
 import yuan.interview.railroad.test.util.TWDataPrepared;
 
 /**
- * @ClassName: TWGraphReaderTest
+ * @ClassName: QuadGraphReaderTest
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月27日-上午12:26:56
