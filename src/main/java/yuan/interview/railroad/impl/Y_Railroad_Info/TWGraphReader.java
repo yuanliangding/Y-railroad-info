@@ -61,8 +61,7 @@ public class TWGraphReader implements GraphReader {
 		
 		final Pattern routePattern = Pattern.compile("(\\S)(\\S)(\\d+)");
 		
-		String route;
-		while ((route = bufferedReader.readLine()) != null) {
+		bufferedReader.lines().forEach(route -> {
 			route = route.trim();
 			
 			Matcher routeMatcher = routePattern.matcher(route);
@@ -77,7 +76,8 @@ public class TWGraphReader implements GraphReader {
 			int distV = Integer.parseInt(dist);
 			
 			results.add(new WeightInfo(begin,end,null,distV));
-		}
+			
+		});
 		
 		return results;
 	}
