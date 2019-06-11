@@ -57,7 +57,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		});
 		
 		result.put("dist", cd -> {
-			List<IndividualPath> paths = calcPath(cd.getOptions());
+			List<IndividualPath> paths = getResultSet(cd.getOptions());
 			if (paths == null || paths.size() == 0) {
 				throw new YRailroadException("NO SUCH ROUTE");
 			}
@@ -65,14 +65,14 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		});
 		
 		result.put("count", cd -> {
-			List<IndividualPath> paths = calcPath(cd.getOptions());
+			List<IndividualPath> paths = getResultSet(cd.getOptions());
 			return paths.size();
 		});
 		
 		return result;
 	}
 	
-	protected List<IndividualPath> calcPath(Map<String, String> options) {
+	protected List<IndividualPath> getResultSet(Map<String, String> options) {
 		if (options == null || options.isEmpty()) {
 			throw new YRailroadException("执行错误,请输入必要的选项参考");
 		}

@@ -40,7 +40,7 @@ public class YRailroadGraphPolicy_CalcPath_Individual_Test extends YRailroadGrap
 	public void test() {
 		Map<String, String> options = new HashMap<>();
 		options.put("p", path);
-		List<IndividualPath> paths = yRailroadGraphPolicy.calcPath(options);
+		List<IndividualPath> paths = yRailroadGraphPolicy.getResultSet(options);
 		Assert.assertThat("生成失败", paths.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat("生成路径信息不准确", paths.get(0).toString(), CoreMatchers.equalTo(path));
 	}

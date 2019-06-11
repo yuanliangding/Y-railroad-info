@@ -29,7 +29,7 @@ public class YRailroadGraphPolicy_CalcPath_Min_Test extends YRailroadGraphPolicy
 		options1.put("f", "md");
 		options1.put("b", "A");
 		options1.put("e", "C");
-		List<IndividualPath> paths1 = yRailroadGraphPolicy.calcPath(options1);
+		List<IndividualPath> paths1 = yRailroadGraphPolicy.getResultSet(options1);
 		Assert.assertThat("从A到C，最短路径路线有1条", paths1.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从A到C，最短路径路线有1条:A-B-C", 
@@ -42,7 +42,7 @@ public class YRailroadGraphPolicy_CalcPath_Min_Test extends YRailroadGraphPolicy
 		options2.put("f", "md");
 		options2.put("b", "B");
 		options2.put("e", "B");
-		List<IndividualPath> paths2 = yRailroadGraphPolicy.calcPath(options2);
+		List<IndividualPath> paths2 = yRailroadGraphPolicy.getResultSet(options2);
 		Assert.assertThat("从B到B，最短路径路线有1条", paths2.size(), CoreMatchers.equalTo(1));
 		Assert.assertThat(
 				"从B到B，最短路径路线有1条：B-C-E-B", 
