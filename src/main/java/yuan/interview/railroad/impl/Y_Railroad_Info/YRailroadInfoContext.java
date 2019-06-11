@@ -21,7 +21,7 @@ import yuan.interview.railroad.interactive.CommandExecutor;
  * 
  * @see TWGraphReader
  * @see XStyleCommandParser
- * @see YRailroadGraphPolicy
+ * @see GeneralGraphPolicy
  * @see CommandExecutor
  *
  * @author 袁良锭(https://github.com/yuanliangding)
