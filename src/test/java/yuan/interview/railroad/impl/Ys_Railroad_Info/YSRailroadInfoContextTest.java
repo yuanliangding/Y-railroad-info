@@ -38,6 +38,8 @@ public class YSRailroadInfoContextTest {
 				"dist -f md -b A -e C\n" + 
 				"dist -f md -b B -e B\n" + 
 				"count -f d -b C -e C -M n30\n" + 
+				"count -f t -b C -e C -M n30\n" + 
+				"count -f mt -b B -e B\n" + 
 				"exit";
 		
 		String expectedResult = 
@@ -50,7 +52,9 @@ public class YSRailroadInfoContextTest {
 				">> 3\n" + 
 				">> 9\n" + 
 				">> 9\n" + 
-				">> 7";
+				">> 7\n" + 
+				">> 1\n" + 
+				">> 1";
 		
 		ByteArrayOutputStream resultByteArrayOutputStream = new ByteArrayOutputStream();
 		
