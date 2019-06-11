@@ -70,8 +70,10 @@ public class CommandExecutor {
 				run = false;
 			} else {
 				try {
+					CommandData commandData = commandParser.parser(commandStr);
+					
 					standardOut.println(
-								exec(commandStr)
+								exec(commandData)
 							);
 				} catch(Exception e) {
 					standardError.println(e.getMessage());
@@ -88,9 +90,7 @@ public class CommandExecutor {
 	}
 	
 	/** 执行一条命令 */
-	protected Object exec(String cmd) {
-		CommandData commandData = commandParser.parser(cmd);
-		
+	protected Object exec(CommandData commandData) {
 		Command command = commands.get(commandData.getName());
 		if (command == null) {
 			throw new InteractiveException("不认识的命令");

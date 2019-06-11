@@ -1,24 +1,17 @@
 package yuan.interview.railroad.interactive;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.rules.ExpectedException;
 
-import yuan.interview.railroad.graph.io.GraphReader;
-import yuan.interview.railroad.graph.policy.GraphPolicy;
-import yuan.interview.railroad.impl.Y_Railroad_Info.TWGraphReader;
-import yuan.interview.railroad.impl.Y_Railroad_Info.XStyleCommandParser;
-import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadGraphPolicy;
-import yuan.interview.railroad.test.util.TWDataPrepared;
+import yuan.interview.railroad.exception.InteractiveException;
 
 /**
  * @ClassName: CommandExecutorTest
@@ -26,60 +19,80 @@ import yuan.interview.railroad.test.util.TWDataPrepared;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:47:09
  */
-@RunWith(Parameterized.class)
-public class CommandExecutorTest extends TWDataPrepared {
+public class CommandExecutorTest {
 
 	private CommandExecutor commandExecutor = null;
 	
-	private String command = null;
-	private String result = null;
-
-	public CommandExecutorTest(String command, String result) {
-		this.command = command;
-		this.result = result;
-	}
-
-	@Parameters
-	public static List<String[]> data() {
-		List<String[]> dataSet = Arrays.asList(
-															new String[][]{
-																{"dist -p A-B-C","9"},
-																{"dist -p A-D","5"},
-																{"dist -p A-D-C","13"},
-																{"dist -p A-E-B-C-D","22"},
-																{"dist -p A-E-D","NO SUCH ROUTE"},
-																{"count -f s -b C -e C -M 3","2"},
-																{"count -f s -b A -e C -m 4 -M 4","3"},
-																{"dist -f md -b A -e C","9"},
-																{"dist -f md -b B -e B","9"},
-																{"count -f d -b C -e C -M n30","7"}
-															}
-														);
-		return dataSet;
-	}
+	@Rule
+	public final ExpectedException noSuchRouteException = ExpectedException.none();
 
 	@Test
 	public void testExec() throws IOException {
-		String runResult = null;
-		try {
-			runResult = String.valueOf(commandExecutor.exec(command));
-		} catch(Exception e) {
-			runResult = e.getMessage();
-		}
 		
-		Assert.assertThat("运行命令 " + command + " 的结果不正确。", runResult,CoreMatchers.equalTo(result));
+		Map<String, String> options1 = new HashMap<>();
+		CommandData commandData1 = new CommandData("cmd1", options1);
+		CommandResult result1 = (CommandResult) commandExecutor.exec(commandData1);
+		
+		Assert.assertThat("运行命令没有返回有效果结果", result1, CoreMatchers.notNullValue());
+		Assert.assertThat("运行前选取的命令错误", result1.getCommand(), CoreMatchers.equalTo("cmd1"));
+		Assert.assertThat("命令中的具体数据错误", result1.getCommandData(), CoreMatchers.equalTo(commandData1));
+		
+		Map<String, String> options2 = new HashMap<>();
+		CommandData commandData2 = new CommandData("cmd2", options2);
+		CommandResult result2 = (CommandResult) commandExecutor.exec(commandData2);
+		
+		Assert.assertThat("运行命令没有返回有效果结果", result2, CoreMatchers.notNullValue());
+		Assert.assertThat("运行前选取的命令错误", result2.getCommand(), CoreMatchers.equalTo("cmd2"));
+		Assert.assertThat("命令中的具体数据错误", result2.getCommandData(), CoreMatchers.equalTo(commandData2));
+	}
+	
+	@Test
+	public void testExecWithException() throws IOException {
+		noSuchRouteException.expect(InteractiveException.class);
+		noSuchRouteException.expectMessage("CMD Exception");
+		
+		CommandData commandData = new CommandData("cmdException", null);
+		commandExecutor.exec(commandData);
 	}
 	
 	@Before
 	public void before() throws IOException {
-		GraphPolicy<Command, ?> mapPolicy = new YRailroadGraphPolicy();
-		GraphReader graphReader = new TWGraphReader(dataPath);
-		mapPolicy.setGraphReader(graphReader);
-		Map<String,Command> commands = mapPolicy.getCommands();
-		
 		commandExecutor = new CommandExecutor();
-		commandExecutor.setCommandParser(new XStyleCommandParser());
-		commandExecutor.registeCommands(commands);
+		commandExecutor.registeCommands(getCommands());
+	}
+	
+	private Map<String, Command> getCommands() {
+		Map<String, Command> result = new HashMap<>();
+		
+		result.put("cmd1", cd -> {
+			return new CommandResult("cmd1", cd);
+		});
+		result.put("cmd2", cd -> {
+			return new CommandResult("cmd2", cd);
+		});
+		result.put("cmdException", cd -> {
+			throw new InteractiveException("CMD Exception");
+		});
+		
+		return result;
+	}
+	
+	private class CommandResult {
+		private String command;
+		private CommandData commandData;
+		
+		public CommandResult(String command, CommandData commandData) {
+			super();
+			this.command = command;
+			this.commandData = commandData;
+		}
+		
+		public String getCommand() {
+			return command;
+		}
+		public CommandData getCommandData() {
+			return commandData;
+		}
 	}
 
 }
