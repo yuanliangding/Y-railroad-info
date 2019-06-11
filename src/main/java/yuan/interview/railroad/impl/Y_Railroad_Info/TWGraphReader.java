@@ -1,17 +1,14 @@
 package yuan.interview.railroad.impl.Y_Railroad_Info;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import yuan.interview.railroad.exception.YRailroadException;
-import yuan.interview.railroad.graph.io.GraphReader;
+import yuan.interview.railroad.graph.io.GeneralGraphReader;
 import yuan.interview.railroad.graph.io.WeightInfo;
 
 /** 
@@ -26,37 +23,14 @@ import yuan.interview.railroad.graph.io.WeightInfo;
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月26日-下午11:57:10
  */
-public class TWGraphReader implements GraphReader {
-	
-	private String path = null;
+public class TWGraphReader extends GeneralGraphReader {
 	
 	public TWGraphReader(String path) {
-		this.path = path;
+		super(path, "/map/default.txt");
 	}
 
 	@Override
-	public List<WeightInfo> read() {
-		if (path == null) {
-			try(
-					InputStream defaultInputStream = this.getClass().getResourceAsStream("/map/default.txt");
-					InputStreamReader defaultinputStreamReader = new InputStreamReader(defaultInputStream);
-					BufferedReader mapBufferedReader = new BufferedReader(defaultinputStreamReader)
-							){
-				return read(mapBufferedReader);
-			} catch (IOException e) {
-				throw new YRailroadException("程序启动失败。没找到默认的地图数据文件");
-			}
-		} else {
-			try (FileReader mapFileReader = new FileReader(path);
-					BufferedReader mapBufferedReader = new BufferedReader(mapFileReader)) {
-				return read(mapBufferedReader);
-			} catch (IOException e) {
-				throw new YRailroadException("程序启动失败。没找到指定的地图数据文件");
-			}
-		}
-	}
-	
-	private List<WeightInfo> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
+	protected List<WeightInfo> read(BufferedReader bufferedReader) throws NumberFormatException, IOException {
 		List<WeightInfo> results = new ArrayList<>();
 		
 		final Pattern routePattern = Pattern.compile("(\\S)(\\S)(\\d+)");

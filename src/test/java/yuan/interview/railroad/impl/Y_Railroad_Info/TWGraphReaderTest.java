@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import yuan.interview.railroad.graph.io.GeneralGraphReader;
 import yuan.interview.railroad.graph.io.WeightInfo;
 import yuan.interview.railroad.test.util.TWDataPrepared;
 
@@ -19,7 +20,7 @@ import yuan.interview.railroad.test.util.TWDataPrepared;
  */
 public class TWGraphReaderTest extends TWDataPrepared {
 	
-	private TWGraphReader twGraphReader = null;
+	private GeneralGraphReader twGraphReader = null;
 	
 	@Before
 	public void before() throws IOException {
