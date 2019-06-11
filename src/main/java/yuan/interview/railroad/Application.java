@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import yuan.interview.railroad.core.ApplicationContext;
-import yuan.interview.railroad.impl.Y_Railroad_Info.YRailroadInfoContext;
+import yuan.interview.railroad.impl.Ys_Railroad_Info.YSRailroadInfoContext;
 
 /** 
  * @ClassName: Application
@@ -44,7 +44,8 @@ public class Application {
 		// 启动应用
 		String data = argsMap.get("--data");
 		String exit = argsMap.get("--exit");
-		ApplicationContext applicationContext = new YRailroadInfoContext();
+//		ApplicationContext applicationContext = new YRailroadInfoContext();
+		ApplicationContext applicationContext = new YSRailroadInfoContext();
 		applicationContext.start(System.in, System.out, System.err, data, exit);
 	}
 
