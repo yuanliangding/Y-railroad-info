@@ -14,12 +14,12 @@ import org.junit.rules.ExpectedException;
 import yuan.interview.railroad.exception.InteractiveException;
 
 /**
- * @ClassName: CommandExecutorTest
+ * @ClassName: CommandExecutor_Exec_Test
  *
  * @author 袁良锭(https://github.com/yuanliangding)
  * @date 2019年5月29日-下午5:47:09
  */
-public class CommandExecutorTest {
+public class CommandExecutor_Exec_Test {
 
 	private CommandExecutor commandExecutor = null;
 	

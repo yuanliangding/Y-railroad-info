@@ -76,7 +76,6 @@ public class TWGraphReader implements GraphReader {
 			int distV = Integer.parseInt(dist);
 			
 			results.add(new WeightInfo(begin,end,null,distV));
-			
 		});
 		
 		return results;
