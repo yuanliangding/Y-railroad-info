@@ -78,32 +78,20 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		
 		String path = options.get("p");
 		if (path != null) {
-			if("".equals(path)) {
-				throw new YRailroadException("执行错误，请在-p后附上合法的路径信息。比如 A-B-C 求从A经停B最终到C");
-			}
-			List<Vertex> vertexs = Stream.of(path.split("-"))
-					.map(map::getVertex)
-					.collect(Collectors.toList());
-			IndividualPath individualPath = new IndividualPath(vertexs);
-			
-			return Arrays.asList(individualPath);
+			return createIndividualWithP(path);
 		} else {
 			String focus = options.get("f");
 			if (focus == null || "".equals(focus)) {
 				throw new YRailroadException("执行错误。请在-p或者-f参数，必须指定一个.");
 			}
 			
-			String begin = options.get("b");
-			if (begin == null || "".equals(begin)) {
+			Vertex beginVertex = getVertexByBorE(options.get("b"));
+			if (beginVertex == null) {
 				throw new YRailroadException("执行错误。指定了-f参数，必须指定一个-b路径起点参数.");
 			}
-			Vertex beginVertex = map.getVertex(begin);
 			
-			Vertex endVertex = null;
-			String end = options.get("e");
-			if (end != null && !"".equals(end)) {
-				endVertex = map.getVertex(end);
-			} else {
+			Vertex endVertex = getVertexByBorE(options.get("e"));
+			if (endVertex == null) {
 				// XXX: 这里可以不报错,计算到所有可达点的路径(去掉这里的else就可以)
 				throw new YRailroadException("执行错误。指定了-f参数，必须指定一个-e路径终点参数.");
 			}
@@ -120,32 +108,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 						weight = YRailroadGraphPolicy.Weight.STOP;
 					}
 					
-					String max = options.get("M");
-					if (max == null || "".equals(max)) {
-						throw new YRailroadException("执行错误。指定了-f s或者-f d参数，必须指定-M参数");
-					}
-					
-					boolean maxContainsEq = true;
-					if (max.startsWith("n")) {
-						maxContainsEq = false;
-						max = max.substring(1);
-					}
-					
-					int maxV = Integer.parseInt(max);
-					
-					String min = options.get("m");
-					int minV = 0;
-					boolean minContainsEq = true;
-					if (min != null && !"".equals(min)) {
-						if (min.startsWith("n")) {
-							minContainsEq = false;
-							min = min.substring(1);
-						}
-						
-						minV = Integer.parseInt(min);
-					}
-					
-					criterionPath = new BoundedPath(beginVertex, endVertex, weight.name(), minV, maxV, minContainsEq, maxContainsEq);
+					criterionPath = createBoundedPathByOptions(beginVertex, endVertex, weight.name(), options);
 					break;
 				case "md":
 					weight = YRailroadGraphPolicy.Weight.DIST;
@@ -154,7 +117,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 						weight = YRailroadGraphPolicy.Weight.STOP;
 					}
 					
-					criterionPath = new MinPath(beginVertex, endVertex, weight.name());
+					criterionPath = createBoundedPathByOptions(beginVertex, endVertex, weight.name());
 					break;
 				default:
 					throw new YRailroadException("执行错误。请在-f参数的有效值可以是：d、s、md、ms");
@@ -162,6 +125,59 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 			
 				return criterionPath.search();
 		}
+	}
+	
+	private List<IndividualPath> createIndividualWithP(String path) {
+		if("".equals(path)) {
+			throw new YRailroadException("执行错误，请在-p后附上合法的路径信息。比如 A-B-C 求从A经停B最终到C");
+		}
+		List<Vertex> vertexs = Stream.of(path.split("-"))
+				.map(map::getVertex)
+				.collect(Collectors.toList());
+		IndividualPath individualPath = new IndividualPath(vertexs);
+		
+		return Arrays.asList(individualPath);
+	}
+	
+	private Vertex getVertexByBorE(String vName) {
+		if (vName != null && !"".equals(vName)) {
+			return map.getVertex(vName);
+		} else {
+			return null;
+		}
+	}
+	
+	private BoundedPath createBoundedPathByOptions(Vertex begin, Vertex end, String dim, Map<String, String> options) {
+		String max = options.get("M");
+		if (max == null || "".equals(max)) {
+			throw new YRailroadException("执行错误。指定了-f s或者-f d参数，必须指定-M参数");
+		}
+		
+		boolean maxContainsEq = true;
+		if (max.startsWith("n")) {
+			maxContainsEq = false;
+			max = max.substring(1);
+		}
+		
+		int maxV = Integer.parseInt(max);
+		
+		String min = options.get("m");
+		int minV = 0;
+		boolean minContainsEq = true;
+		if (min != null && !"".equals(min)) {
+			if (min.startsWith("n")) {
+				minContainsEq = false;
+				min = min.substring(1);
+			}
+			
+			minV = Integer.parseInt(min);
+		}
+		
+		return new BoundedPath(begin, end, dim, minV, maxV, minContainsEq, maxContainsEq);
+	}
+	
+	private MinPath createBoundedPathByOptions(Vertex begin, Vertex end, String dim) {
+		return new MinPath(begin, end, dim);
 	}
 	
 	/**该策略提供给用户的命令操作手册(命令格式采用unix风格)*/
