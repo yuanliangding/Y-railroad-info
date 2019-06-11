@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import yuan.interview.railroad.exception.YRailroadException;
 import yuan.interview.railroad.graph.algorithm.BoundedPath;
-import yuan.interview.railroad.graph.algorithm.CriterionPath;
 import yuan.interview.railroad.graph.algorithm.IndividualPath;
 import yuan.interview.railroad.graph.algorithm.MinPath;
 import yuan.interview.railroad.graph.base.Graph;
@@ -96,34 +97,29 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 				throw new YRailroadException("执行错误。指定了-f参数，必须指定一个-e路径终点参数.");
 			}
 			
-			CriterionPath criterionPath = null;
+			final Pattern focusPattern = Pattern.compile("(m?)(s|d)");
+			Matcher focusMatcher = focusPattern.matcher(focus);
+			if(!focusMatcher.matches()) {
+				throw new YRailroadException("执行错误。请在-f参数的有效值可以是：d、s、md、ms");
+			}
+			
+			String isMin = focusMatcher.group(1);
+			String weightTag = focusMatcher.group(2);
 			
 			YRailroadGraphPolicy.Weight weight = null;
+			if ("d".equals(weightTag)) {
+				weight = YRailroadGraphPolicy.Weight.DIST;
+			} else {
+				weight = YRailroadGraphPolicy.Weight.STOP;
+			}
 			
-			switch(focus) {
-				case "d":
-					weight = YRailroadGraphPolicy.Weight.DIST;
-				case "s":
-					if (weight == null) {
-						weight = YRailroadGraphPolicy.Weight.STOP;
-					}
-					
-					criterionPath = createBoundedPathByOptions(beginVertex, endVertex, weight.name(), options);
-					break;
-				case "md":
-					weight = YRailroadGraphPolicy.Weight.DIST;
-				case "ms":
-					if (weight == null) {
-						weight = YRailroadGraphPolicy.Weight.STOP;
-					}
-					
-					criterionPath = createBoundedPathByOptions(beginVertex, endVertex, weight.name());
-					break;
-				default:
-					throw new YRailroadException("执行错误。请在-f参数的有效值可以是：d、s、md、ms");
-				}
-			
-				return criterionPath.search();
+			if ("".equals(isMin)) {
+				return createBoundedPathByOptions(beginVertex, endVertex, weight.name(), options)
+						.search();
+			} else {
+				return createMinPathByOptions(beginVertex, endVertex, weight.name())
+						.search();
+			}
 		}
 	}
 	
@@ -147,8 +143,8 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		}
 	}
 	
-	private BoundedPath createBoundedPathByOptions(Vertex begin, Vertex end, String dim, Map<String, String> options) {
-		String max = options.get("M");
+	private BoundedPath createBoundedPathByOptions(Vertex begin, Vertex end, String dim, Map<String, String> otherOptions) {
+		String max = otherOptions.get("M");
 		if (max == null || "".equals(max)) {
 			throw new YRailroadException("执行错误。指定了-f s或者-f d参数，必须指定-M参数");
 		}
@@ -161,7 +157,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		
 		int maxV = Integer.parseInt(max);
 		
-		String min = options.get("m");
+		String min = otherOptions.get("m");
 		int minV = 0;
 		boolean minContainsEq = true;
 		if (min != null && !"".equals(min)) {
@@ -176,7 +172,7 @@ public class YRailroadGraphPolicy implements GraphPolicy<Command, YRailroadGraph
 		return new BoundedPath(begin, end, dim, minV, maxV, minContainsEq, maxContainsEq);
 	}
 	
-	private MinPath createBoundedPathByOptions(Vertex begin, Vertex end, String dim) {
+	private MinPath createMinPathByOptions(Vertex begin, Vertex end, String dim) {
 		return new MinPath(begin, end, dim);
 	}
 	
