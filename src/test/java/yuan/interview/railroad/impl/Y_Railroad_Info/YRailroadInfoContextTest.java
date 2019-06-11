@@ -29,7 +29,8 @@ public class YRailroadInfoContextTest extends TWDataPrepared {
 
 	@Test
 	public void testParser() {
-		String commands = "dist -p A-B-C\n" + 
+		String commands = 
+				"dist -p A-B-C\n" + 
 				"dist -p A-D\n" + 
 				"dist -p A-D-C\n" + 
 				"dist -p A-E-B-C-D\n" + 
@@ -41,7 +42,8 @@ public class YRailroadInfoContextTest extends TWDataPrepared {
 				"count -f d -b C -e C -M n30\n" + 
 				"exit";
 		
-		String expectedResult = ">> 9\n" + 
+		String expectedResult = 
+				">> 9\n" + 
 				">> 5\n" + 
 				">> 13\n" + 
 				">> 22\n" + 
