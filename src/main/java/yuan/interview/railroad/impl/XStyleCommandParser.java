@@ -1,4 +1,4 @@
-package yuan.interview.railroad.impl.Y_Railroad_Info;
+package yuan.interview.railroad.impl;
 
 import java.util.HashMap;
 import java.util.Map;
