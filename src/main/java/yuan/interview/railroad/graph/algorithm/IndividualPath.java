@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import yuan.interview.railroad.exception.GraphException;
 import yuan.interview.railroad.graph.base.Path;
@@ -27,9 +29,7 @@ public class IndividualPath extends Path {
 	public IndividualPath(Vertex begin, Vertex ...others) {
 		super(begin);
 		
-		for (int index = 0; index < others.length; ++ index) {
-			rest.add(others[index]);
-		}
+		Stream.of(others).forEach(rest::add);
 	}
 	
 	/**
@@ -38,23 +38,23 @@ public class IndividualPath extends Path {
 	public IndividualPath(List<Vertex> vertexs) {
 		super(vertexs != null && vertexs.size() > 0? vertexs.get(0): null);
 		
-		for (int i = 1; i < vertexs.size(); ++ i) {
-			rest.add(vertexs.get(i));
-		}
+		vertexs.subList(1, vertexs.size()).forEach(rest::add);
 	}
 	
 	@Override
 	public int getTotalWeight(String dim) {
-		int result = 0;
+		List<Vertex> vertexs = Stream.concat(
+													Stream.of(begin), 
+													rest.stream()
+												).collect(
+													Collectors.toList()
+												);
 		
-		Vertex curr = begin;
+		int totalWeight = IntStream.rangeClosed(0, vertexs.size()-2).boxed()
+				.map(i -> getWeight(vertexs.get(i), vertexs.get(i+1), dim))
+				.reduce(Integer::sum).get();
 		
-		for (Vertex next:rest) {
-			result += getWeight(curr, next, dim);
-			curr = next;
-		}
-		
-		return result;
+		return totalWeight;
 	}
 	
 	private int getWeight (Vertex start, Vertex end, String dim) {
